@@ -66,6 +66,7 @@ import {
 	isInteractive,
 } from '../layouts/lib/interactiveLegacyStyling';
 import { decidePalette } from './decidePalette';
+import { useAB } from './useAB';
 
 type Props = {
 	format: ArticleFormat;
@@ -141,14 +142,15 @@ export const renderElement = ({
 	abTests,
 }: Props) => {
 	const palette = decidePalette(format);
-	const testing  =  switches.callouts && abTests?.calloutElementsVariant === 'variant';
-	console.log("switches obj::", switches)
-	console.log("abTests", abTests)
-	console.log("result::", testing)
 	const isBlog =
 		format.design === ArticleDesign.LiveBlog ||
 		format.design === ArticleDesign.DeadBlog;
 
+	const abTest = useAB();
+	const abTestsApi = abTest?.api;
+	const calloutElementsEnabled =
+		(abTestsApi?.isUserInVariant('CalloutElements', 'variant') ?? false) &&
+		switches.callouts;
 	switch (element._type) {
 		case 'model.dotcomrendering.pageElements.AudioAtomBlockElement':
 			return (
@@ -186,7 +188,7 @@ export const renderElement = ({
 				</Island>
 			);
 		case 'model.dotcomrendering.pageElements.CalloutBlockElementV2':
-			if (switches.callouts && abTests?.calloutsVariant === 'variant') {
+			if (calloutElementsEnabled) {
 				return (
 					<Island deferUntil="visible">
 						<CalloutBlockComponent

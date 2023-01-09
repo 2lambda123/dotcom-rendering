@@ -137,7 +137,6 @@ export const ArticleBody = ({
 	selectedTopics,
 	keywordIds,
 	abTests,
-
 }: Props) => {
 	const isInteractive = format.design === ArticleDesign.Interactive;
 	const palette = decidePalette(format);
@@ -226,7 +225,6 @@ export const ArticleBody = ({
 				isAdFreeUser={isAdFreeUser}
 				isSensitive={isSensitive}
 				abTests={abTests}
-
 			/>
 		</div>
 	);

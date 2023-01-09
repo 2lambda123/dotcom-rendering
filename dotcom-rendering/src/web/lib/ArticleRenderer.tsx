@@ -66,7 +66,7 @@ export const ArticleRenderer = ({
 	isAdFreeUser,
 	isSensitive,
 	isDev,
-	abTests
+	abTests,
 }: Props) => {
 	const renderedElements = elements.map((element, index) => {
 		return (

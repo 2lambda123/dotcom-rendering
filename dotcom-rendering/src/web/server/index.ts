@@ -26,7 +26,6 @@ const enhanceCAPIType = (body: unknown): FEArticleType => {
 		promotedNewsletter: data.promotedNewsletter,
 		isRecipe: isRecipe(data.tags),
 	});
-
 	const CAPIArticle: FEArticleType = {
 		...data,
 		blocks: enhancedBlocks,
