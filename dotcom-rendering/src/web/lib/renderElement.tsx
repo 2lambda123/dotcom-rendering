@@ -66,7 +66,7 @@ import {
 	isInteractive,
 } from '../layouts/lib/interactiveLegacyStyling';
 import { decidePalette } from './decidePalette';
-import { useAB } from './useAB';
+// import { useAB } from './useAB';
 
 type Props = {
 	format: ArticleFormat;
@@ -146,10 +146,10 @@ export const renderElement = ({
 		format.design === ArticleDesign.LiveBlog ||
 		format.design === ArticleDesign.DeadBlog;
 
-	const abTest = useAB();
-	const abTestsApi = abTest?.api;
+	// const abTest = useAB();
+	// const abTestsApi = abTest?.api;
 	const calloutElementsEnabled =
-		(abTestsApi?.isUserInVariant('CalloutElements', 'variant') ?? false) &&
+		// (abTestsApi?.isUserInVariant('CalloutElements', 'variant') ?? false) &&
 		switches.callouts;
 	switch (element._type) {
 		case 'model.dotcomrendering.pageElements.AudioAtomBlockElement':
