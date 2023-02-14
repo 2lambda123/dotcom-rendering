@@ -1,7 +1,7 @@
-import { trails } from '../../../fixtures/manual/trails';
 import { breakpoints } from '@guardian/source-foundations';
-import { Section } from './Section';
+import { trails } from '../../../fixtures/manual/trails';
 import { FixedMediumFastXII } from './FixedMediumFastXII';
+import { FrontContainer } from './FrontContainer';
 
 export default {
 	component: FixedMediumFastXII,
@@ -18,12 +18,8 @@ export default {
 };
 
 export const Default = () => (
-	<Section
-		title="FixedMediumFastXII"
-		padContent={false}
-		centralBorder="partial"
-	>
+	<FrontContainer title="FixedMediumFastXII">
 		<FixedMediumFastXII trails={trails} showAge={true} />
-	</Section>
+	</FrontContainer>
 );
 Default.story = { name: 'FixedMediumFastXII' };

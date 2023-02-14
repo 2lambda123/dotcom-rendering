@@ -19,13 +19,8 @@ type Props = {
 	url?: string;
 	/** The html `id` property of the element */
 	sectionId?: string;
-	/** Defaults to `true`. If we should render the left and right borders */
-	showSideBorders?: boolean;
-	centralBorder?: 'partial' | 'full';
 	/** Defaults to `true`. If we should render the top border */
 	showTopBorder?: boolean;
-	/** Defaults to `false`. If we should add padding to the sides of `children` */
-	padContent?: boolean;
 	/** The html tag used by Section defaults to `section` but can be overridden here */
 	element?:
 		| 'div'
@@ -70,11 +65,7 @@ type Props = {
 	toggleable?: boolean;
 	/** Applies a background colour only to the content inside the left and right borders */
 	innerBackgroundColour?: string;
-	/** Defaults to `false`. If true and `editionId` is also passed, then a date string is
-	 * shown under the title. Typically only used on Headlines containers on fronts
-	 */
-	showDateHeader?: boolean;
-	/** Used in partnership with `showDateHeader` to localise the date string */
+	/** Used to localise the date string in the header */
 	editionId?: EditionId;
 	/** A list of related links that appear in the bottom of the left column on fronts */
 	treats?: TreatType[];
@@ -281,24 +272,11 @@ const sectionContent = css`
 	}
 `;
 
-const sectionContentBorder = css`
-	position: relative;
-
-	${from.leftCol} {
-		::before {
-			content: '';
-			display: block;
-			width: 1px;
-			top: 0;
-			bottom: 0;
-			left: -10px;
-			position: absolute;
-			background-color: ${neutral[86]};
-		}
-	}
-`;
-
-const sectionContentPadded = css`
+/**
+ * The cards container include left and right padding, so we need to stretch
+ * it by half a column to either side so it remains aligned.
+ */
+const sectionContentMargins = css`
 	${from.tablet} {
 		margin-left: -10px;
 		margin-right: -10px;
@@ -436,7 +414,6 @@ export const FrontContainer = ({
 	children,
 	backgroundColour,
 	borderColour,
-	centralBorder,
 	containerName,
 	containerPalette,
 	description,
@@ -447,10 +424,7 @@ export const FrontContainer = ({
 	leftContent,
 	ophanComponentLink,
 	ophanComponentName,
-	padContent = false,
 	sectionId,
-	showDateHeader = false,
-	showSideBorders = true,
 	showTopBorder = true,
 	stretchRight = false,
 	toggleable = false,
@@ -462,9 +436,6 @@ export const FrontContainer = ({
 		containerPalette && decideContainerOverrides(containerPalette);
 
 	const isToggleable = toggleable && !!sectionId;
-
-	const showDecoration =
-		showTopBorder || showSideBorders || !!innerBackgroundColour;
 
 	return jsx(
 		element,
@@ -490,32 +461,26 @@ export const FrontContainer = ({
 			],
 		},
 		<>
-			{showDecoration && (
-				<div
-					css={[
-						decoration,
-						showSideBorders && sideBorders,
-						showTopBorder && topBorder,
-						innerBackgroundColour &&
-							css`
-								background-color: ${innerBackgroundColour};
-							`,
-					]}
-				/>
-			)}
 			<div
 				css={[
-					headlineContainerStyles,
-					centralBorder === 'partial' && headlineContainerBorders,
+					decoration,
+					sideBorders,
+					showTopBorder && topBorder,
+					innerBackgroundColour &&
+						css`
+							background-color: ${innerBackgroundColour};
+						`,
 				]}
-			>
+			/>
+
+			<div css={[headlineContainerStyles, headlineContainerBorders]}>
 				<ContainerTitle
 					title={title}
 					fontColour={fontColour ?? overrides?.text.container}
 					description={description}
 					url={url}
 					containerPalette={containerPalette}
-					showDateHeader={showDateHeader}
+					showDateHeader={true}
 					editionId={editionId}
 				/>
 				{leftContent}
@@ -533,8 +498,7 @@ export const FrontContainer = ({
 			<div
 				css={[
 					sectionContent,
-					padContent && sectionContentPadded,
-					centralBorder === 'full' && sectionContentBorder,
+					sectionContentMargins,
 					verticalMargins && paddings,
 				]}
 			>

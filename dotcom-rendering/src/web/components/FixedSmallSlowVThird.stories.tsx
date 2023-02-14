@@ -1,7 +1,7 @@
 import { breakpoints } from '@guardian/source-foundations';
 import { trails } from '../../../fixtures/manual/trails';
 import { FixedSmallSlowVThird } from './FixedSmallSlowVThird';
-import { Section } from './Section';
+import { FrontContainer } from './FrontContainer';
 
 export default {
 	component: FixedSmallSlowVThird,
@@ -18,12 +18,8 @@ export default {
 };
 
 export const Default = () => (
-	<Section
-		title="FixedSmallSlowVThird"
-		padContent={false}
-		centralBorder="partial"
-	>
+	<FrontContainer title="FixedSmallSlowVThird">
 		<FixedSmallSlowVThird trails={trails} showAge={true} />
-	</Section>
+	</FrontContainer>
 );
 Default.story = { name: 'FixedSmallSlowVThird' };

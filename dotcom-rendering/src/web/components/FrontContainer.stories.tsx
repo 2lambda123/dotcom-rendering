@@ -52,29 +52,16 @@ const Placeholder = ({
 
 export const ContainerStory = () => {
 	return (
-		<FrontContainer
-			title="Default Container"
-			showTopBorder={false}
-			showSideBorders={false}
-		>
+		<FrontContainer title="Default Container">
 			<Placeholder />
 		</FrontContainer>
 	);
 };
 ContainerStory.story = { name: 'default container' };
 
-export const NoTitleStory = () => {
-	return (
-		<FrontContainer showTopBorder={false} showSideBorders={false}>
-			<Placeholder />
-		</FrontContainer>
-	);
-};
-NoTitleStory.story = { name: 'with no title' };
-
 export const BordersStory = () => {
 	return (
-		<FrontContainer title="Borders" centralBorder="full">
+		<FrontContainer title="Borders">
 			<Placeholder />
 		</FrontContainer>
 	);
@@ -85,7 +72,6 @@ export const LeftContentStory = () => {
 	return (
 		<FrontContainer
 			title="Borders"
-			centralBorder="full"
 			leftContent={<Placeholder text="LeftCol" heightInPixels={200} />}
 		>
 			<Placeholder />
@@ -102,7 +88,6 @@ export const BackgroundStory = () => {
 			title="Background Colour"
 			description="About this content"
 			fontColour={neutral[100]}
-			centralBorder="full"
 			backgroundColour={brand[400]}
 			borderColour={brand[600]}
 		>
@@ -118,7 +103,6 @@ export const InnerBackgroundStory = () => {
 			title="Inner Background"
 			description="About this content"
 			fontColour={neutral[100]}
-			centralBorder="full"
 			innerBackgroundColour={brand[400]}
 			borderColour={brand[300]}
 		>
@@ -134,7 +118,6 @@ export const DifferentBackgrounds = () => {
 	return (
 		<FrontContainer
 			title="Tip us off"
-			centralBorder="full"
 			backgroundColour="#FFF280"
 			borderColour={brand[300]}
 			innerBackgroundColour="#FFE501"
@@ -154,7 +137,6 @@ export const StretchRightStory = () => {
 		<FrontContainer
 			title="Stretched Right"
 			description="About this content"
-			centralBorder="full"
 			stretchRight={true}
 		>
 			<Placeholder />
@@ -165,41 +147,12 @@ StretchRightStory.story = {
 	name: 'with content stretched to the right (no margin)',
 };
 
-export const PartialStory = () => {
-	return (
-		<FrontContainer
-			title="Borders"
-			showTopBorder={false}
-			centralBorder="partial"
-		>
-			<Placeholder />
-		</FrontContainer>
-	);
-};
-PartialStory.story = { name: 'with a partial border divider' };
-
-export const SidesStory = () => {
-	return (
-		<FrontContainer
-			title="NoSides"
-			showTopBorder={false}
-			centralBorder="full"
-			padContent={false}
-		>
-			<Placeholder />
-		</FrontContainer>
-	);
-};
-SidesStory.story = { name: 'with a full border divider' };
-
 export const ToggleableStory = () => {
 	return (
 		<FrontContainer
 			title="Toggleable Container"
 			toggleable={true}
 			sectionId="section-id"
-			showTopBorder={false}
-			showSideBorders={false}
 		>
 			<Placeholder />
 		</FrontContainer>
@@ -207,70 +160,33 @@ export const ToggleableStory = () => {
 };
 ToggleableStory.story = { name: 'toggleable container' };
 
-export const MarginsStory = () => {
-	return (
-		<>
-			<FrontContainer
-				title="No Vertical Margins"
-				centralBorder="full"
-				verticalMargins={false}
-			>
-				<Placeholder />
-			</FrontContainer>
-			<FrontContainer
-				title="No Vertical Margins"
-				centralBorder="full"
-				verticalMargins={false}
-			>
-				<Placeholder />
-			</FrontContainer>
-			<FrontContainer
-				title="No Vertical Margins"
-				centralBorder="full"
-				verticalMargins={false}
-			>
-				<Placeholder />
-			</FrontContainer>
-		</>
-	);
-};
-MarginsStory.story = { name: 'with no vertical margins' };
-
 export const MultipleStory = () => {
 	return (
 		<>
-			<FrontContainer title="Page Title" showTopBorder={false} />
-			<FrontContainer title="Headlines" centralBorder="partial">
+			<FrontContainer title="Page Title" />
+			<FrontContainer title="Headlines">
 				<Placeholder />
 			</FrontContainer>
-			<FrontContainer title="Useful links" centralBorder="partial" />
+			<FrontContainer title="Useful links" />
 			<FrontContainer
 				title="Around the World - I'm a link"
 				url="https://www.theguardian.com/world"
-				centralBorder="partial"
 			>
 				<Placeholder />
 			</FrontContainer>
-			<FrontContainer
-				showTopBorder={false}
-				showSideBorders={false}
-				backgroundColour={brandAlt[400]}
-			>
+			<FrontContainer backgroundColour={brandAlt[400]}>
 				<h2>Insert call to action here</h2>
 			</FrontContainer>
 			<FrontContainer
 				title="Videos"
 				fontColour="white"
-				showTopBorder={false}
 				backgroundColour="black"
-				showSideBorders={false}
 			>
 				<Placeholder />
 			</FrontContainer>
 			<FrontContainer
 				title="Coronavirus"
 				description="A collection of stories about Coronavirus"
-				centralBorder="partial"
 			>
 				<Placeholder />
 			</FrontContainer>
@@ -314,9 +230,6 @@ export const TreatsStory = () => {
 					editionId: 'UK',
 				},
 			]}
-			showTopBorder={false}
-			showSideBorders={false}
-			showDateHeader={true}
 			editionId="UK"
 		>
 			<Placeholder />

@@ -2,7 +2,7 @@ import { breakpoints } from '@guardian/source-foundations';
 import { trails } from '../../../fixtures/manual/trails';
 import type { DCRGroupedTrails } from '../../types/front';
 import { DynamicFast } from './DynamicFast';
-import { Section } from './Section';
+import { FrontContainer } from './FrontContainer';
 
 export default {
 	component: DynamicFast,
@@ -29,10 +29,8 @@ const defaultGroupedTrails: DCRGroupedTrails = {
 /* First Slice Variants */
 
 export const OneHugeTwoBigsSixStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: oneHuge</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -44,17 +42,15 @@ export const OneHugeTwoBigsSixStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 OneHugeTwoBigsSixStandards.story = {
 	name: 'With 1 huge card, 2 bigs, 6 standards',
 };
 
 export const OneVeryBigTwoBigsSixStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: oneVeryBig</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -66,17 +62,15 @@ export const OneVeryBigTwoBigsSixStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 OneVeryBigTwoBigsSixStandards.story = {
 	name: 'with 1 very big card, 2 bigs, 6 standards',
 };
 
 export const TwoVeryBigsTwoBigsSixStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -88,17 +82,15 @@ export const TwoVeryBigsTwoBigsSixStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 TwoVeryBigsTwoBigsSixStandards.story = {
 	name: 'with 2 very big cards, 2 bigs, 6 standards',
 };
 
 export const TwoVeryBigs1stBoostedTwoBigsSixStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigsFirstBoosted</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -110,17 +102,15 @@ export const TwoVeryBigs1stBoostedTwoBigsSixStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 TwoVeryBigs1stBoostedTwoBigsSixStandards.story = {
 	name: 'with 2 very big cards (1st boosted), 2 bigs, 6 standards',
 };
 
 export const TwoVeryBigs2ndBoostedTwoBigsSixStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigsSecondBoosted</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -132,7 +122,7 @@ export const TwoVeryBigs2ndBoostedTwoBigsSixStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 TwoVeryBigs2ndBoostedTwoBigsSixStandards.story = {
 	name: 'with 2 very big cards (2nd boosted), 2 bigs, 6 standards',
@@ -141,10 +131,8 @@ TwoVeryBigs2ndBoostedTwoBigsSixStandards.story = {
 /* Second Slice variants */
 
 export const TwoVeryBigsTwelveStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: noBigs`}
 	>
 		<DynamicFast
@@ -155,7 +143,7 @@ export const TwoVeryBigsTwelveStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsTwelveStandards.story = {
@@ -163,10 +151,8 @@ TwoVeryBigsTwelveStandards.story = {
 };
 
 export const TwoVeryBigsOneBigEightStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: oneBig`}
 	>
 		<DynamicFast
@@ -178,7 +164,7 @@ export const TwoVeryBigsOneBigEightStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsOneBigEightStandards.story = {
@@ -186,10 +172,8 @@ TwoVeryBigsOneBigEightStandards.story = {
 };
 
 export const TwoVeryBigsOneBigBoostedSixStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: oneBigBoosted`}
 	>
 		<DynamicFast
@@ -201,7 +185,7 @@ export const TwoVeryBigsOneBigBoostedSixStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsOneBigBoostedSixStandards.story = {
@@ -209,10 +193,8 @@ TwoVeryBigsOneBigBoostedSixStandards.story = {
 };
 
 export const TwoVeryBigsTwoBigsFiveStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -224,7 +206,7 @@ export const TwoVeryBigsTwoBigsFiveStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsTwoBigsFiveStandards.story = {
@@ -232,10 +214,8 @@ TwoVeryBigsTwoBigsFiveStandards.story = {
 };
 
 export const TwoVeryBigsTwoBigsFirstBoostedEightStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: twoOrMoreBigsFirstBoosted`}
 	>
 		<DynamicFast
@@ -247,7 +227,7 @@ export const TwoVeryBigsTwoBigsFirstBoostedEightStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsTwoBigsFirstBoostedEightStandards.story = {
@@ -255,10 +235,8 @@ TwoVeryBigsTwoBigsFirstBoostedEightStandards.story = {
 };
 
 export const TwoVeryBigsThreeBigsThreeStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: threeBigs`}
 	>
 		<DynamicFast
@@ -270,7 +248,7 @@ export const TwoVeryBigsThreeBigsThreeStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsThreeBigsThreeStandards.story = {
@@ -278,10 +256,8 @@ TwoVeryBigsThreeBigsThreeStandards.story = {
 };
 
 export const TwoVeryBigsFourBigs = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: fourBigs`}
 	>
 		<DynamicFast
@@ -292,7 +268,7 @@ export const TwoVeryBigsFourBigs = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsFourBigs.story = {
@@ -304,10 +280,8 @@ TwoVeryBigsFourBigs.story = {
 // Demote a very big to a big
 // First test: 1 huge (& less that normal amount of standards)
 export const OneHugeOneVeryBig7Standards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: oneHuge</br>second slice: oneBig`}
 	>
 		<DynamicFast
@@ -319,7 +293,7 @@ export const OneHugeOneVeryBig7Standards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 OneHugeOneVeryBig7Standards.story = {
@@ -328,10 +302,8 @@ OneHugeOneVeryBig7Standards.story = {
 
 // Second test: 3 very bigs (& the last big is not shown)
 export const ThreeVeryBigsFourBigs = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: fourBigs`}
 	>
 		<DynamicFast
@@ -342,7 +314,7 @@ export const ThreeVeryBigsFourBigs = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 OneHugeOneVeryBig7Standards.story = {
@@ -351,10 +323,8 @@ OneHugeOneVeryBig7Standards.story = {
 
 // No first slice is provided
 export const TwoBigsFourStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: undefined</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -365,7 +335,7 @@ export const TwoBigsFourStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoBigsFourStandards.story = {
@@ -375,10 +345,8 @@ TwoBigsFourStandards.story = {
 // No standards are provided
 // First test: there are some (2) bigs
 export const OneVeryBigTwoBigs = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: oneVeryBig</br>second slice: twoBigs`}
 	>
 		<DynamicFast
@@ -389,7 +357,7 @@ export const OneVeryBigTwoBigs = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 OneVeryBigTwoBigs.story = {
@@ -398,10 +366,8 @@ OneVeryBigTwoBigs.story = {
 
 // Second test: There are no bigs (first slice only)
 export const OneVeryBig = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: oneVeryBig</br>second slice: noBigs`}
 	>
 		<DynamicFast
@@ -411,7 +377,7 @@ export const OneVeryBig = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 OneVeryBig.story = {
@@ -420,10 +386,8 @@ OneVeryBig.story = {
 
 // Bigs are demoted in twoOrMoreBigsFirstBoosted layout
 export const TwoVeryBigsFourBigsFirstBoostedThreeStandards = () => (
-	<Section
+	<FrontContainer
 		title="DynamicFast"
-		padContent={false}
-		centralBorder="partial"
 		description={`first slice: twoVeryBigs</br>second slice: twoOrMoreBigsFirstBoosted`}
 	>
 		<DynamicFast
@@ -435,7 +399,7 @@ export const TwoVeryBigsFourBigsFirstBoostedThreeStandards = () => (
 			}}
 			showAge={true}
 		/>
-	</Section>
+	</FrontContainer>
 );
 
 TwoVeryBigsFourBigsFirstBoostedThreeStandards.story = {
