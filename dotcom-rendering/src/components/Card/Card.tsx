@@ -14,6 +14,7 @@ import type {
 	DCRSupportingContent,
 } from '../../types/front';
 import type { Palette } from '../../types/palette';
+import type { CardYoutubeVideo } from '../../types/video';
 import { Avatar } from '../Avatar';
 import { CardHeadline } from '../CardHeadline';
 import { CardPicture } from '../CardPicture';
@@ -27,6 +28,7 @@ import { SnapCssSandbox } from '../SnapCssSandbox';
 import { StarRating } from '../StarRating/StarRating';
 import type { Alignment } from '../SupportingContent';
 import { SupportingContent } from '../SupportingContent';
+import { YoutubeBlockComponent } from '../YoutubeBlockComponent.importable';
 import { AvatarContainer } from './components/AvatarContainer';
 import { CardAge } from './components/CardAge';
 import { CardBranding } from './components/CardBranding';
@@ -42,6 +44,8 @@ import type {
 } from './components/ImageWrapper';
 import { ImageWrapper } from './components/ImageWrapper';
 import { TrailTextWrapper } from './components/TrailTextWrapper';
+
+export type VideoSize = 'playable' | 'unplayable';
 
 export type Props = {
 	linkTo: string;
@@ -63,8 +67,9 @@ export type Props = {
 	avatarUrl?: string;
 	showClock?: boolean;
 	mediaType?: MediaType;
-	mediaDuration?: number;
-	showMainVideo?: boolean;
+	mainVideo?: CardYoutubeVideo;
+	/** Note YouTube recommends a minimum width of 480px @see https://developers.google.com/youtube/terms/required-minimum-functionality#embedded-youtube-player-size */
+	videoSize: VideoSize;
 	kickerText?: string;
 	showPulsingDot?: boolean;
 	starRating?: number;
@@ -229,22 +234,36 @@ type MediaMainMedia = Media & {
 	imageUrl: string;
 };
 
+type MediaVideo = Media & {
+	type: 'video';
+	mainVideo: CardYoutubeVideo;
+};
+
+type MediaUnion =
+	| MediaSlideshow
+	| MediaAvatar
+	| MediaCrossword
+	| MediaMainMedia
+	| MediaVideo;
+
 const getImage = ({
 	imageUrl,
 	avatarUrl,
 	isCrossword,
 	slideshowImages,
+	mainVideo,
+	videoSize,
 }: {
 	imageUrl?: string;
 	avatarUrl?: string;
 	isCrossword?: boolean;
 	slideshowImages?: DCRSlideshowImage[];
-}):
-	| MediaSlideshow
-	| MediaAvatar
-	| MediaCrossword
-	| MediaMainMedia
-	| undefined => {
+	mainVideo?: CardYoutubeVideo;
+	videoSize: VideoSize;
+}): MediaUnion | undefined => {
+	if (mainVideo && videoSize === 'playable') {
+		return { type: 'video', mainVideo };
+	}
 	if (slideshowImages) return { type: 'slideshow', slideshowImages };
 	if (avatarUrl) return { type: 'avatar', avatarUrl };
 	if (imageUrl) {
@@ -286,8 +305,8 @@ export const Card = ({
 	avatarUrl,
 	showClock,
 	mediaType,
-	mediaDuration,
-	showMainVideo,
+	mainVideo,
+	videoSize,
 	kickerText,
 	showPulsingDot,
 	starRating,
@@ -404,6 +423,8 @@ export const Card = ({
 		avatarUrl,
 		isCrossword,
 		slideshowImages,
+		mainVideo,
+		videoSize,
 	});
 
 	return (
@@ -431,7 +452,7 @@ export const Card = ({
 						imageType={image.type}
 						imagePosition={imagePosition}
 						imagePositionOnMobile={imagePositionOnMobile}
-						showPlayIcon={showMainVideo ?? false}
+						showPlayIcon={!!mainVideo && videoSize === 'unplayable'}
 					>
 						{image.type === 'slideshow' && (
 							<Slideshow
@@ -451,6 +472,37 @@ export const Card = ({
 									format={format}
 								/>
 							</AvatarContainer>
+						)}
+						{image.type === 'video' && (
+							<div
+								data-chromatic="ignore"
+								data-component="youtube-atom"
+								css={css`
+									display: block;
+									position: relative;
+									${getZIndex('card-nested-link')}
+								`}
+							>
+								<Island>
+									<YoutubeBlockComponent
+										id={image.mainVideo.elementId}
+										elementId={image.mainVideo.elementId}
+										assetId={image.mainVideo.videoId}
+										duration={image.mainVideo.duration}
+										posterImage={image.mainVideo.images}
+										width={image.mainVideo.width}
+										height={image.mainVideo.height}
+										origin={image.mainVideo.origin}
+										mediaTitle={image.mainVideo.title}
+										expired={image.mainVideo.expired}
+										format={format}
+										isMainMedia={true}
+										hideCaption={true}
+										role="inline"
+										stickyVideos={false}
+									/>
+								</Island>
+							</div>
 						)}
 						{image.type === 'mainMedia' && (
 							<CardPicture
@@ -507,7 +559,7 @@ export const Card = ({
 								containerPalette={containerPalette}
 								format={format}
 								mediaType={mediaType}
-								mediaDuration={mediaDuration}
+								mediaDuration={mainVideo?.duration}
 								hasKicker={!!kickerText}
 							/>
 						)}

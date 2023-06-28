@@ -2839,10 +2839,123 @@
         "FEMediaAtoms": {
             "type": "object",
             "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "defaultHtml": {},
+                "assets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/MediaAsset"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                },
                 "duration": {
                     "type": "number"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "posterImage": {
+                    "type": "object",
+                    "properties": {
+                        "allImages": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Image"
+                            }
+                        }
+                    },
+                    "required": [
+                        "allImages"
+                    ]
+                },
+                "expired": {
+                    "type": "boolean"
+                },
+                "activeVersion": {
+                    "type": "number"
+                },
+                "channelId": {}
+            },
+            "required": [
+                "assets",
+                "defaultHtml",
+                "id",
+                "title"
+            ]
+        },
+        "MediaAsset": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "number"
+                },
+                "platform": {
+                    "type": "string"
+                },
+                "mimeType": {
+                    "type": "string"
                 }
-            }
+            },
+            "required": [
+                "id",
+                "platform",
+                "version"
+            ]
+        },
+        "Image": {
+            "type": "object",
+            "properties": {
+                "index": {
+                    "type": "number"
+                },
+                "fields": {
+                    "type": "object",
+                    "properties": {
+                        "height": {
+                            "type": "string"
+                        },
+                        "width": {
+                            "type": "string"
+                        },
+                        "isMaster": {
+                            "type": "string"
+                        },
+                        "source": {
+                            "type": "string"
+                        },
+                        "caption": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "height",
+                        "width"
+                    ]
+                },
+                "mediaType": {
+                    "type": "string"
+                },
+                "mimeType": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "fields",
+                "index",
+                "mediaType",
+                "mimeType",
+                "url"
+            ]
         },
         "EditionId": {
             "enum": [
@@ -3382,8 +3495,64 @@
                         "isCommentable"
                     ]
                 },
-                "showMainVideo": {
-                    "type": "boolean"
+                "mainVideo": {
+                    "description": "For displaying embedded, playable videos directly in cards",
+                    "type": "object",
+                    "properties": {
+                        "elementId": {
+                            "type": "string"
+                        },
+                        "videoId": {
+                            "type": "string"
+                        },
+                        "height": {
+                            "type": "number"
+                        },
+                        "width": {
+                            "type": "number"
+                        },
+                        "origin": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "duration": {
+                            "type": "number"
+                        },
+                        "expired": {
+                            "type": "boolean"
+                        },
+                        "images": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "width": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "url",
+                                    "width"
+                                ]
+                            }
+                        }
+                    },
+                    "required": [
+                        "duration",
+                        "elementId",
+                        "expired",
+                        "height",
+                        "images",
+                        "origin",
+                        "title",
+                        "videoId",
+                        "width"
+                    ]
                 }
             },
             "required": [

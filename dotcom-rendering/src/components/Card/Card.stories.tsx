@@ -7,6 +7,7 @@ import {
 } from '@guardian/libs';
 import { from } from '@guardian/source-foundations';
 import React from 'react';
+import type { CardYoutubeVideo } from '../../types/video';
 import { Section } from '../Section';
 import type { Props as CardProps } from './Card';
 import { Card } from './Card';
@@ -31,6 +32,7 @@ const basicCardProps: CardProps = {
 	imagePosition: 'top',
 	showAge: true,
 	isExternalLink: false,
+	videoSize: 'playable',
 };
 
 const aBasicLink = {
@@ -41,6 +43,21 @@ const aBasicLink = {
 		design: ArticleDesign.Standard,
 		theme: ArticlePillar.News,
 	},
+};
+
+const mainVideo: CardYoutubeVideo = {
+	elementId: '1234-abcdef-09876-xyz',
+	videoId: '8M_yH-e9cq8',
+	title: '’I care, but I don’t care’: Life after the Queen’s death | Anywhere but Westminster',
+	expired: false,
+	duration: 200,
+	images: [480, 640, 960, 1024, 1200].map((width) => ({
+		url: `https://i.guim.co.uk/img/media/2eb01d138eb8fba6e59ce7589a60e3ff984f6a7a/0_0_1920_1080/1920.jpg?width=${width}&quality=45&dpr=2&s=none`,
+		width,
+	})),
+	width: 480,
+	height: 288,
+	origin: 'The Guardian',
 };
 
 const CardWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -246,7 +263,7 @@ export const WithMediaType = () => {
 						theme: ArticlePillar.Sport,
 					}}
 					mediaType="Video"
-					mediaDuration={30}
+					mainVideo={{ ...mainVideo, duration: 30 }}
 					headlineText="Video"
 				/>
 			</CardWrapper>
@@ -259,7 +276,7 @@ export const WithMediaType = () => {
 						theme: ArticlePillar.Sport,
 					}}
 					mediaType="Audio"
-					mediaDuration={90}
+					mainVideo={{ ...mainVideo, duration: 90 }}
 					headlineText="Audio"
 				/>
 			</CardWrapper>
@@ -291,7 +308,7 @@ export const WithMediaTypeSpecialReportAlt = () => {
 						theme: ArticleSpecial.SpecialReportAlt,
 					}}
 					mediaType="Video"
-					mediaDuration={30}
+					mainVideo={{ ...mainVideo, duration: 30 }}
 					headlineText="Video"
 				/>
 			</CardWrapper>
@@ -304,7 +321,7 @@ export const WithMediaTypeSpecialReportAlt = () => {
 						theme: ArticleSpecial.SpecialReportAlt,
 					}}
 					mediaType="Audio"
-					mediaDuration={90}
+					mainVideo={{ ...mainVideo, duration: 90 }}
 					headlineText="Audio"
 				/>
 			</CardWrapper>
@@ -918,9 +935,8 @@ export const WhenVideoWithPlayButton = () => {
 						imagePosition="top"
 						imageSize="jumbo"
 						imagePositionOnMobile="top"
-						mediaDuration={200}
 						mediaType="Video"
-						showMainVideo={true}
+						mainVideo={mainVideo}
 					/>
 				</LI>
 			</UL>
@@ -936,9 +952,8 @@ export const WhenVideoWithPlayButton = () => {
 						imagePosition="right"
 						imageSize="large"
 						imagePositionOnMobile="top"
-						mediaDuration={200}
 						mediaType="Video"
-						showMainVideo={true}
+						mainVideo={mainVideo}
 					/>
 				</LI>
 				<LI percentage={'25%'} padSides={true} showDivider={true}>
@@ -950,9 +965,9 @@ export const WhenVideoWithPlayButton = () => {
 							theme: ArticlePillar.News,
 						}}
 						imagePosition="top"
-						mediaDuration={200}
 						mediaType="Video"
-						showMainVideo={true}
+						mainVideo={mainVideo}
+						videoSize="unplayable"
 					/>
 				</LI>
 			</UL>
@@ -968,9 +983,8 @@ export const WhenVideoWithPlayButton = () => {
 						imagePosition="top"
 						imageSize="medium"
 						imagePositionOnMobile="bottom"
-						mediaDuration={200}
 						mediaType="Video"
-						showMainVideo={true}
+						mainVideo={mainVideo}
 					/>
 				</LI>
 				<LI percentage="50%">
@@ -984,9 +998,9 @@ export const WhenVideoWithPlayButton = () => {
 									theme: ArticlePillar.News,
 								}}
 								imagePosition="left"
-								mediaDuration={200}
 								mediaType="Video"
-								showMainVideo={true}
+								mainVideo={mainVideo}
+								videoSize="unplayable"
 							/>
 						</LI>
 						<LI padSides={true}>
@@ -998,9 +1012,9 @@ export const WhenVideoWithPlayButton = () => {
 									theme: ArticlePillar.News,
 								}}
 								imagePosition="right"
-								mediaDuration={200}
 								mediaType="Video"
-								showMainVideo={true}
+								mainVideo={mainVideo}
+								videoSize="unplayable"
 							/>
 						</LI>
 
@@ -1013,9 +1027,9 @@ export const WhenVideoWithPlayButton = () => {
 									theme: ArticlePillar.News,
 								}}
 								imagePosition="right"
-								mediaDuration={200}
 								mediaType="Video"
-								showMainVideo={true}
+								mainVideo={mainVideo}
+								videoSize="unplayable"
 							/>
 						</LI>
 					</UL>
@@ -1034,9 +1048,8 @@ export const WhenVideoWithPlayButton = () => {
 						imagePosition="right"
 						imageSize="large"
 						imagePositionOnMobile="top"
-						mediaDuration={200}
 						mediaType="Video"
-						showMainVideo={true}
+						mainVideo={mainVideo}
 					/>
 				</LI>
 				<LI percentage={'33.333%'} padSides={true} showDivider={true}>
@@ -1050,9 +1063,8 @@ export const WhenVideoWithPlayButton = () => {
 						imagePosition="top"
 						imagePositionOnMobile="left"
 						imageSize="medium"
-						mediaDuration={200}
 						mediaType="Video"
-						showMainVideo={true}
+						mainVideo={mainVideo}
 					/>
 				</LI>
 			</UL>

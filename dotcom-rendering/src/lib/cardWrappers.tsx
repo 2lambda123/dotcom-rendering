@@ -266,6 +266,7 @@ export const Card25Media25 = ({
 			imageSize="small"
 			headlineSize="medium"
 			headlineSizeOnMobile="medium"
+			videoSize={'unplayable'}
 		/>
 	);
 };
@@ -301,6 +302,7 @@ export const Card25Media25SmallHeadline = ({
 			imageSize="small"
 			headlineSize="small"
 			headlineSizeOnMobile="medium"
+			videoSize={'unplayable'}
 		/>
 	);
 };
@@ -343,6 +345,7 @@ export const Card25Media25Tall = ({
 					: undefined
 			}
 			supportingContent={trail.supportingContent?.slice(0, 2)}
+			videoSize={'unplayable'}
 		/>
 	);
 };
@@ -377,6 +380,7 @@ export const Card25Media25TallNoTrail = ({
 			headlineSize="medium"
 			headlineSizeOnMobile="medium"
 			supportingContent={trail.supportingContent?.slice(0, 2)}
+			videoSize={'unplayable'}
 		/>
 	);
 };
@@ -411,6 +415,7 @@ export const Card25Media25TallSmallHeadline = ({
 			headlineSize="small"
 			headlineSizeOnMobile="medium"
 			supportingContent={trail.supportingContent?.slice(0, 2)}
+			videoSize={'unplayable'}
 		/>
 	);
 };
@@ -651,6 +656,7 @@ export const CardDefault = ({
 			avatarUrl={undefined}
 			headlineSize="small"
 			headlineSizeOnMobile="small"
+			videoSize={'unplayable'}
 		/>
 	);
 };
@@ -682,6 +688,7 @@ export const CardDefaultMedia = ({
 			imagePositionOnMobile="none"
 			headlineSize="small"
 			headlineSizeOnMobile="small"
+			videoSize={'unplayable'}
 		/>
 	);
 };
@@ -713,6 +720,7 @@ export const CardDefaultMediaMobile = ({
 			imagePositionOnMobile="left"
 			headlineSize="small"
 			headlineSizeOnMobile="small"
+			videoSize={'unplayable'}
 		/>
 	);
 };

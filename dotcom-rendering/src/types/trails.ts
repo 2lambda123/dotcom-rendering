@@ -1,5 +1,6 @@
 import type { Branding } from './branding';
 import type { DCRSnapType, DCRSupportingContent } from './front';
+import type { CardYoutubeVideo } from './video';
 
 type MediaType = 'Video' | 'Audio' | 'Gallery';
 
@@ -29,7 +30,7 @@ interface BaseTrailType {
 		isClosedForComments: boolean;
 		discussionId?: string;
 	};
-	showMainVideo?: boolean;
+	mainVideo?: CardYoutubeVideo;
 }
 
 export interface TrailType extends BaseTrailType {

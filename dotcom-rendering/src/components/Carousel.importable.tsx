@@ -20,6 +20,7 @@ import type { Branding } from '../types/branding';
 import type { DCRContainerPalette } from '../types/front';
 import type { OnwardsSource } from '../types/onwards';
 import type { TrailType } from '../types/trails';
+import type { CardYoutubeVideo } from '../types/video';
 import { Card } from './Card/Card';
 import { LI } from './Card/components/LI';
 import { FetchCommentCounts } from './FetchCommentCounts.importable';
@@ -431,8 +432,7 @@ type CarouselCardProps = {
 	discussionId?: string;
 	/** Only used on Labs cards */
 	branding?: Branding;
-	showMainVideo?: boolean;
-	mediaDuration?: number;
+	mainVideo?: CardYoutubeVideo;
 	verticalDividerColour?: string;
 };
 
@@ -447,8 +447,7 @@ const CarouselCard = ({
 	dataLinkName,
 	discussionId,
 	branding,
-	showMainVideo,
-	mediaDuration,
+	mainVideo,
 	verticalDividerColour,
 }: CarouselCardProps) => (
 	<LI
@@ -476,8 +475,8 @@ const CarouselCard = ({
 			discussionId={discussionId}
 			branding={branding}
 			isExternalLink={false}
-			showMainVideo={showMainVideo}
-			mediaDuration={mediaDuration}
+			mainVideo={mainVideo}
+			videoSize="unplayable"
 		/>
 	</LI>
 );
@@ -901,8 +900,7 @@ export const Carousel = ({
 										: undefined
 								}
 								branding={branding}
-								showMainVideo={trail.showMainVideo}
-								mediaDuration={trail.mediaDuration}
+								mainVideo={trail.mainVideo}
 								verticalDividerColour={
 									carouselColours.borderColour
 								}

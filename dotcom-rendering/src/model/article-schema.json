@@ -4391,8 +4391,64 @@
                         "isCommentable"
                     ]
                 },
-                "showMainVideo": {
-                    "type": "boolean"
+                "mainVideo": {
+                    "description": "For displaying embedded, playable videos directly in cards",
+                    "type": "object",
+                    "properties": {
+                        "elementId": {
+                            "type": "string"
+                        },
+                        "videoId": {
+                            "type": "string"
+                        },
+                        "height": {
+                            "type": "number"
+                        },
+                        "width": {
+                            "type": "number"
+                        },
+                        "origin": {
+                            "type": "string"
+                        },
+                        "title": {
+                            "type": "string"
+                        },
+                        "duration": {
+                            "type": "number"
+                        },
+                        "expired": {
+                            "type": "boolean"
+                        },
+                        "images": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "url": {
+                                        "type": "string"
+                                    },
+                                    "width": {
+                                        "type": "number"
+                                    }
+                                },
+                                "required": [
+                                    "url",
+                                    "width"
+                                ]
+                            }
+                        }
+                    },
+                    "required": [
+                        "duration",
+                        "elementId",
+                        "expired",
+                        "height",
+                        "images",
+                        "origin",
+                        "title",
+                        "videoId",
+                        "width"
+                    ]
                 }
             },
             "required": [

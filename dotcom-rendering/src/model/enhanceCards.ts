@@ -10,9 +10,11 @@ import type {
 	DCRSlideshowImage,
 	DCRSupportingContent,
 	FEFrontCard,
+	FEMediaAtoms,
 	FESupportingContent,
 } from '../types/front';
 import type { FETagType, TagType } from '../types/tag';
+import type { CardYoutubeVideo } from '../types/video';
 import { enhanceSnaps } from './enhanceSnaps';
 
 /**
@@ -189,6 +191,41 @@ const enhanceTags = (tags: FETagType[]): TagType[] => {
 	});
 };
 
+/**
+ * While the first Media Atom is *not* guaranteed to be the main video,
+ * it *happens to be* correct in the majority of cases.
+ * @see https://github.com/guardian/frontend/pull/26247 for inspiration
+ */
+const decideVideo = (
+	mediaAtom?: FEMediaAtoms,
+): CardYoutubeVideo | undefined => {
+	if (!mediaAtom) return undefined;
+	const asset = mediaAtom.assets.find(
+		({ version }) => version === mediaAtom.activeVersion,
+	);
+	if (asset?.platform === 'Youtube') {
+		return {
+			elementId: mediaAtom.id,
+			videoId: asset.id,
+			duration: mediaAtom.duration ?? 0,
+			title: mediaAtom.title,
+			// Size fixed to a 5:3 ratio
+			width: 500,
+			height: 300,
+			origin: mediaAtom.source ?? 'Unknown origin',
+			expired: !!mediaAtom.expired,
+			images:
+				mediaAtom.posterImage?.allImages.map(
+					({ url, fields: { width } }) => ({
+						url,
+						width: Number(width),
+					}),
+				) ?? [],
+		};
+	}
+	return undefined;
+};
+
 export const enhanceCards = (
 	collections: FEFrontCard[],
 	{
@@ -285,10 +322,12 @@ export const enhanceCards = (
 					  )
 					: undefined,
 			mediaType: decideMediaType(format),
-			mediaDuration:
-				faciaCard.properties.maybeContent?.elements.mediaAtoms[0]
-					?.duration,
-			showMainVideo: faciaCard.properties.showMainVideo,
+			mainVideo: faciaCard.properties.showMainVideo
+				? decideVideo(
+						faciaCard.properties.maybeContent?.elements
+							.mediaAtoms[0],
+				  )
+				: undefined,
 			isExternalLink: faciaCard.card.cardStyle.type === 'ExternalLink',
 			embedUri: faciaCard.properties.embedUri ?? undefined,
 			branding,

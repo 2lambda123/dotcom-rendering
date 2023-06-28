@@ -4,10 +4,12 @@ import type { EditionId } from '../lib/edition';
 import type { DCRBadgeType } from './badge';
 import type { Branding } from './branding';
 import type { ServerSideTests, Switches } from './config';
+import type { Image } from './content';
 import type { FooterType } from './footer';
 import type { FETagType } from './tag';
 import type { Territory } from './territory';
 import type { FETrailType, TrailType } from './trails';
+import type { CardYoutubeVideo } from './video';
 
 export interface FEFrontType {
 	pressedPage: FEPressedPageType;
@@ -134,8 +136,28 @@ export type DCRContainerPalette =
 // TODO: These may need to be declared differently than the front types in the future
 export type DCRContainerType = FEContainerType;
 
-interface FEMediaAtoms {
+/** @see https://github.com/guardian/frontend/blob/0bf69f55a/common/app/model/content/Atom.scala#L191-L196 */
+interface MediaAsset {
+	id: string;
+	version: number;
+	platform: string;
+	mimeType?: string;
+}
+
+/** @see https://github.com/guardian/frontend/blob/0bf69f55a/common/app/model/content/Atom.scala#L158-L169 */
+export interface FEMediaAtoms {
+	id: string;
+	/** @deprecated */
+	defaultHtml: unknown;
+	assets: MediaAsset[];
+	title: string;
 	duration?: number;
+	source?: string;
+	posterImage?: { allImages: Image[] };
+	expired?: boolean;
+	activeVersion?: number;
+	/** @deprecated */
+	channelId?: unknown;
 }
 
 export type FEFrontCard = {
@@ -290,8 +312,7 @@ export type DCRFrontCard = {
 	showByline?: boolean;
 	avatarUrl?: string;
 	mediaType?: MediaType;
-	mediaDuration?: number;
-	showMainVideo: boolean;
+	mainVideo?: CardYoutubeVideo;
 	isExternalLink: boolean;
 	embedUri?: string;
 	branding?: Branding;

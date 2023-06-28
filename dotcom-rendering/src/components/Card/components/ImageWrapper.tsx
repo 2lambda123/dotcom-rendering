@@ -72,7 +72,7 @@ export const ImageWrapper = ({
 					flexBasisStyles({
 						imageSize,
 					}),
-				imageType === 'mainMedia' &&
+				(imageType === 'mainMedia' || imageType === 'video') &&
 					isHorizontal &&
 					flexBasisStyles({
 						imageSize,

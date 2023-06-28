@@ -32,6 +32,7 @@ const basicCardProps: CardProps = {
 	imagePosition: 'top',
 	isExternalLink: false,
 	showLivePlayable: false,
+	videoSize: 'playable',
 };
 
 const aBasicLink = {
