@@ -10,7 +10,7 @@ import type {
 	DCRSlideshowImage,
 	DCRSupportingContent,
 	FEFrontCard,
-	FEMediaAtoms,
+	FEMediaAtom,
 	FESupportingContent,
 } from '../types/front';
 import type { FETagType, TagType } from '../types/tag';
@@ -196,9 +196,7 @@ const enhanceTags = (tags: FETagType[]): TagType[] => {
  * it *happens to be* correct in the majority of cases.
  * @see https://github.com/guardian/frontend/pull/26247 for inspiration
  */
-const decideVideo = (
-	mediaAtom?: FEMediaAtoms,
-): CardYoutubeVideo | undefined => {
+const decideVideo = (mediaAtom?: FEMediaAtom): CardYoutubeVideo | undefined => {
 	if (!mediaAtom) return undefined;
 	const asset = mediaAtom.assets.find(
 		({ version }) => version === mediaAtom.activeVersion,
