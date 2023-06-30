@@ -1,11 +1,3 @@
-/**
- * Type-guard that check whether an array contains at least a single item.
- *
- * If `true`, the type is narrowed from T[] to the [T, ...T[]] tuple,
- * which safely allows accessing the first item.
- */
-export const nonEmpty = <T>(arr: T[]): arr is [T, ...T[]] => arr.length >= 1;
-
 /** A tuple of up to 12 items. Larger tuples will not be narrowed */
 export type Tuple<T, N extends number> = N extends 12
 	? [T, T, T, T, T, T, T, T, T, T, T, T]
@@ -33,7 +25,7 @@ export type Tuple<T, N extends number> = N extends 12
 	? [T]
 	: N extends 0
 	? []
-	: T[];
+	: [T, T, T, T, T, T, T, T, T, T, T, T, ...T[]];
 
 /**
  * Type-guard for whether an array is a tuple of exact length.
@@ -44,13 +36,3 @@ export const isTuple = <T, N extends number>(
 	arr: Array<T> | ReadonlyArray<T>,
 	count: N,
 ): arr is Tuple<T, N> => arr.length === count;
-
-/**
- * Type-guard for whether an array is at least a certain number of elements
- *
- * Can only guarantee up to 12 elements
- */
-export const isTupleOrGreater = <T, N extends number>(
-	arr: Array<T> | ReadonlyArray<T>,
-	count: N,
-): arr is [...Tuple<T, N>, ...Array<T>] => arr.length >= count;

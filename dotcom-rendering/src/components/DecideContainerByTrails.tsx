@@ -7,7 +7,7 @@ import {
 	CardDefault,
 } from '../lib/cardWrappers';
 import type { Tuple } from '../lib/tuple';
-import { isTuple, isTupleOrGreater } from '../lib/tuple';
+import { isTuple } from '../lib/tuple';
 import type { DCRFrontCard } from '../types/front';
 import { LI } from './Card/components/LI';
 import { UL } from './Card/components/UL';
@@ -353,17 +353,15 @@ export const EightCardSlow = ({
 	);
 };
 
-export const BeyondEightFast = ({
-	trails,
-}: {
-	trails: [...Tuple<DCRFrontCard, 8>, ...DCRFrontCard[]];
-}) => {
-	const firstEight = trails.slice(0, 8) as Tuple<DCRFrontCard, 8>;
+export const BeyondEightFast = ({ trails }: { trails: DCRFrontCard[] }) => {
+	const firstEight = trails.slice(0, 8);
 	const afterEight = trails.slice(8);
 
 	return (
 		<>
-			<EightCardFast trails={firstEight} />;
+			{isTuple(firstEight, 8) ? (
+				<EightCardFast trails={firstEight} />
+			) : null}
 			<UL wrapCards={true} direction="row">
 				{afterEight.map((trail, index) => (
 					<LI
@@ -380,17 +378,15 @@ export const BeyondEightFast = ({
 	);
 };
 
-export const BeyondEightSlow = ({
-	trails,
-}: {
-	trails: [...Tuple<DCRFrontCard, 8>, ...DCRFrontCard[]];
-}) => {
-	const firstEight = trails.slice(0, 8) as Tuple<DCRFrontCard, 8>;
+export const BeyondEightSlow = ({ trails }: { trails: DCRFrontCard[] }) => {
+	const firstEight = trails.slice(0, 8);
 	const afterEight = trails.slice(8);
 
 	return (
 		<>
-			<EightCardSlow trails={firstEight} />;
+			{isTuple(firstEight, 8) ? (
+				<EightCardSlow trails={firstEight} />
+			) : null}
 			<UL wrapCards={true} direction="row">
 				{afterEight.map((trail, index) => (
 					<LI
@@ -425,10 +421,8 @@ export const DecideContainerByTrails = ({ trails, speed }: Props) => {
 			return <SevenCardFast trails={trails} />;
 		} else if (isTuple(trails, 8)) {
 			return <EightCardFast trails={trails} />;
-		} else if (isTupleOrGreater(trails, 9)) {
-			return <BeyondEightFast trails={trails} />;
 		} else {
-			return <></>;
+			return <BeyondEightFast trails={trails} />;
 		}
 	} else {
 		if (isTuple(trails, 1)) {
@@ -447,10 +441,8 @@ export const DecideContainerByTrails = ({ trails, speed }: Props) => {
 			return <SevenCardSlow trails={trails} />;
 		} else if (isTuple(trails, 8)) {
 			return <EightCardSlow trails={trails} />;
-		} else if (isTupleOrGreater(trails, 9)) {
-			return <BeyondEightSlow trails={trails} />;
 		} else {
-			return <></>;
+			return <BeyondEightSlow trails={trails} />;
 		}
 	}
 };

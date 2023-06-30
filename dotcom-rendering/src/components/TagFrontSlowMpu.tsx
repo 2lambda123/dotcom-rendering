@@ -1,6 +1,6 @@
 import { Hide } from '@guardian/source-react-components';
 import { Card33Media33, Card50Media50, CardDefault } from '../lib/cardWrappers';
-import { isTuple, type Tuple } from '../lib/tuple';
+import { type Tuple } from '../lib/tuple';
 import type { DCRFrontCard } from '../types/front';
 import type { GroupedTrailsSlowMpu } from '../types/tagFront';
 import { AdSlot } from './AdSlot';
@@ -152,16 +152,14 @@ export const SevenCards = ({
 };
 
 export const TagFrontSlowMpu = ({ trails, adIndex }: Props) => {
-	if (isTuple(trails, 2)) {
-		return <TwoCard trails={trails} adIndex={adIndex} />;
-	} else if (isTuple(trails, 4)) {
-		return <FourCard trails={trails} adIndex={adIndex} />;
-	} else if (isTuple(trails, 5)) {
-		return <FiveCard trails={trails} adIndex={adIndex} />;
-	} else if (isTuple(trails, 7)) {
-		return <SevenCards trails={trails} adIndex={adIndex} />;
-	} else {
-		// The above if statements cover all the types that trails could be, but ESLint gets upset that "not all code paths return a value"
-		return <></>;
+	switch (trails.length) {
+		case 2:
+			return <TwoCard trails={trails} adIndex={adIndex} />;
+		case 4:
+			return <FourCard trails={trails} adIndex={adIndex} />;
+		case 5:
+			return <FiveCard trails={trails} adIndex={adIndex} />;
+		case 7:
+			return <SevenCards trails={trails} adIndex={adIndex} />;
 	}
 };

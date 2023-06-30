@@ -1,4 +1,4 @@
-import { isTuple, isTupleOrGreater } from '../lib/tuple';
+import { isTuple } from '../lib/tuple';
 import type {
 	GroupedTrails,
 	GroupedTrailsFastMpu,
@@ -17,33 +17,28 @@ export const injectMpuIntoGroupedTrails = (
 	speed: 'slow' | 'fast',
 ): Array<GroupedTrails | GroupedTrailsFastMpu | GroupedTrailsSlowMpu> => {
 	let injected = false;
-	const result: Array<
-		GroupedTrails | GroupedTrailsFastMpu | GroupedTrailsSlowMpu
-	> = [];
-
-	groupedTrails.forEach((grouped) => {
+	return groupedTrails.flatMap((grouped) => {
 		if (injected) {
-			result.push(grouped);
-			return;
+			return grouped;
 		}
 
 		if (speed === 'fast') {
+			const firstNine = grouped.trails.slice(0, 9);
 			if (
-				isTuple(grouped.trails, 2) ||
-				isTuple(grouped.trails, 4) ||
-				isTuple(grouped.trails, 6) ||
-				isTupleOrGreater(grouped.trails, 9)
+				isTuple(firstNine, 2) ||
+				isTuple(firstNine, 4) ||
+				isTuple(firstNine, 6) ||
+				isTuple(firstNine, 9)
 			) {
 				injected = true;
-				result.push({
-					day: grouped.day,
-					month: grouped.month,
-					year: grouped.year,
-					trails: grouped.trails,
-					injected: true,
-					speed: 'fast',
-				});
-			}
+				const fastMpu: GroupedTrailsFastMpu = {
+					...grouped,
+					trails: firstNine,
+					injected,
+					speed,
+				};
+				return fastMpu;
+			} else return [];
 		} else {
 			if (
 				isTuple(grouped.trails, 2) ||
@@ -52,17 +47,14 @@ export const injectMpuIntoGroupedTrails = (
 				isTuple(grouped.trails, 7)
 			) {
 				injected = true;
-				result.push({
-					day: grouped.day,
-					month: grouped.month,
-					year: grouped.year,
+				const groupedSlowMup: GroupedTrailsSlowMpu = {
+					...grouped,
 					trails: grouped.trails,
-					injected: true,
-					speed: 'slow',
-				});
-			}
+					injected,
+					speed,
+				};
+				return groupedSlowMup;
+			} else return [];
 		}
 	});
-
-	return result;
 };
