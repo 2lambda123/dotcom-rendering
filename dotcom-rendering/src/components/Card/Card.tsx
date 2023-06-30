@@ -205,6 +205,30 @@ const CommentFooter = ({
 	);
 };
 
+type Media = {
+	type: CardImageType;
+};
+
+type MediaSlideshow = Media & {
+	type: 'slideshow';
+	slideshowImages: DCRSlideshowImage[];
+};
+
+type MediaAvatar = Media & {
+	type: 'avatar';
+	avatarUrl: string;
+};
+
+type MediaCrossword = Media & {
+	type: 'crossword';
+	imageUrl: string;
+};
+
+type MediaMainMedia = Media & {
+	type: 'mainMedia';
+	imageUrl: string;
+};
+
 const getImage = ({
 	imageUrl,
 	avatarUrl,
@@ -216,17 +240,16 @@ const getImage = ({
 	isCrossword?: boolean;
 	slideshowImages?: DCRSlideshowImage[];
 }):
-	| {
-			type: CardImageType;
-			src: string;
-			slideshowImages?: DCRSlideshowImage[];
-	  }
+	| MediaSlideshow
+	| MediaAvatar
+	| MediaCrossword
+	| MediaMainMedia
 	| undefined => {
-	if (slideshowImages) return { type: 'slideshow', src: '', slideshowImages };
-	if (avatarUrl) return { type: 'avatar', src: avatarUrl };
+	if (slideshowImages) return { type: 'slideshow', slideshowImages };
+	if (avatarUrl) return { type: 'avatar', avatarUrl };
 	if (imageUrl) {
 		const type = isCrossword ? 'crossword' : 'mainMedia';
-		return { type, src: imageUrl };
+		return { type, imageUrl };
 	}
 	return undefined;
 };
@@ -410,20 +433,19 @@ export const Card = ({
 						imagePositionOnMobile={imagePositionOnMobile}
 						showPlayIcon={showMainVideo ?? false}
 					>
-						{image.type === 'slideshow' &&
-							image.slideshowImages && (
-								<Slideshow
-									images={image.slideshowImages}
-									imageSize={imageSize}
-								/>
-							)}
+						{image.type === 'slideshow' && (
+							<Slideshow
+								images={image.slideshowImages}
+								imageSize={imageSize}
+							/>
+						)}
 						{image.type === 'avatar' && (
 							<AvatarContainer
 								imageSize={imageSize}
 								imagePosition={imagePosition}
 							>
 								<Avatar
-									src={image.src}
+									src={image.avatarUrl}
 									alt={byline ?? ''}
 									containerPalette={containerPalette}
 									format={format}
@@ -432,13 +454,13 @@ export const Card = ({
 						)}
 						{image.type === 'mainMedia' && (
 							<CardPicture
-								master={image.src}
+								master={image.imageUrl}
 								imageSize={imageSize}
 								alt=""
 							/>
 						)}
 						{image.type === 'crossword' && (
-							<img src={image.src} alt="" />
+							<img src={image.imageUrl} alt="" />
 						)}
 					</ImageWrapper>
 				)}
