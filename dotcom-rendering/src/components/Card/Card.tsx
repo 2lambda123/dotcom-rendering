@@ -87,19 +87,6 @@ export type Props = {
 	showLivePlayable?: boolean;
 };
 
-const getMediaType = (
-	design: ArticleDesign.Gallery | ArticleDesign.Audio | ArticleDesign.Video,
-) => {
-	switch (design) {
-		case ArticleDesign.Gallery:
-			return 'Gallery';
-		case ArticleDesign.Audio:
-			return 'Audio';
-		case ArticleDesign.Video:
-			return 'Video';
-	}
-};
-
 const StarRatingComponent = ({
 	rating,
 	cardHasImage,
@@ -275,6 +262,7 @@ export const Card = ({
 	trailText,
 	avatarUrl,
 	showClock,
+	mediaType,
 	mediaDuration,
 	showMainVideo,
 	kickerText,
@@ -492,17 +480,15 @@ export const Card = ({
 								cardHasImage={imageUrl !== undefined}
 							/>
 						) : null}
-						{format.design === ArticleDesign.Gallery ||
-						format.design === ArticleDesign.Audio ||
-						format.design === ArticleDesign.Video ? (
+						{mediaType && (
 							<MediaMeta
 								containerPalette={containerPalette}
 								format={format}
-								mediaType={getMediaType(format.design)}
+								mediaType={mediaType}
 								mediaDuration={mediaDuration}
 								hasKicker={!!kickerText}
 							/>
-						) : undefined}
+						)}
 					</HeadlineWrapper>
 					{/* This div is needed to push this content to the bottom of the card */}
 					<div>
