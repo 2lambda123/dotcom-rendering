@@ -200,36 +200,33 @@ const addCaptionsToImages = (elements: FEElement[]): FEElement[] =>
 		}
 	}, []);
 
-const addCaptionsToMultis = (elements: FEElement[]): FEElement[] => {
-	const withSpecialCaptions: FEElement[] = [];
-	elements.forEach((thisElement, i) => {
-		const nextElement = elements[i + 1];
-		const subsequentElement = elements[i + 2];
-		if (isMultiImage(thisElement) && isCaption(nextElement)) {
-			withSpecialCaptions.push({
-				...thisElement,
-				caption: extractCaption(nextElement),
+const addCaptionsToMultis = (elements: FEElement[]): FEElement[] =>
+	elements.reduce<FEElement[]>((withSpecialCaptions, thisElement) => {
+		const lastElement = withSpecialCaptions.at(-1);
+		const penultimateElement = withSpecialCaptions.at(-2);
+
+		if (isMultiImage(lastElement) && isCaption(thisElement)) {
+			return withSpecialCaptions.slice(0, -1).concat({
+				...lastElement,
+				caption: extractCaption(thisElement),
 			});
-			// Remove the next element
-			elements.splice(i + 1, 1);
 		} else if (
-			isMultiImage(thisElement) &&
-			isTitle(nextElement) &&
-			isCaption(subsequentElement)
+			isMultiImage(penultimateElement) &&
+			isTitle(lastElement) &&
+			isCaption(thisElement)
 		) {
-			withSpecialCaptions.push({
-				...thisElement,
-				caption: extractCaption(subsequentElement),
-			});
-			// Remove the subsequent element
-			elements.splice(i + 2, 1);
+			return withSpecialCaptions.slice(0, -2).concat(
+				{
+					...penultimateElement,
+					caption: extractCaption(thisElement),
+				},
+				lastElement,
+			);
 		} else {
 			// Pass through
-			withSpecialCaptions.push(thisElement);
+			return withSpecialCaptions.concat(thisElement);
 		}
-	});
-	return withSpecialCaptions;
-};
+	}, []);
 
 /** Remove all captions from all images */
 const stripCaptions = (elements: FEElement[]): FEElement[] =>
