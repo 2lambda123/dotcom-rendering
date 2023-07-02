@@ -120,24 +120,19 @@ const constructMultiImageElement = (
 	};
 };
 
-const addMultiImageElements = (elements: FEElement[]): FEElement[] => {
-	const withMultiImageElements: FEElement[] = [];
-	elements.forEach((thisElement, i) => {
-		const nextElement = elements[i + 1];
-		if (isHalfWidthImage(thisElement) && isHalfWidthImage(nextElement)) {
-			// Pair found. Add a multi element and remove the next entry
-			withMultiImageElements.push(
-				constructMultiImageElement(thisElement, nextElement),
-			);
-			// Remove the next element
-			elements.splice(i + 1, 1);
+const addMultiImageElements = (elements: FEElement[]): FEElement[] =>
+	elements.reduce<FEElement[]>((withMultiImageElements, thisElement) => {
+		const lastElement = withMultiImageElements.at(-1);
+		if (isHalfWidthImage(lastElement) && isHalfWidthImage(thisElement)) {
+			// Pair found. Add a multi element instead of the last one
+			return withMultiImageElements
+				.slice(0, -1)
+				.concat(constructMultiImageElement(lastElement, thisElement));
 		} else {
 			// Pass through
-			withMultiImageElements.push(thisElement);
+			return withMultiImageElements.concat(thisElement);
 		}
-	});
-	return withMultiImageElements;
-};
+	}, []);
 
 const addTitles = (elements: FEElement[]): FEElement[] => {
 	const withTitles: FEElement[] = [];
