@@ -134,38 +134,35 @@ const addMultiImageElements = (elements: FEElement[]): FEElement[] =>
 		}
 	}, []);
 
-const addTitles = (elements: FEElement[]): FEElement[] => {
-	const withTitles: FEElement[] = [];
-	elements.forEach((thisElement, i) => {
-		const nextElement = elements[i + 1];
-		const subsequentElement = elements[i + 2];
-		if (isImage(thisElement) && isTitle(nextElement)) {
+const addTitles = (elements: FEElement[]): FEElement[] =>
+	elements.reduce<FEElement[]>((withTitles, thisElement) => {
+		const lastElement = withTitles.at(-1);
+		const penultimateElement = withTitles.at(-2);
+
+		if (isImage(lastElement) && isTitle(thisElement)) {
 			// This element is an image and is immediately followed by a title
-			withTitles.push({
-				...thisElement,
-				title: extractTitle(nextElement),
+			return withTitles.slice(0, -1).concat({
+				...lastElement,
+				title: extractTitle(thisElement),
 			});
-			// Remove the element
-			elements.splice(i + 1, 1);
 		} else if (
-			isImage(thisElement) &&
-			isCaption(nextElement) &&
-			isTitle(subsequentElement)
+			isImage(penultimateElement) &&
+			isCaption(lastElement) &&
+			isTitle(thisElement)
 		) {
 			// This element is an image, was followed by a caption, and then had a title after it
-			withTitles.push({
-				...thisElement,
-				title: extractTitle(subsequentElement),
-			});
-			// Remove the element
-			elements.splice(i + 2, 1);
+			return withTitles.slice(0, -2).concat(
+				{
+					...penultimateElement,
+					title: extractTitle(thisElement),
+				},
+				lastElement,
+			);
 		} else {
 			// Pass through
-			withTitles.push(thisElement);
+			return withTitles.concat(thisElement);
 		}
-	});
-	return withTitles;
-};
+	}, []);
 
 const addCaptionsToImages = (elements: FEElement[]): FEElement[] => {
 	const withSpecialCaptions: FEElement[] = [];
