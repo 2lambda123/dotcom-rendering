@@ -164,44 +164,41 @@ const addTitles = (elements: FEElement[]): FEElement[] =>
 		}
 	}, []);
 
-const addCaptionsToImages = (elements: FEElement[]): FEElement[] => {
-	const withSpecialCaptions: FEElement[] = [];
-	elements.forEach((thisElement, i) => {
-		const nextElement = elements[i + 1];
-		const subsequentElement = elements[i + 2];
-		if (isImage(thisElement) && isCaption(nextElement)) {
-			const thisImage = thisElement;
-			withSpecialCaptions.push({
+const addCaptionsToImages = (elements: FEElement[]): FEElement[] =>
+	elements.reduce<FEElement[]>((withSpecialCaptions, thisElement) => {
+		const lastElement = withSpecialCaptions.at(-1);
+		const penultimateElement = withSpecialCaptions.at(-2);
+
+		if (isImage(lastElement) && isCaption(thisElement)) {
+			const thisImage = lastElement;
+			return withSpecialCaptions.slice(0, -1).concat({
 				...thisImage,
 				data: {
 					...thisImage.data,
-					caption: extractCaption(nextElement),
+					caption: extractCaption(thisElement),
 				},
 			});
-			// Remove the next element
-			elements.splice(i + 1, 1);
 		} else if (
-			isImage(thisElement) &&
-			isTitle(nextElement) &&
-			isCaption(subsequentElement)
+			isImage(penultimateElement) &&
+			isTitle(lastElement) &&
+			isCaption(thisElement)
 		) {
-			const thisImage = thisElement;
-			withSpecialCaptions.push({
-				...thisImage,
-				data: {
-					...thisImage.data,
-					caption: extractCaption(subsequentElement),
+			const thisImage = penultimateElement;
+			return withSpecialCaptions.slice(0, -2).concat(
+				{
+					...thisImage,
+					data: {
+						...thisImage.data,
+						caption: extractCaption(thisElement),
+					},
 				},
-			});
-			// Remove the subsequent element
-			elements.splice(i + 2, 1);
+				lastElement,
+			);
 		} else {
 			// Pass through
-			withSpecialCaptions.push(thisElement);
+			return withSpecialCaptions.concat(thisElement);
 		}
-	});
-	return withSpecialCaptions;
-};
+	}, []);
 
 const addCaptionsToMultis = (elements: FEElement[]): FEElement[] => {
 	const withSpecialCaptions: FEElement[] = [];
