@@ -152,26 +152,23 @@ const inlineStarRatings = (elements: FEElement[]): FEElement[] =>
 		}
 	});
 
-const makeThumbnailsRound = (elements: FEElement[]): FEElement[] => {
-	const inlined: FEElement[] = [];
-	elements.forEach((thisElement) => {
+const makeThumbnailsRound = (elements: FEElement[]): FEElement[] =>
+	elements.map((thisElement) => {
 		if (
 			thisElement._type ===
 				'model.dotcomrendering.pageElements.ImageBlockElement' &&
 			thisElement.role === 'thumbnail'
 		) {
 			// Make this image round
-			inlined.push({
+			return {
 				...thisElement,
 				isAvatar: true,
-			} as ImageBlockElement);
+			};
 		} else {
 			// Pass through
-			inlined.push(thisElement);
+			return thisElement;
 		}
 	});
-	return inlined;
-};
 
 const isItemLink = (element: FEElement): boolean => {
 	// Checks if this element is a 'item link' based on the convention: <ul> <li>...</li> </ul>
