@@ -71,12 +71,12 @@ const isStarRating = (element?: FEElement): element is TextBlockElement => {
 	return hasPTags && hasFiveStars;
 };
 
-const extractStarCount = (element: FEElement): number => {
+const extractStarCount = (element: TextBlockElement): number => {
 	const isSelectedStar = (charactor: string): boolean => {
 		return charactor === '★';
 	};
 	// Returns the count of stars
-	const textElement = element as TextBlockElement;
+	const textElement = element;
 	const frag = JSDOM.fragment(textElement.html);
 	const text = frag.textContent ?? '';
 	// Loop the string counting selected stars
