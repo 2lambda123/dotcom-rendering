@@ -230,10 +230,8 @@ const removeGlobalH2Styles = (elements: FEElement[]): FEElement[] => {
  * a 'fauxH3' class for this. In DCR we add `globalH3Styles` which was added at
  * the same time as this code.
  */
-const addH3s = (elements: FEElement[]): FEElement[] => {
-	const withH3s: FEElement[] = [];
-	let previousItem: FEElement | undefined;
-	elements.forEach((thisElement) => {
+const addH3s = (elements: FEElement[]): FEElement[] =>
+	elements.flatMap((thisElement, index) => {
 		if (
 			thisElement._type ===
 				'model.dotcomrendering.pageElements.TextBlockElement' &&
@@ -242,13 +240,15 @@ const addH3s = (elements: FEElement[]): FEElement[] => {
 			const h3Text = extractH3(thisElement);
 
 			// To avoid having to depend on the ordering of the enhancer (which could easily be a source of bugs)
+			const previousItem = elements[index - 1];
+
 			// We determine if previous items are `ItemLinkBlockElement` through type and `isItemLink` functions
 			const isPreviousItemLink =
 				previousItem?._type ===
 					'model.dotcomrendering.pageElements.ItemLinkBlockElement' ||
 				(previousItem && isItemLink(previousItem));
 
-			withH3s.push(
+			return [
 				{
 					_type: 'model.dotcomrendering.pageElements.DividerBlockElement',
 					size: 'full',
@@ -258,25 +258,21 @@ const addH3s = (elements: FEElement[]): FEElement[] => {
 					...thisElement,
 					html: `<h3>${h3Text}</h3>`,
 				},
-			);
+			];
 		} else {
-			// Pass through
-			withH3s.push(thisElement);
+			// pass through
+			return thisElement;
 		}
-		previousItem = thisElement;
 	});
-	return withH3s;
-};
 
-const addItemLinks = (elements: FEElement[]): FEElement[] => {
-	const withItemLink: FEElement[] = [];
-	elements.forEach((thisElement) => {
+const addItemLinks = (elements: FEElement[]): FEElement[] =>
+	elements.flatMap((thisElement) => {
 		if (
 			thisElement._type ===
 				'model.dotcomrendering.pageElements.TextBlockElement' &&
 			isItemLink(thisElement)
 		) {
-			withItemLink.push(
+			return [
 				{
 					_type: 'model.dotcomrendering.pageElements.DividerBlockElement',
 					size: 'full',
@@ -286,14 +282,12 @@ const addItemLinks = (elements: FEElement[]): FEElement[] => {
 					...thisElement,
 					_type: 'model.dotcomrendering.pageElements.ItemLinkBlockElement',
 				},
-			);
+			];
 		} else {
 			// Pass through
-			withItemLink.push(thisElement);
+			return thisElement;
 		}
 	});
-	return withItemLink;
-};
 
 const addTitles = (elements: FEElement[], format: FEFormat): FEElement[] => {
 	let position = 1;
