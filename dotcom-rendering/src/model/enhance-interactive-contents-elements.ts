@@ -3,8 +3,8 @@ import { isLegacyTableOfContents } from './isLegacyTableOfContents';
 import { stripHTML } from './sanitise';
 
 const enhance = (elements: FEElement[]): FEElement[] => {
-	const hasInteractiveContentsBlockElement = elements.some((element) =>
-		isLegacyTableOfContents(element),
+	const hasInteractiveContentsBlockElement = elements.some(
+		isLegacyTableOfContents,
 	);
 
 	if (hasInteractiveContentsBlockElement) {
@@ -19,11 +19,12 @@ const enhance = (elements: FEElement[]): FEElement[] => {
 		);
 
 		// Get the last element with an 'elementId'
-		// Using .slice() allows us to avoid mutating the original array
-		const endDocumentElement = elements
-			.slice()
-			.reverse()
-			.find((element) => 'elementId' in element);
+		// Array.prototype.findLast is supported in Node 18
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findLast
+		const endDocumentElement = elements.findLast(
+			(element): element is typeof element & { elementId: string } =>
+				'elementId' in element,
+		);
 
 		// replace interactive content block
 		return elements.flatMap((element) => {
