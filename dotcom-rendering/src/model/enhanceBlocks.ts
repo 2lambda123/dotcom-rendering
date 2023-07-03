@@ -101,7 +101,7 @@ export const enhanceBlocks = (
 ): Block[] => {
 	const { promotedNewsletter } = options ?? {};
 
-	blocks.forEach((block) => validateAsBlock(block));
+	blocks.forEach(validateAsBlock);
 	return new BlockEnhancer(blocks, format, { promotedNewsletter })
 		.enhanceDividers()
 		.enhanceH3s()
