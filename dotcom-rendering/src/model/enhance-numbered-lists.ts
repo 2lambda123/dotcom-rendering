@@ -131,9 +131,8 @@ const starifyImages = (elements: FEElement[]): FEElement[] =>
 		}
 	});
 
-const inlineStarRatings = (elements: FEElement[]): FEElement[] => {
-	const withStars: FEElement[] = [];
-	elements.forEach((thisElement) => {
+const inlineStarRatings = (elements: FEElement[]): FEElement[] =>
+	elements.map((thisElement) => {
 		if (
 			thisElement._type ===
 				'model.dotcomrendering.pageElements.TextBlockElement' &&
@@ -141,19 +140,17 @@ const inlineStarRatings = (elements: FEElement[]): FEElement[] => {
 		) {
 			const rating = extractStarCount(thisElement);
 			// Inline this image
-			withStars.push({
+			return {
 				_type: 'model.dotcomrendering.pageElements.StarRatingBlockElement',
 				elementId: thisElement.elementId,
 				rating,
 				size: 'large',
-			});
+			};
 		} else {
 			// Pass through
-			withStars.push(thisElement);
+			return thisElement;
 		}
 	});
-	return withStars;
-};
 
 const makeThumbnailsRound = (elements: FEElement[]): FEElement[] => {
 	const inlined: FEElement[] = [];
