@@ -33,9 +33,9 @@ const isFalseH3 = (element: FEElement): boolean => {
 	);
 };
 
-const extractH3 = (element: FEElement): string => {
+const extractH3 = (element: TextBlockElement): string => {
 	// Extract the text based on the convention: <p><strong><H3 text</strong></p>
-	const textElement = element as TextBlockElement;
+	const textElement = element;
 	const frag = JSDOM.fragment(textElement.html);
 	if (isFalseH3(element)) {
 		return (
