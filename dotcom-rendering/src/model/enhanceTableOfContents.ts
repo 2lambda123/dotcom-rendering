@@ -1,8 +1,14 @@
 import { JSDOM } from 'jsdom';
-import type { FEElement, SubheadingBlockElement } from '../types/content';
+import type {
+	FEElement,
+	NumberedTitleBlockElement,
+	SubheadingBlockElement,
+} from '../types/content';
 import type { TableOfContentsItem } from '../types/frontend';
 
-const isH2 = (element: FEElement): element is SubheadingBlockElement => {
+type ValidBlockElement = SubheadingBlockElement | NumberedTitleBlockElement;
+
+const isH2 = (element: FEElement): element is ValidBlockElement => {
 	return (
 		element._type ===
 			'model.dotcomrendering.pageElements.SubheadingBlockElement' ||
@@ -11,13 +17,13 @@ const isH2 = (element: FEElement): element is SubheadingBlockElement => {
 	);
 };
 
-const extractText = (element: SubheadingBlockElement): string => {
+const extractText = (element: ValidBlockElement): string => {
 	const frag = JSDOM.fragment(element.html);
 	if (!frag.firstElementChild) return '';
 	return frag.textContent?.trim() ?? '';
 };
 
-const extractID = (element: SubheadingBlockElement): string => {
+const extractID = (element: ValidBlockElement): string => {
 	const frag = JSDOM.fragment(element.html);
 	if (!frag.firstElementChild) return '';
 	return frag.querySelector('H2')?.getAttribute('id') ?? '';

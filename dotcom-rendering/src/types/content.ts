@@ -325,7 +325,7 @@ export interface NewsletterSignupBlockElement {
 	elementId?: string;
 }
 
-interface NumberedTitleBlockElement {
+export interface NumberedTitleBlockElement {
 	_type: 'model.dotcomrendering.pageElements.NumberedTitleBlockElement';
 	elementId: string;
 	position: number;
