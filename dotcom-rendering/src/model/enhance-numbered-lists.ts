@@ -188,17 +188,17 @@ const isItemLink = (element: FEElement): boolean => {
 	return hasULWrapper && hasOnlyOneChild && hasLINestedWrapper;
 };
 
+/**
+ * Article pages come with some global style rules, one of which affects h2
+ * tags. But for numbered lists we don't want these styles because we use
+ * these html elements to represents our special titles. Rather than start a
+ * css war, this enhancer uses the `data-ignore` attribute which is a contract
+ * established to allow global styles to be ignored.
+ *
+ * All h2 tags inside an article of Design: NumberedList have this attribute
+ * set.
+ */
 const removeGlobalH2Styles = (elements: FEElement[]): FEElement[] => {
-	/**
-	 * Article pages come with some global style rules, one of which affects h2
-	 * tags. But for numbered lists we don't want these styles because we use
-	 * these html elements to represents our special titles. Rather than start a
-	 * css war, this enhancer uses the `data-ignore` attribute which is a contract
-	 * established to allow global styles to be ignored.
-	 *
-	 * All h2 tags inside an article of Design: NumberedList have this attirbute
-	 * set.
-	 */
 	const withH2StylesIgnored: FEElement[] = [];
 	elements.forEach((thisElement) => {
 		if (
@@ -220,17 +220,17 @@ const removeGlobalH2Styles = (elements: FEElement[]): FEElement[] => {
 	return withH2StylesIgnored;
 };
 
+/**
+ * Why not just add H3s in Composer?
+ * Truth is, you can't. So to get around this there's a convention that says if
+ * you insert <p><strong>Faux H3!</strong>,</p> then we replace it with a h3 tag
+ * instead.
+ *
+ * Note. H3s don't have any styles so we have to add them. In Frontend, they use
+ * a 'fauxH3' class for this. In DCR we add `globalH3Styles` which was added at
+ * the same time as this code.
+ */
 const addH3s = (elements: FEElement[]): FEElement[] => {
-	/**
-	 * Why not just add H3s in Composer?
-	 * Truth is, you can't. So to get around this there's a convention that says if
-	 * you insert <p><strong>Faux H3!</strong>,</p> then we replace it with a h3 tag
-	 * instead.
-	 *
-	 * Note. H3s don't have any styles so we have to add them. In Frontend, they use
-	 * a 'fauxH3' class for this. In DCR we add `globalH3Styles` which was added at
-	 * the same time as this code.
-	 */
 	const withH3s: FEElement[] = [];
 	let previousItem: FEElement | undefined;
 	elements.forEach((thisElement) => {
@@ -296,16 +296,6 @@ const addItemLinks = (elements: FEElement[]): FEElement[] => {
 };
 
 const addTitles = (elements: FEElement[], format: FEFormat): FEElement[] => {
-	/**
-	 * Why not just add H3s in Composer?
-	 * Truth is, you can't. So to get around this there's a convention that says if
-	 * you insert <p><strong>Faux H3!</strong>,</p> then we replace it with a h3 tag
-	 * instead.
-	 *
-	 * Note. H3s don't have any styles so we have to add them. In Frontend, they use
-	 * a 'fauxH3' class for this. In DCR we add `globalH3Styles` which was added at
-	 * the same time as this code.
-	 */
 	const withTitles: FEElement[] = [];
 	let position = 1;
 	elements.forEach((thisElement) => {
