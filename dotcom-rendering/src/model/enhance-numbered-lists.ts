@@ -50,10 +50,12 @@ const extractH3 = (element: FEElement): string => {
 	return '';
 };
 
-const isStarRating = (element: FEElement): boolean => {
-	const isStar = (charactor: string): boolean => {
-		return charactor === '★' || charactor === '☆';
-	};
+const isStar = (character: string): character is '★' | '☆' => {
+	return character === '★' || character === '☆';
+};
+
+const isStarRating = (element?: FEElement): element is TextBlockElement => {
+	if (!element) return false;
 
 	// Checks if this element is a 'star rating' based on the convention: <p>★★★★☆</p>
 	if (element._type !== 'model.dotcomrendering.pageElements.TextBlockElement')
