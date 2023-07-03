@@ -28,7 +28,9 @@ export const updateTimeElement = (element: Element): void => {
 };
 
 export const updateTimeElements = (): void => {
-	document
-		.querySelectorAll('time[data-relativeformat]')
-		.forEach(updateTimeElement);
+	for (const element of document.querySelectorAll(
+		'time[data-relativeformat]',
+	)) {
+		updateTimeElement(element);
+	}
 };

@@ -21,7 +21,7 @@ export const initHydration = (elements: NodeListOf<Element>): void => {
 	 * props - The data for the component that has been serialised in the dom
 	 * element - The `gu-island` custom element which is wrapping the content
 	 */
-	elements.forEach((element) => {
+	for (const element of elements) {
 		if (element instanceof HTMLElement) {
 			const name = getName(element);
 			const props = getProps(element);
@@ -79,5 +79,5 @@ export const initHydration = (elements: NodeListOf<Element>): void => {
 				}
 			}
 		}
-	});
+	}
 };

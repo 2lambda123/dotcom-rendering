@@ -179,13 +179,13 @@ export const ManyNewsletterSignUp = ({ apiEndpoint }: Props) => {
 		const signUpButtons = [
 			...document.querySelectorAll(`[data-role=${BUTTON_ROLE}]`),
 		];
-		signUpButtons.forEach((button) => {
+		for (const button of signUpButtons) {
 			button.classList.remove(BUTTON_SELECTED_CLASS);
 			const ariaLabelText =
 				button.getAttribute('data-aria-label-when-unchecked') ??
 				'add to list';
 			button.setAttribute('aria-label', ariaLabelText);
-		});
+		}
 
 		setNewslettersToSignUpFor([]);
 	}, [status]);
@@ -194,13 +194,13 @@ export const ManyNewsletterSignUp = ({ apiEndpoint }: Props) => {
 		const signUpButtons = [
 			...document.querySelectorAll(`[data-role=${BUTTON_ROLE}]`),
 		];
-		signUpButtons.forEach((button) => {
+		for (const button of signUpButtons) {
 			button.addEventListener('click', toggleNewsletter);
-		});
+		}
 		return () => {
-			signUpButtons.forEach((button) => {
+			for (const button of signUpButtons) {
 				button.removeEventListener('click', toggleNewsletter);
-			});
+			}
 		};
 	}, [toggleNewsletter, newslettersToSignUpFor]);
 

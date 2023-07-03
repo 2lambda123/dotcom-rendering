@@ -14,12 +14,12 @@ export const ophan = (): Promise<void> => {
 	const borked = Object.entries(window.guardian.borkWebVitals);
 	if (borked.length > 0) {
 		const abTestRegister: { [key: string]: OphanABEvent } = {};
-		borked.forEach(([testName, variantName]) => {
+		for (const [testName, variantName] of borked) {
 			abTestRegister[`abBork${testName}`] = {
 				variantName,
 				complete: false,
 			};
-		});
+		}
 		console.log('🍊', abTestRegister);
 		record({ abTestRegister });
 	}

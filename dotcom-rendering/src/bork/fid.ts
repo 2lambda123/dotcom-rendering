@@ -20,17 +20,18 @@ export const fid = (delay: number): void => {
 				console.info(`🍊 Delaying first click by ${delay}ms, sorry`);
 
 				const start = performance.now();
-				eventTypes.forEach((eventType) => {
+				for (const eventType of eventTypes) {
 					removeEventListener(eventType, bork);
-				});
+				}
+
 				while (performance.now() - start < delay) {
 					// throttling
 				}
 			};
 
-			eventTypes.forEach((eventType) => {
+			for (const eventType of eventTypes) {
 				addEventListener(eventType, bork);
-			});
+			}
 		}
 	} catch (_) {
 		// do nothing

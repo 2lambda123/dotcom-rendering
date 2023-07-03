@@ -39,26 +39,26 @@ type EnhancedCountType = {
  */
 function extractMarkers() {
 	const markers: MarkerType[] = [];
-	document
-		.querySelectorAll('[data-discussion-id]')
-		.forEach((element: Element) => {
-			if (element instanceof HTMLElement) {
-				try {
-					const { discussionId, format, isDynamo, containerPalette } =
-						element.dataset;
-					if (discussionId && format) {
-						markers.push({
-							discussionId,
-							format: JSON.parse(format),
-							isDynamo: isDynamo ? true : undefined,
-							containerPalette,
-						});
-					}
-				} catch (e) {
-					// Do nothing
+
+	for (const element of document.querySelectorAll('[data-discussion-id]')) {
+		if (element instanceof HTMLElement) {
+			try {
+				const { discussionId, format, isDynamo, containerPalette } =
+					element.dataset;
+				if (discussionId && format) {
+					markers.push({
+						discussionId,
+						format: JSON.parse(format),
+						isDynamo: isDynamo ? true : undefined,
+						containerPalette,
+					});
 				}
+			} catch (e) {
+				// Do nothing
 			}
-		});
+		}
+	}
+
 	return markers;
 }
 
@@ -111,7 +111,7 @@ function enhanceCounts(
  * Takes the long and short version of each count and renders onto the page with react
  */
 function renderCounts(counts: EnhancedCountType[]) {
-	counts.forEach((count) => {
+	for (const count of counts) {
 		const container = document.querySelector(
 			`[data-discussion-id="${count.id}"]`,
 		);
@@ -132,7 +132,7 @@ function renderCounts(counts: EnhancedCountType[]) {
 
 			container.setAttribute('aria-label', `${count.short} Comments`);
 		}
-	});
+	}
 }
 
 /**

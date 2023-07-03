@@ -89,6 +89,7 @@ module.exports = {
 		'jsx-a11y',
 		'jsx-expressions',
 		'custom-elements',
+		'github',
 	],
 	rules: {
 		// React, Hooks & JSX
@@ -128,6 +129,9 @@ module.exports = {
 		'no-underscore-dangle': ['warn', { allow: ['_type'] }],
 		'no-useless-escape': 'error',
 		'custom-elements/file-name-matches-element': 'error',
+
+		// https://github.com/github/eslint-plugin-github/blob/main/docs/rules/array-foreach.md
+		'github/array-foreach': 'error',
 
 		'object-shorthand': ['error', 'always'],
 
