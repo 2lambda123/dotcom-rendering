@@ -31,11 +31,9 @@ describe('Commercial E2E tests', function () {
 			timeout: 30000,
 		}).should('have.length.of.at.least', 14);
 
-		Array(10)
-			.fill()
-			.forEach((item, i) => {
-				cy.get(`[data-name="inline${i + 1}"]`).should('have.length', 1);
-			});
+		for (const i of Array.from({ length: 10 }, (_, i) => i)) {
+			cy.get(`[data-name="inline${i + 1}"]`).should('have.length', 1);
+		}
 
 		cy.get(`[data-name="right"]`).should('have.length', 1);
 		cy.scrollTo('bottom');

@@ -16,7 +16,7 @@ import { getProps } from './getProps';
  *    snapshots
  */
 export const doStorybookHydration = () => {
-	document.querySelectorAll('gu-island').forEach((element) => {
+	for (const element of document.querySelectorAll('gu-island')) {
 		if (element instanceof HTMLElement) {
 			const name = getName(element);
 			const props = getProps(element);
@@ -44,5 +44,5 @@ export const doStorybookHydration = () => {
 					),
 				);
 		}
-	});
+	}
 };

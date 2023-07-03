@@ -40,13 +40,15 @@ const fileExists = async (glob) => {
 		manifests.push(await loadJsonFile('./dist/manifest.variant.json'));
 	}
 
-	[
+	const entries = [
 		'index.js',
 		'atomIframe.js',
 		'embedIframe.js',
 		'newsletterEmbedIframe.js',
 		'relativeTime.js',
-	].forEach((name) => {
+	];
+
+	for (const name of entries) {
 		for (const manifest of manifests) {
 			if (manifest[name]) {
 				console.log(`A manifest returned value ${name}`);
@@ -54,5 +56,5 @@ const fileExists = async (glob) => {
 				errorAndThrow(`A manifest did not return a value for ${name}`);
 			}
 		}
-	});
+	}
 })();
