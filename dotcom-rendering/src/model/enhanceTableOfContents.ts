@@ -41,18 +41,17 @@ export const enhanceTableOfContents = (
 		return undefined;
 	}
 
-	const tocItems: TableOfContentsItem[] = [];
-
-	blocks.forEach((block) => {
-		block.elements.forEach((element) => {
+	const tocItems: TableOfContentsItem[] = blocks.flatMap((block) =>
+		block.elements.flatMap((element) => {
 			if (isH2(element)) {
-				tocItems.push({
+				return {
 					id: extractID(element),
 					title: extractText(element),
-				});
+				};
 			}
-		});
-	});
+			return [];
+		}),
+	);
 
 	return tocItems.length >= 3 ? tocItems : undefined;
 };
