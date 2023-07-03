@@ -37,28 +37,25 @@ const mapStaticGroups = (
 
 const reduceToDefaultGrouping = (
 	newsletters: Newsletter[],
-): GroupedNewsletters => {
-	const grouping: GroupedNewsletters = {
-		groups: [],
-	};
-
-	newsletters.forEach((newsletter) => {
-		const { group: groupName } = newsletter;
-		const exstingGroup = grouping.groups.find(
-			(group) => group.title === groupName,
-		);
-		if (exstingGroup) {
-			exstingGroup.newsletters.push(newsletter);
-		} else {
-			grouping.groups.push({
-				title: groupName,
-				newsletters: [newsletter],
-			});
-		}
-	});
-
-	return grouping;
-};
+): GroupedNewsletters =>
+	newsletters.reduce<GroupedNewsletters>(
+		(grouping, newsletter) => {
+			const { group: groupName } = newsletter;
+			const exstingGroup = grouping.groups.find(
+				(group) => group.title === groupName,
+			);
+			if (exstingGroup) {
+				exstingGroup.newsletters.push(newsletter);
+			} else {
+				grouping.groups.push({
+					title: groupName,
+					newsletters: [newsletter],
+				});
+			}
+			return grouping;
+		},
+		{ groups: [] },
+	);
 
 const getGroups = (
 	newsletterPageData: FENewslettersPageType,
