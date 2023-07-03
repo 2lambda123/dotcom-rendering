@@ -95,46 +95,41 @@ const isStarableImage = (element: FEElement | undefined): boolean => {
 	);
 };
 
-const starifyImages = (elements: FEElement[]): FEElement[] => {
-	const starified: FEElement[] = [];
-	let previousRating: number | undefined;
-	elements.forEach((thisElement, index) => {
+const starifyImages = (elements: FEElement[]): FEElement[] =>
+	elements.flatMap((thisElement, index) => {
+		const previousElement = elements[index - 1];
 		switch (thisElement._type) {
 			case 'model.dotcomrendering.pageElements.TextBlockElement':
 				if (
 					isStarRating(thisElement) &&
 					isStarableImage(elements[index + 1])
 				) {
-					// Remember this rating so we can add it to the next element
-					previousRating = extractStarCount(thisElement);
+					// Skip this element
+					return [];
 				} else {
 					// Pass through
-					starified.push(thisElement);
+					return thisElement;
 				}
-				break;
+
 			case 'model.dotcomrendering.pageElements.ImageBlockElement':
 				if (
-					previousRating !== undefined &&
-					isStarableImage(thisElement)
+					isStarableImage(thisElement) &&
+					isStarRating(previousElement)
 				) {
-					// Add this image using the rating we remembered
-					starified.push({
+					return {
 						...thisElement,
-						starRating: previousRating,
-					});
-					previousRating = undefined;
+						starRating: extractStarCount(previousElement),
+					};
 				} else {
 					// Pass through
-					starified.push(thisElement);
+					return thisElement;
 				}
-				break;
+
 			default:
 				// Pass through
-				starified.push(thisElement);
+				return thisElement;
 		}
 	});
-	return starified;
-};
 
 const inlineStarRatings = (elements: FEElement[]): FEElement[] => {
 	const withStars: FEElement[] = [];
