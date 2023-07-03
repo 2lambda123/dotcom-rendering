@@ -1,4 +1,3 @@
-import { isNonNullable } from '@guardian/libs';
 import type { EditionId } from '../lib/edition';
 import type { Branding } from '../types/branding';
 import type {
@@ -26,15 +25,12 @@ function getBrandingFromCards(
 	allCards: FEFrontCard[],
 	editionId: EditionId,
 ): Branding[] {
-	return allCards
-		.map(
-			(card) =>
-				card.properties.editionBrandings.find(
-					(editionBranding) =>
-						editionBranding.edition.id === editionId,
-				)?.branding,
-		)
-		.filter(isNonNullable);
+	return allCards.flatMap(
+		(card) =>
+			card.properties.editionBrandings.find(
+				(editionBranding) => editionBranding.edition.id === editionId,
+			)?.branding ?? [],
+	);
 }
 
 export const enhanceCollections = (

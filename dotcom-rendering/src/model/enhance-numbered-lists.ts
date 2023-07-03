@@ -1,9 +1,5 @@
 import { JSDOM } from 'jsdom';
-import type {
-	FEElement,
-	ImageBlockElement,
-	TextBlockElement,
-} from '../types/content';
+import type { FEElement, TextBlockElement } from '../types/content';
 
 const isFalseH3 = (element: FEElement): boolean => {
 	// Checks if this element is a 'false h3' based on the convention: <p><strong><H3 text</strong></p>
