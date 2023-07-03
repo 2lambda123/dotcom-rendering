@@ -198,27 +198,24 @@ const isItemLink = (element: FEElement): boolean => {
  * All h2 tags inside an article of Design: NumberedList have this attribute
  * set.
  */
-const removeGlobalH2Styles = (elements: FEElement[]): FEElement[] => {
-	const withH2StylesIgnored: FEElement[] = [];
-	elements.forEach((thisElement) => {
+const removeGlobalH2Styles = (elements: FEElement[]): FEElement[] =>
+	elements.map((thisElement) => {
 		if (
 			thisElement._type ===
 			'model.dotcomrendering.pageElements.SubheadingBlockElement'
 		) {
-			withH2StylesIgnored.push({
+			return {
 				...thisElement,
 				html: thisElement.html.replace(
 					'<h2>',
 					'<h2 data-ignore="global-h2-styling">',
 				),
-			});
+			};
 		} else {
 			// Pass through
-			withH2StylesIgnored.push(thisElement);
+			return thisElement;
 		}
 	});
-	return withH2StylesIgnored;
-};
 
 /**
  * Why not just add H3s in Composer?
