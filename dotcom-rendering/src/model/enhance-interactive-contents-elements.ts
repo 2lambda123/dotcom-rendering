@@ -3,7 +3,6 @@ import { isLegacyTableOfContents } from './isLegacyTableOfContents';
 import { stripHTML } from './sanitise';
 
 const enhance = (elements: FEElement[]): FEElement[] => {
-	const updatedElements: FEElement[] = [];
 	const hasInteractiveContentsBlockElement = elements.some((element) =>
 		isLegacyTableOfContents(element),
 	);
@@ -27,37 +26,40 @@ const enhance = (elements: FEElement[]): FEElement[] => {
 			.find((element) => 'elementId' in element);
 
 		// replace interactive content block
-		elements.forEach((element) => {
+		return elements.flatMap((element) => {
 			if (isLegacyTableOfContents(element)) {
-				updatedElements.push({
+				const divider = {
 					_type: 'model.dotcomrendering.pageElements.DividerBlockElement',
 					size: 'full',
 					spaceAbove: 'tight',
-				});
-				if ('elementId' in element && element.elementId)
-					updatedElements.push({
-						_type: 'model.dotcomrendering.pageElements.InteractiveContentsBlockElement',
-						elementId: element.elementId,
-						// Strip the HTML from the subheading links for use as titles within the element
-						subheadingLinks: subheadingLinks.map((subheading) => ({
-							...subheading,
-							html: stripHTML(subheading.html),
-						})),
-						endDocumentElementId:
-							endDocumentElement &&
-							'elementId' in endDocumentElement
+				} as const;
+				if ('elementId' in element && element.elementId) {
+					return [
+						divider,
+						{
+							_type: 'model.dotcomrendering.pageElements.InteractiveContentsBlockElement',
+							elementId: element.elementId,
+							// Strip the HTML from the subheading links for use as titles within the element
+							subheadingLinks: subheadingLinks.map(
+								(subheading) => ({
+									...subheading,
+									html: stripHTML(subheading.html),
+								}),
+							),
+							endDocumentElementId: endDocumentElement
 								? endDocumentElement.elementId
 								: undefined,
-					});
+						},
+					];
+				}
+				return divider;
 			} else {
-				updatedElements.push(element);
+				return element;
 			}
 		});
-
-		return updatedElements;
 	}
 
-	return updatedElements.length ? updatedElements : elements;
+	return elements;
 };
 
 export const enhanceInteractiveContentsElements = (blocks: Block[]): Block[] =>
