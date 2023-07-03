@@ -296,15 +296,14 @@ const addItemLinks = (elements: FEElement[]): FEElement[] => {
 };
 
 const addTitles = (elements: FEElement[], format: FEFormat): FEElement[] => {
-	const withTitles: FEElement[] = [];
 	let position = 1;
-	elements.forEach((thisElement) => {
+	return elements.flatMap((thisElement) => {
 		if (
 			thisElement._type ===
 			'model.dotcomrendering.pageElements.SubheadingBlockElement'
 		) {
 			const { html } = thisElement;
-			withTitles.push(
+			return [
 				{
 					_type: 'model.dotcomrendering.pageElements.DividerBlockElement',
 					size: 'full',
@@ -313,18 +312,16 @@ const addTitles = (elements: FEElement[], format: FEFormat): FEElement[] => {
 				{
 					_type: 'model.dotcomrendering.pageElements.NumberedTitleBlockElement',
 					elementId: thisElement.elementId,
-					position,
+					position: position++,
 					html,
 					format,
 				},
-			);
-			position += 1;
+			];
 		} else {
 			// Pass through
-			withTitles.push(thisElement);
+			return thisElement;
 		}
 	});
-	return withTitles;
 };
 
 class Enhancer {
