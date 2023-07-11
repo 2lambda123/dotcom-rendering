@@ -218,7 +218,7 @@ const sectionHeadlineUntilLeftCol = css`
 	flex-direction: column;
 `;
 
-const sectionHeadlineFromLeftCol = (borderColour: string) => css`
+const baseSectionHeadlineFromLeftCol = css`
 	${from.leftCol} {
 		position: relative;
 		::after {
@@ -229,10 +229,17 @@ const sectionHeadlineFromLeftCol = (borderColour: string) => css`
 			height: 1.875rem;
 			right: -10px;
 			position: absolute;
-			background-color: ${borderColour};
 		}
 	}
 `;
+const sectionHeadlineFromLeftCol = (backgroundColor: string) => [
+	baseSectionHeadlineFromLeftCol,
+	css({
+		'::after': {
+			backgroundColor,
+		},
+	}),
+];
 
 const paddings = css`
 	padding-top: ${space[2]}px;
@@ -254,9 +261,8 @@ const sectionContent = css`
 	grid-column: content;
 `;
 
-const sectionContentRow = (toggleable: boolean) => css`
-	grid-row: ${toggleable ? 'content-toggleable' : 'content'};
-`;
+const sectionContentRow = (toggleable: boolean) =>
+	css({ gridRow: toggleable ? 'content-toggleable' : 'content' });
 
 const sectionContentPadded = css`
 	${from.tablet} {
@@ -286,17 +292,14 @@ const sectionTreats = css`
 	}
 `;
 
-const decoration = (borderColour: string) => {
-	/** element which contains border and inner background colour, if set */
-	return css`
-		grid-row: 1 / -1;
-		grid-column: decoration;
+/** element which contains border and inner background colour. */
+const decoration = css`
+	grid-row: 1 / -1;
+	grid-column: decoration;
 
-		border-width: 1px;
-		border-color: ${borderColour};
-		border-style: none;
-	`;
-};
+	border-width: 1px;
+	border-style: none;
+`;
 
 /** only visible once content stops sticking to left and right edges */
 const sideBorders = css`
@@ -321,9 +324,21 @@ const titleStyle = css`
 	}
 `;
 
+const badgeStyles = css`
+	display: inline-block;
+	border-top: 1px dotted ${palette.neutral[86]};
+	${textSans.xxsmall()}
+	color: ${palette.neutral[46]};
+	font-weight: bold;
+
+	${from.leftCol} {
+		width: 100%;
+	}
+`;
+
 const decideBackgroundColour = (
-	overrideBackgroundColour: string | undefined,
 	hasPageSkin: boolean,
+	overrideBackgroundColour?: string,
 ) => {
 	if (overrideBackgroundColour) {
 		return overrideBackgroundColour;
@@ -470,17 +485,21 @@ export const FrontSection = ({
 				containerStylesUntilLeftCol,
 				!hasPageSkin && containerStylesFromLeftCol,
 				hasPageSkin && pageSkinContainer,
-				css`
-					background-color: ${decideBackgroundColour(
-						overrides?.background.container,
+				css({
+					backgroundColor: decideBackgroundColour(
 						hasPageSkin,
-					)};
-				`,
+						overrides?.background.container,
+					),
+				}),
 			]}
 		>
 			<div
 				css={[
-					decoration(overrides?.border.container ?? neutral[86]),
+					decoration,
+					css({
+						borderColor:
+							overrides?.border.container ?? palette.neutral[86],
+					}),
 					sideBorders,
 					showTopBorder && topBorder,
 				]}
@@ -510,20 +529,7 @@ export const FrontSection = ({
 							editionId={editionId}
 						/>
 						{badge && (
-							<div
-								css={css`
-									display: inline-block;
-									border-top: 1px dotted
-										${palette.neutral[86]};
-									${textSans.xxsmall()}
-									color: ${palette.neutral[46]};
-									font-weight: bold;
-
-									${from.leftCol} {
-										width: 100%;
-									}
-								`}
-							>
+							<div css={badgeStyles}>
 								Paid for by
 								<Badge
 									imageSrc={badge.imageSrc}
