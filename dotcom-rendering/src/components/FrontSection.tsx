@@ -1,9 +1,7 @@
 import { css } from '@emotion/react';
 import { isString } from '@guardian/libs';
 import {
-	background,
 	from,
-	neutral,
 	palette,
 	space,
 	textSans,
@@ -331,7 +329,7 @@ const decideBackgroundColour = (
 		return overrideBackgroundColour;
 	}
 	if (hasPageSkin) {
-		return background.primary;
+		return palette.neutral[100];
 	}
 	return undefined;
 };
@@ -493,7 +491,7 @@ export const FrontSection = ({
 					sectionHeadlineUntilLeftCol,
 					!hasPageSkin &&
 						sectionHeadlineFromLeftCol(
-							overrides?.border.container ?? neutral[86],
+							overrides?.border.container ?? palette.neutral[86],
 						),
 				]}
 			>
@@ -639,7 +637,9 @@ export const FrontSection = ({
 					<Treats
 						treats={treats}
 						borderColour={overrides?.border.container}
-						fontColour={overrides?.text.container ?? neutral[7]}
+						fontColour={
+							overrides?.text.container ?? palette.neutral[7]
+						}
 					/>
 				</div>
 			)}
