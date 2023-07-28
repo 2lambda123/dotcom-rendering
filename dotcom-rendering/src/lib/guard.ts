@@ -4,4 +4,6 @@ export const guard =
 	(value: unknown): value is (typeof array)[number] =>
 		array.includes(value);
 
-export type Guard<T> = T extends readonly unknown[] ? T[number] : never;
+export type Guard<T> = T extends (value: unknown) => value is infer G
+	? G
+	: never;

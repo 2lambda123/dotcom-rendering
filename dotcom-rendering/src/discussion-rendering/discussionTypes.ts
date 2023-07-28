@@ -118,15 +118,15 @@ export type UserNameResponse = {
 
 const orderBy = ['newest', 'oldest', 'recommendations'] as const;
 export const isOrderBy = guard(orderBy);
-export type OrderByType = Guard<typeof orderBy>;
+export type OrderByType = Guard<typeof isOrderBy>;
 
 const threads = ['collapsed', 'expanded', 'unthreaded'] as const;
 export const isThreads = guard(threads);
-export type ThreadsType = Guard<typeof threads>;
+export type ThreadsType = Guard<typeof isThreads>;
 
 const pageSize = [25, 50, 100] as const;
 export const isPageSize = guard(pageSize);
-export type PageSizeType = Guard<typeof pageSize>;
+export type PageSizeType = Guard<typeof isPageSize>;
 export interface FilterOptions {
 	orderBy: OrderByType;
 	pageSize: PageSizeType;
