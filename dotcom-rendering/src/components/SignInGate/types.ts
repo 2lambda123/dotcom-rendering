@@ -22,9 +22,8 @@ export type SignInGateComponent = {
 };
 
 export const ALL_USER_TYPES = ['new', 'guest', 'current'] as const;
-export type UserType = Guard<typeof ALL_USER_TYPES>;
-
 export const isUserType = guard(ALL_USER_TYPES);
+export type UserType = Guard<typeof isUserType>;
 
 export const ALL_PRODUCTS = [
 	'Contribution',
@@ -32,9 +31,9 @@ export const ALL_PRODUCTS = [
 	'Paper',
 	'GuardianWeekly',
 ] as const;
-export type Product = Guard<typeof ALL_PRODUCTS>;
-
 export const isProduct = guard(ALL_PRODUCTS);
+export type Product = Guard<typeof isProduct>;
+
 export interface CheckoutCompleteCookieData {
 	userType: UserType;
 	product: Product;

@@ -7,7 +7,7 @@ type EuropeanTerritories = 'EU-27';
 
 const australianTerritories = ['AU-VIC', 'AU-QLD', 'AU-NSW'] as const;
 export const isAustralianTerritory = guard(australianTerritories);
-export type AustralianTerritory = Guard<typeof australianTerritories>;
+export type AustralianTerritory = Guard<typeof isAustralianTerritory>;
 
 type NewZealandTerritories = 'NZ';
 
