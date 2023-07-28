@@ -3,6 +3,7 @@ import type { ArticleFormat } from '@guardian/libs';
 import type { NavType } from '../model/extract-nav';
 import type { FEArticleType } from '../types/frontend';
 import type { RenderingTarget } from '../types/renderingTarget';
+import { Basecamp } from './Basecamp';
 import { CommentLayout } from './CommentLayout';
 import { FullPageInteractiveLayout } from './FullPageInteractiveLayout';
 import { ImmersiveLayout } from './ImmersiveLayout';
@@ -56,6 +57,16 @@ const DecideLayoutWeb = ({
 	NAV,
 	renderingTarget,
 }: WebProps) => {
+	console.log(article.webURL);
+	if (
+		[
+			// temporary value to demonstrate
+			'https://www.theguardian.com/lifeandstyle/2023/jul/28/you-be-the-judge-should-my-flatmate-stop-subletting-her-room-every-time-she-goes-away',
+		].includes(article.webURL) ||
+		article.tags.some((tag) => tag.id === 'basecamp/experiments')
+	)
+		return <Basecamp article={article} format={format} NAV={NAV} />;
+
 	switch (format.display) {
 		case ArticleDisplay.Immersive: {
 			switch (format.design) {
