@@ -46,15 +46,19 @@ export const CalloutBlockComponent = ({
 
 	const isExpired = (date: number | undefined): boolean => {
 		if (date !== undefined) {
-			return Math.floor(new Date().getTime() / 1000) > date;
+			const currentUTCTimeInMilliseconds = new Date().getTime();
+			return currentUTCTimeInMilliseconds > date;
 		}
 		return false;
 	};
 
+	console.log('*** isNonCollapsible', isNonCollapsible);
 	if (!isNonCollapsible && isExpired(activeUntil)) {
 		return null;
 	}
 
+	console.log('*** activeUntil', activeUntil);
+	console.log('*** isExpired(activeUntil', isExpired(activeUntil));
 	if (isNonCollapsible && isExpired(activeUntil)) {
 		return <CalloutExpired />;
 	}
