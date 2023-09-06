@@ -244,5 +244,11 @@ module.exports = {
 				'import/no-default-export': 'off',
 			},
 		},
+		{
+			files: ['**/webpack.config.*', '**/webpack/**/*.*'],
+			rules: {
+				'import/no-default-export': 'off',
+			},
+		},
 	],
 };
