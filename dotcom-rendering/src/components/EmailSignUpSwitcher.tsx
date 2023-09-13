@@ -1,8 +1,7 @@
-import { AppEmailSignUpWrapper } from './AppEmailSignUp.importable';
+import { useIsBridgetCompatible } from '../lib/useIsBridgetCompatible';
 import { useConfig } from './ConfigContext';
 import { EmailSignup, type EmailSignUpProps } from './EmailSignup';
 import { InlineSkipToWrapper } from './InlineSkipToWrapper';
-import { Island } from './Island';
 
 interface EmailSignUpSwitcherProps extends EmailSignUpProps {
 	index: number;
@@ -13,12 +12,12 @@ export const EmailSignUpSwitcher = ({
 	...emailSignUpProps
 }: EmailSignUpSwitcherProps) => {
 	const { renderingTarget } = useConfig();
+	const isCompatible = useIsBridgetCompatible();
 
-	return renderingTarget === 'Apps' ? (
-		<Island clientOnly={true} deferUntil={'idle'}>
-			<AppEmailSignUpWrapper index={index} {...emailSignUpProps} />
-		</Island>
-	) : (
+	if (renderingTarget === 'Apps' && !isCompatible) {
+		return null;
+	}
+	return (
 		<InlineSkipToWrapper
 			id={`EmailSignup-skip-link-${index}`}
 			blockDescription="newsletter promotion"

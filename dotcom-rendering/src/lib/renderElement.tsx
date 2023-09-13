@@ -463,7 +463,11 @@ export const renderElement = ({
 				theme: element.newsletter.theme,
 			};
 
-			return <EmailSignUpSwitcher {...emailSignUpProps} />;
+			return (
+				<Island clientOnly={true} deferUntil={'idle'}>
+					<EmailSignUpSwitcher {...emailSignUpProps} />
+				</Island>
+			);
 		case 'model.dotcomrendering.pageElements.NumberedTitleBlockElement':
 			return (
 				<NumberedTitleBlockComponent
