@@ -2,21 +2,14 @@ import { useIsBridgetCompatible } from '../lib/useIsBridgetCompatible';
 import type { EmailSignUpProps } from './EmailSignup';
 import { EmailSignup } from './EmailSignup';
 import { InlineSkipToWrapper } from './InlineSkipToWrapper';
-import { NewsletterPrivacyMessage } from './NewsletterPrivacyMessage';
-import { SecureReCAPTCHASignup } from './SecureReCAPTCHASignup';
-
-interface AppEmailSignupProps extends EmailSignUpProps {
-	skipToIndex: number;
-	identityName: string;
-	successDescription: string;
-	/** You should only set this to true if the privacy message will be shown elsewhere on the page */
-	hidePrivacyMessage?: boolean;
+interface AppEmailSignUpWrapperProps extends EmailSignUpProps {
+	index: number;
 }
 
-export const AppEmailSignUp = ({
-	skipToIndex,
+export const AppEmailSignUpWrapper = ({
+	index,
 	...emailSignUpProps
-}: AppEmailSignupProps) => {
+}: AppEmailSignUpWrapperProps) => {
 	const isCompatible = useIsBridgetCompatible();
 
 	if (!isCompatible) {
@@ -25,18 +18,10 @@ export const AppEmailSignUp = ({
 
 	return (
 		<InlineSkipToWrapper
-			id={`EmailSignup-skip-link-${skipToIndex}`}
+			id={`EmailSignup-skip-link-${index}`}
 			blockDescription="newsletter promotion"
 		>
-			<EmailSignup {...emailSignUpProps}>
-				<SecureReCAPTCHASignup
-					newsletterId={emailSignUpProps.identityName}
-					successDescription={emailSignUpProps.successDescription}
-				/>
-				{!emailSignUpProps.hidePrivacyMessage && (
-					<NewsletterPrivacyMessage />
-				)}
-			</EmailSignup>
+			<EmailSignup {...emailSignUpProps} />
 		</InlineSkipToWrapper>
 	);
 };

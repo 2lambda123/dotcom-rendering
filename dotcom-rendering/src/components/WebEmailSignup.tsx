@@ -1,6 +1,7 @@
 import type { EmailSignUpProps } from './EmailSignup';
 import { EmailSignup } from './EmailSignup';
 import { InlineSkipToWrapper } from './InlineSkipToWrapper';
+import { NewsletterPrivacyMessage } from './NewsletterPrivacyMessage';
 import { SecureSignup } from './SecureSignup';
 
 interface WebEmailSignProps extends EmailSignUpProps {
@@ -20,13 +21,7 @@ export const WebEmailSignUp = ({
 			id={`EmailSignup-skip-link-${index}`}
 			blockDescription="newsletter promotion"
 		>
-			<EmailSignup {...emailSignUpProps}>
-				<SecureSignup
-					name={emailSignUpProps.name}
-					newsletterId={emailSignUpProps.identityName}
-					successDescription={emailSignUpProps.description}
-				/>
-			</EmailSignup>
+			<EmailSignup {...emailSignUpProps}></EmailSignup>
 		</InlineSkipToWrapper>
 	);
 };

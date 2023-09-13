@@ -1,15 +1,11 @@
-import { AppEmailSignUp } from './AppEmailSignUp.importable';
+import { AppEmailSignUpWrapper } from './AppEmailSignUp.importable';
 import { useConfig } from './ConfigContext';
-import type { EmailSignUpProps } from './EmailSignup';
+import { EmailSignup, type EmailSignUpProps } from './EmailSignup';
+import { InlineSkipToWrapper } from './InlineSkipToWrapper';
 import { Island } from './Island';
-import { WebEmailSignUp } from './WebEmailSignup';
 
 interface EmailSignUpSwitcherProps extends EmailSignUpProps {
 	index: number;
-	identityName: string;
-	successDescription: string;
-	/** You should only set this to true if the privacy message will be shown elsewhere on the page */
-	hidePrivacyMessage?: boolean;
 }
 
 export const EmailSignUpSwitcher = ({
@@ -20,11 +16,14 @@ export const EmailSignUpSwitcher = ({
 
 	return renderingTarget === 'Apps' ? (
 		<Island clientOnly={true} deferUntil={'idle'}>
-			<AppEmailSignUp skipToIndex={index} {...emailSignUpProps} />
+			<AppEmailSignUpWrapper index={index} {...emailSignUpProps} />
 		</Island>
 	) : (
-		<>
-			<WebEmailSignUp index={index} {...emailSignUpProps} />
-		</>
+		<InlineSkipToWrapper
+			id={`EmailSignup-skip-link-${index}`}
+			blockDescription="newsletter promotion"
+		>
+			<EmailSignup {...emailSignUpProps} />
+		</InlineSkipToWrapper>
 	);
 };

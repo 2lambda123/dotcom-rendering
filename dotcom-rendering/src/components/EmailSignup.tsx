@@ -9,13 +9,18 @@ import {
 } from '@guardian/source-foundations';
 import { buildDetailText } from '../lib/buildNewsletterSignUpText';
 import { NewsletterDetail } from './NewsletterDetail';
+import { SecureSignup } from './SecureSignup';
+import { NewsletterPrivacyMessage } from './NewsletterPrivacyMessage';
 
 export type EmailSignUpProps = {
 	name: string;
 	description: string;
 	frequency: string;
 	theme: string;
-	children?: React.ReactNode;
+	identityName: string;
+	successDescription: string;
+	/** You should only set this to true if the privacy message will be shown elsewhere on the page */
+	hidePrivacyMessage?: boolean;
 };
 
 const containerStyles = css`
@@ -76,7 +81,9 @@ export const EmailSignup = ({
 	description,
 	frequency,
 	theme,
-	children,
+	identityName,
+	successDescription,
+	hidePrivacyMessage,
 }: EmailSignUpProps) => {
 	return (
 		<aside css={containerStyles} aria-label="newsletter promotion">
@@ -89,7 +96,11 @@ export const EmailSignup = ({
 				</div>
 			</div>
 			<p css={descriptionStyles}>{description}</p>
-			{children}
+			<SecureSignup
+				newsletterId={identityName}
+				successDescription={successDescription}
+			/>
+			{!hidePrivacyMessage && <NewsletterPrivacyMessage />}
 		</aside>
 	);
 };
