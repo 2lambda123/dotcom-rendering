@@ -40,7 +40,7 @@ export const FrontCard = (props: Props) => {
 		imageUrl: trail.image,
 		imageAltText: trail.imageAltText,
 		isCrossword: trail.isCrossword,
-		isPlayableMediaCard: true,
+		isPlayableMediaCard: trail.showLivePlayable,
 		starRating: trail.starRating,
 		dataLinkName: trail.dataLinkName,
 		snapData: trail.snapData,
