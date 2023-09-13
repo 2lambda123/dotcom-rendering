@@ -1,7 +1,6 @@
 import { breakpoints } from '@guardian/source-foundations';
 import { EmailSignup } from './EmailSignup';
 import { Section } from './Section';
-import { SecureSignup } from './SecureSignup';
 
 const withSectionWrapper = (Story: typeof NewsTheme) => (
 	<Section
@@ -44,14 +43,10 @@ export const Default = ({
 		name="The Week in Patriarchy"
 		frequency="Weekly"
 		theme="opinion"
-	>
-		<SecureSignup
-			name="The Week in Patriarchy"
-			newsletterId="patriarchy"
-			hidePrivacyMessage={hidePrivacyMessage}
-			successDescription="Reviewing the most important stories on feminism and sexism and those fighting for equality"
-		/>
-	</EmailSignup>
+		identityName="patriarchy"
+		hidePrivacyMessage={hidePrivacyMessage}
+		successDescription="Reviewing the most important stories on feminism and sexism and those fighting for equality"
+	/>
 );
 
 export const NewsTheme = ({
@@ -64,14 +59,10 @@ export const NewsTheme = ({
 		name="First Edition"
 		frequency="Every weekday"
 		theme="news"
-	>
-		<SecureSignup
-			name="First Edition"
-			newsletterId="morning-briefing"
-			hidePrivacyMessage={hidePrivacyMessage}
-			successDescription="Archie Bland and Nimo Omer take you through the top stories and what they mean, free every weekday morning"
-		/>
-	</EmailSignup>
+		identityName="morning-briefing"
+		hidePrivacyMessage={hidePrivacyMessage}
+		successDescription="Archie Bland and Nimo Omer take you through the top stories and what they mean, free every weekday morning"
+	/>
 );
 
 export const IrregularFrequency = ({
@@ -84,14 +75,10 @@ export const IrregularFrequency = ({
 		name="Guardian Documentaries"
 		frequency="Whenever a new film is available"
 		theme="features"
-	>
-		<SecureSignup
-			name="Guardian Documentaries"
-			newsletterId="documentaries"
-			hidePrivacyMessage={hidePrivacyMessage}
-			successDescription="Be the first to see our latest thought-provoking films, bringing you bold and original storytelling from around the world"
-		/>
-	</EmailSignup>
+		identityName="documentaries"
+		hidePrivacyMessage={hidePrivacyMessage}
+		successDescription="Be the first to see our latest thought-provoking films, bringing you bold and original storytelling from around the world"
+	/>
 );
 
 Default.storyName = 'default';
