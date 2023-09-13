@@ -18,7 +18,7 @@ import { CommentBlockComponent } from '../components/CommentBlockComponent';
 import { DisclaimerBlockComponent } from '../components/DisclaimerBlockComponent';
 import { DividerBlockComponent } from '../components/DividerBlockComponent';
 import { DocumentBlockComponent } from '../components/DocumentBlockComponent.importable';
-import { EmailSignUpSwitcher } from '../components/EmailSignUpSwitcher.importable';
+import { EmailSignUpWrapper } from '../components/EmailSignUpWrapper.importable';
 import { EmbedBlockComponent } from '../components/EmbedBlockComponent.importable';
 import { Figure } from '../components/Figure';
 import { GuideAtomWrapper } from '../components/GuideAtomWrapper.importable';
@@ -453,19 +453,19 @@ export const renderElement = ({
 				/>
 			);
 		case 'model.dotcomrendering.pageElements.NewsletterSignupBlockElement':
-			const emailSignUpProps = {
-				index,
-				identityName: element.newsletter.identityName,
-				description: element.newsletter.description,
-				name: element.newsletter.name,
-				frequency: element.newsletter.frequency,
-				successDescription: element.newsletter.successDescription,
-				theme: element.newsletter.theme,
-			};
-
 			return (
 				<Island clientOnly={true} deferUntil={'idle'}>
-					<EmailSignUpSwitcher {...emailSignUpProps} />
+					<EmailSignUpWrapper
+						index={index}
+						identityName={element.newsletter.identityName}
+						description={element.newsletter.description}
+						name={element.newsletter.name}
+						frequency={element.newsletter.frequency}
+						successDescription={
+							element.newsletter.successDescription
+						}
+						theme={element.newsletter.theme}
+					/>
 				</Island>
 			);
 		case 'model.dotcomrendering.pageElements.NumberedTitleBlockElement':

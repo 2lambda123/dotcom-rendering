@@ -1,21 +1,22 @@
 import { useIsBridgetCompatible } from '../lib/useIsBridgetCompatible';
-import type { EmailSignUpProps } from './EmailSignup';
-import { EmailSignup } from './EmailSignup';
+import { useConfig } from './ConfigContext';
+import { EmailSignup, type EmailSignUpProps } from './EmailSignup';
 import { InlineSkipToWrapper } from './InlineSkipToWrapper';
-interface AppEmailSignUpWrapperProps extends EmailSignUpProps {
+
+interface EmailSignUpWrapperProps extends EmailSignUpProps {
 	index: number;
 }
 
-export const AppEmailSignUpWrapper = ({
+export const EmailSignUpWrapper = ({
 	index,
 	...emailSignUpProps
-}: AppEmailSignUpWrapperProps) => {
+}: EmailSignUpWrapperProps) => {
+	const { renderingTarget } = useConfig();
 	const isCompatible = useIsBridgetCompatible();
 
-	if (!isCompatible) {
+	if (renderingTarget === 'Apps' && !isCompatible) {
 		return null;
 	}
-
 	return (
 		<InlineSkipToWrapper
 			id={`EmailSignup-skip-link-${index}`}
