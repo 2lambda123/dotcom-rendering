@@ -189,6 +189,7 @@ const getMainMediaCaptions = (article: FEArticleType): (string | undefined)[] =>
 			: undefined,
 	);
 
+// TODO:: check this isnt broken after refactor!
 export const NewsletterSignupLayout = ({ article, NAV, format }: Props) => {
 	const {
 		promotedNewsletter,
@@ -444,16 +445,13 @@ export const NewsletterSignupLayout = ({ article, NAV, format }: Props) => {
 											}
 										/>
 									</div>
-
 									<SecureSignup
-										name={promotedNewsletter.name}
 										newsletterId={
 											promotedNewsletter.identityName
 										}
 										successDescription={
 											promotedNewsletter.successDescription
 										}
-										hidePrivacyMessage={true}
 									/>
 
 									<Hide from="desktop">
