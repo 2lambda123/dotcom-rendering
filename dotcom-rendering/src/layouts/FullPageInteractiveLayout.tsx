@@ -11,7 +11,10 @@ import {
 	neutral,
 	until,
 } from '@guardian/source-foundations';
-import { adContainerStyles, MobileStickyContainer } from '../components/AdSlot';
+import {
+	adContainerStyles,
+	MobileStickyContainer,
+} from '../components/AdSlot.web';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { HeaderAdSlot } from '../components/HeaderAdSlot';
@@ -29,12 +32,12 @@ import { renderElement } from '../lib/renderElement';
 import type { NavType } from '../model/extract-nav';
 import type { Switches } from '../types/config';
 import type { FEElement } from '../types/content';
-import type { FEArticleType } from '../types/frontend';
+import type { DCRArticle } from '../types/frontend';
 import { interactiveGlobalStyles } from './lib/interactiveLegacyStyling';
 import { BannerWrapper, Stuck } from './lib/stickiness';
 
 interface Props {
-	article: FEArticleType;
+	article: DCRArticle;
 	NAV: NavType;
 	format: ArticleFormat;
 }
@@ -138,7 +141,7 @@ const NavHeader = ({ article, NAV, format }: Props) => {
 	const renderAds = canRenderAds(article);
 
 	const isInEuropeTest =
-		article.config.abTests.europeNetworkFrontVariant === 'variant';
+		article.config.switches['europeNetworkFrontSwitch'] === true;
 
 	if (isSlimNav) {
 		return (

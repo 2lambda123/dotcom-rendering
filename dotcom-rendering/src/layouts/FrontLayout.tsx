@@ -13,10 +13,11 @@ import {
 import { Hide } from '@guardian/source-react-components';
 import { StraightLines } from '@guardian/source-react-components-development-kitchen';
 import { Fragment, useRef } from 'react';
-import { AdSlot } from '../components/AdSlot';
+import { AdSlot } from '../components/AdSlot.web';
 import { Carousel } from '../components/Carousel.importable';
 import { CPScottHeader } from '../components/CPScottHeader';
 import { DecideContainer } from '../components/DecideContainer';
+import { EuropeLandingModal } from '../components/EuropeLandingModal.importable';
 import { Footer } from '../components/Footer';
 import { FrontMostViewed } from '../components/FrontMostViewed';
 import { FrontSection } from '../components/FrontSection';
@@ -146,6 +147,7 @@ export const decideFrontsBannerAdSlot = (
 ) => {
 	if (
 		!renderAds ||
+		hasPageSkin ||
 		!targetedCollections?.includes(collectionName) ||
 		isFirstContainer
 	) {
@@ -213,7 +215,11 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 		},
 	} = front;
 
-	const isInEuropeTest = abTests.europeNetworkFrontVariant === 'variant';
+	const isInEuropeTest = switches['europeNetworkFrontSwitch'] === true;
+
+	const renderAds = canRenderAds(front);
+
+	const hasPageSkin = hasPageSkinConfig && renderAds;
 
 	const isInNetworkFrontsBannerTest =
 		!!switches.frontsBannerAdsDcr &&
@@ -221,7 +227,6 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 		Object.keys(networkFrontsBannerAdCollections).includes(
 			front.config.pageId,
 		);
-
 	const isInSectionFrontsBannerTest =
 		!!switches.sectionFrontsBannerAds &&
 		abTests.sectionFrontsBannerAdsVariant === 'variant' &&
@@ -239,10 +244,6 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 	const merchHighPosition = getMerchHighPosition(
 		front.pressedPage.collections.length,
 	);
-
-	const renderAds = canRenderAds(front);
-
-	const hasPageSkin = hasPageSkinConfig && renderAds;
 
 	const mobileAdPositions = renderAds
 		? getMobileAdPositions(front.pressedPage.collections, merchHighPosition)
@@ -397,7 +398,11 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 					)}
 				</>
 			</div>
-
+			{isInEuropeTest && (
+				<Island clientOnly={true}>
+					<EuropeLandingModal edition={front.editionId} />
+				</Island>
+			)}
 			<main
 				data-layout="FrontLayout"
 				data-link-name={`Front | /${front.pressedPage.id}`}
@@ -426,7 +431,7 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 					} | ${ophanName}`;
 					const mostPopularTitle = 'Most popular';
 
-					const trailsWithoutBranding = collection.badge
+					const trailsWithoutBranding = collection.paidContentBadge
 						? trails.map((labTrail) => {
 								return {
 									...labTrail,
@@ -435,7 +440,7 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 						  })
 						: trails;
 
-					const editionBranding =
+					const frontEditionBranding =
 						front.pressedPage.frontProperties.commercial.editionBrandings.find(
 							(eB) =>
 								eB.edition.id === front.editionId &&
@@ -595,7 +600,7 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 									containerName={collection.collectionType}
 									canShowMore={collection.canShowMore}
 									url={collection.href}
-									badge={collection.badge}
+									badge={collection.paidContentBadge}
 									data-print-layout="hide"
 									hasPageSkin={hasPageSkin}
 									discussionApiUrl={
@@ -746,7 +751,7 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 									collection,
 									hasPageSkin,
 								)}
-								badge={collection.badge}
+								badge={collection.editorialBadge}
 								sectionId={ophanName}
 								collectionId={collection.id}
 								pageId={front.pressedPage.id}
@@ -761,8 +766,11 @@ export const FrontLayout = ({ front, NAV }: Props) => {
 								index={index}
 								targetedTerritory={collection.targetedTerritory}
 								hasPageSkin={hasPageSkin}
-								editionBranding={editionBranding}
+								frontBranding={frontEditionBranding}
 								discussionApiUrl={front.config.discussionApiUrl}
+								containerBranding={
+									collection.sponsoredContentBranding
+								}
 							>
 								<DecideContainer
 									trails={trailsWithoutBranding}

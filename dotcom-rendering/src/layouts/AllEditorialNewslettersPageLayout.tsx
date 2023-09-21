@@ -40,8 +40,7 @@ export const AllEditorialNewslettersPageLayout = ({
 
 	const renderAds = !isAdFreeUser;
 
-	const isInEuropeTest =
-		config.abTests.europeNetworkFrontVariant === 'variant';
+	const isInEuropeTest = config.switches['europeNetworkFrontSwitch'] === true;
 
 	const contributionsServiceUrl =
 		process.env.SDC_URL ?? pageContributionsServiceUrl;

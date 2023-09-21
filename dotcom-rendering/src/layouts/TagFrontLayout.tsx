@@ -9,7 +9,7 @@ import {
 } from '@guardian/source-foundations';
 import { StraightLines } from '@guardian/source-react-components-development-kitchen';
 import { Fragment } from 'react';
-import { AdSlot } from '../components/AdSlot';
+import { AdSlot } from '../components/AdSlot.web';
 import { DecideContainerByTrails } from '../components/DecideContainerByTrails';
 import { Footer } from '../components/Footer';
 import { FrontSection } from '../components/FrontSection';
@@ -64,7 +64,7 @@ const getContainerId = (date: Date, locale: string, hasDay: boolean) => {
 
 export const TagFrontLayout = ({ tagFront, NAV }: Props) => {
 	const isInEuropeTest =
-		tagFront.config.abTests.europeNetworkFrontVariant === 'variant';
+		tagFront.config.switches['europeNetworkFrontSwitch'] === true;
 
 	const format = {
 		display: ArticleDisplay.Standard,
