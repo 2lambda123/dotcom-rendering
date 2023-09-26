@@ -13,6 +13,7 @@ import {
 import { pageSkinContainer } from '../layouts/lib/pageSkin';
 import { getZIndex } from '../lib/getZIndex';
 import { TopRightAdSlot } from './TopRightAdSlot';
+import { AdSupportBanner } from './AdSupportBanner';
 
 type InlinePosition =
 	| 'fronts-banner'
@@ -45,7 +46,7 @@ type NonInlineProps = {
  * on position. If `position` is an inline type then we expect the
  * index value. If not, then we explicitly refuse this property
  */
-type Props = DefaultProps & (InlineProps | NonInlineProps);
+export type Props = DefaultProps & (InlineProps | NonInlineProps);
 
 const labelHeight = constants.AD_LABEL_HEIGHT;
 
@@ -433,6 +434,11 @@ export const AdSlot = ({
 								data-name="right"
 								aria-hidden="true"
 							/>
+							<AdSupportBanner
+								onClickSupport={() =>
+									console.log('CLICKED SUPPORT')
+								}
+							/>
 						</div>
 					);
 				}
@@ -463,6 +469,9 @@ export const AdSlot = ({
 						data-link-name="ad slot comments"
 						data-name="comments"
 						aria-hidden="true"
+					/>
+					<AdSupportBanner
+						onClickSupport={() => console.log('CLICKED SUPPORT')}
 					/>
 				</div>
 			);
@@ -512,6 +521,9 @@ export const AdSlot = ({
 						data-link-name="ad slot mostpop"
 						data-name="mostpop"
 						aria-hidden="true"
+					/>
+					<AdSupportBanner
+						onClickSupport={() => console.log('CLICKED SUPPORT')}
 					/>
 				</div>
 			);
@@ -643,6 +655,9 @@ export const AdSlot = ({
 						data-name={advertId}
 						aria-hidden="true"
 					/>
+					<AdSupportBanner
+						onClickSupport={() => console.log('CLICKED SUPPORT')}
+					/>
 				</div>
 			);
 		}
@@ -664,6 +679,9 @@ export const AdSlot = ({
 						data-name={advertId}
 						aria-hidden="true"
 					/>
+					<AdSupportBanner
+						onClickSupport={() => console.log('CLICKED SUPPORT')}
+					/>
 				</div>
 			);
 		}
@@ -684,6 +702,9 @@ export const AdSlot = ({
 						data-link-name={`ad slot ${advertId}`}
 						data-name={advertId}
 						aria-hidden="true"
+					/>
+					<AdSupportBanner
+						onClickSupport={() => console.log('CLICKED SUPPORT')}
 					/>
 				</div>
 			);
@@ -753,6 +774,9 @@ export const AdSlot = ({
 						data-link-name="ad slot article-end"
 						data-name="article-end"
 						aria-hidden="true"
+					/>
+					<AdSupportBanner
+						onClickSupport={() => console.log('CLICKED SUPPORT')}
 					/>
 				</div>
 			);

@@ -1,6 +1,7 @@
 import type { SerializedStyles } from '@emotion/react';
 import { css } from '@emotion/react';
 import { LABS_HEADER_HEIGHT } from '../lib/labs-constants';
+import { AdSupportBanner } from './AdSupportBanner';
 
 /**
  * # Top Right Ad Slot
@@ -55,6 +56,9 @@ export const TopRightAdSlot = ({
 				data-link-name="ad slot right"
 				data-name="right"
 				aria-hidden="true"
+			/>
+			<AdSupportBanner
+				onClickSupport={() => console.log('CLICKED SUPPORT')}
 			/>
 		</div>
 	);
