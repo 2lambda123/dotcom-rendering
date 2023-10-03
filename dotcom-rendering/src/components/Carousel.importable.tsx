@@ -11,11 +11,13 @@ import {
 } from '@guardian/source-foundations';
 import libDebounce from 'lodash.debounce';
 import { useEffect, useRef, useState } from 'react';
+import { useConfig } from '../components/ConfigContext';
 import { decideContainerOverrides } from '../lib/decideContainerOverrides';
 import { decidePalette } from '../lib/decidePalette';
 import { formatAttrString } from '../lib/formatAttrString';
 import { getSourceImageUrl } from '../lib/getSourceImageUrl_temp_fix';
 import { getZIndex } from '../lib/getZIndex';
+import { useGetSeenArticles } from '../lib/useGetSeenArticles';
 import type { Branding } from '../types/branding';
 import type { DCRContainerPalette, DCRContainerType } from '../types/front';
 import type { MainMedia } from '../types/mainMedia';
@@ -479,6 +481,7 @@ type CarouselCardProps = {
 	verticalDividerColour?: string;
 	onwardsSource?: string;
 	containerType?: DCRContainerType;
+	hasBeenSeen: boolean;
 };
 
 const CarouselCard = ({
@@ -498,6 +501,7 @@ const CarouselCard = ({
 	containerType,
 	imageLoading,
 	discussionApiUrl,
+	hasBeenSeen = false,
 }: CarouselCardProps) => {
 	const isVideoContainer = containerType === 'fixed/video';
 	return (
@@ -533,6 +537,7 @@ const CarouselCard = ({
 				containerType={containerType}
 				imageLoading={imageLoading}
 				discussionApiUrl={discussionApiUrl}
+				hasBeenSeen={hasBeenSeen}
 			/>
 		</LI>
 	);
@@ -862,7 +867,13 @@ export const Carousel = ({
 	discussionApiUrl,
 	...props
 }: ArticleProps | FrontProps) => {
+	const { renderingTarget } = useConfig();
 	const carouselColours = decideCarouselColours(props);
+
+	const seenArticles = useGetSeenArticles(
+		trails.map((trail) => trail.url),
+		renderingTarget,
+	);
 
 	const carouselRef = useRef<HTMLUListElement>(null);
 
@@ -1064,6 +1075,11 @@ export const Carousel = ({
 
 						const imageLoading = i > 3 ? 'lazy' : 'eager';
 
+						const hasBeenSeen =
+							onwardsSource === 'more-on-this-story'
+								? seenArticles.includes(trail.url)
+								: false;
+
 						return (
 							<CarouselCard
 								key={`${trail.url}${i}`}
@@ -1089,6 +1105,7 @@ export const Carousel = ({
 								containerType={containerType}
 								imageLoading={imageLoading}
 								discussionApiUrl={discussionApiUrl}
+								hasBeenSeen={hasBeenSeen}
 							/>
 						);
 					})}

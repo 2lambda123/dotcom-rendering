@@ -100,6 +100,7 @@ export type Props = {
 	onwardsSource?: string;
 	pauseOffscreenVideo?: boolean;
 	showMainVideo?: boolean;
+	hasBeenSeen?: boolean;
 };
 
 const StarRatingComponent = ({
@@ -292,6 +293,7 @@ export const Card = ({
 	onwardsSource,
 	pauseOffscreenVideo = false,
 	showMainVideo = true,
+	hasBeenSeen = false,
 }: Props) => {
 	const palette = decidePalette(format, containerPalette);
 
@@ -402,6 +404,7 @@ export const Card = ({
 			format={format}
 			containerPalette={containerPalette}
 			isDynamo={isDynamo}
+			hasBeenSeen={hasBeenSeen}
 		>
 			<CardLink
 				linkTo={linkTo}
