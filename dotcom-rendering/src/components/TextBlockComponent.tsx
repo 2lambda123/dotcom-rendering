@@ -256,15 +256,21 @@ const buildElementTree =
 					const dropCappedSentence = showDropCaps
 						? getDropCappedSentence(node.textContent)
 						: undefined;
+
+					console.log({
+						text: node.textContent,
+						node,
+						parentNode: node.parentNode,
+						grandParent: node.parentNode?.parentNode,
+					});
 					if (
 						dropCappedSentence &&
-						stripHtmlFromString(html).startsWith(
-							node.textContent,
-						) &&
 						// The node is at the root of the document avoiding nodes like <a>
 						// tags embedded in <p> tags dropping their cap
 						node.parentNode?.parentNode?.nodeName ===
-							'#document-fragment'
+							'#document-fragment' &&
+						// the parent is the first sibling, it does have previous siblings
+						!node.parentNode?.previousSibling
 					) {
 						const { dropCap, restOfSentence } = dropCappedSentence;
 						return (
