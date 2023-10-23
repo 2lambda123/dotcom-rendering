@@ -4,6 +4,7 @@ import {
 	ArticleSpecial,
 	Pillar,
 } from '@guardian/libs';
+import { splitTheme } from '../../.storybook/decorators/splitThemeDecorator';
 import { decidePalette } from '../lib/decidePalette';
 import { PullQuoteBlockComponent } from './PullQuoteBlockComponent';
 import { Section } from './Section';
@@ -49,6 +50,12 @@ export const SportInline = () => {
 	);
 };
 SportInline.storyName = 'Sport, inline, Article';
+SportInline.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: Pillar.Sport,
+	}),
+];
 
 export const LabsInline = () => {
 	const format = {
@@ -73,6 +80,12 @@ export const LabsInline = () => {
 	);
 };
 LabsInline.storyName = 'Labs, inline, Article';
+LabsInline.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: ArticleSpecial.Labs,
+	}),
+];
 
 export const LifestyleInline = () => {
 	const format = {
@@ -97,6 +110,12 @@ export const LifestyleInline = () => {
 	);
 };
 LifestyleInline.storyName = 'Lifestyle, inline, Article';
+LifestyleInline.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: Pillar.Lifestyle,
+	}),
+];
 
 export const CultureInline = () => {
 	const format = {
@@ -121,6 +140,12 @@ export const CultureInline = () => {
 	);
 };
 CultureInline.storyName = 'Culture, inline, Article';
+CultureInline.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: Pillar.Culture,
+	}),
+];
 
 export const NewsInline = () => {
 	return (
@@ -140,6 +165,7 @@ export const NewsInline = () => {
 	);
 };
 NewsInline.storyName = 'News, inline, Article';
+NewsInline.decorators = [splitTheme(defaultFormat)];
 
 export const OpinionInline = () => {
 	const format = {
@@ -165,6 +191,13 @@ export const OpinionInline = () => {
 	);
 };
 OpinionInline.storyName = 'Opinion, inline, Comment';
+OpinionInline.decorators = [
+	splitTheme({
+		...defaultFormat,
+		design: ArticleDesign.Comment,
+		theme: Pillar.Opinion,
+	}),
+];
 
 export const SpecialReportInline = () => {
 	const format = {
@@ -189,6 +222,12 @@ export const SpecialReportInline = () => {
 	);
 };
 SpecialReportInline.storyName = 'SpecialReport, inline, Article';
+SpecialReportInline.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: ArticleSpecial.SpecialReport,
+	}),
+];
 
 // Supporting
 export const SportSupporting = () => {
@@ -214,6 +253,12 @@ export const SportSupporting = () => {
 	);
 };
 SportSupporting.storyName = 'Sport, supporting, Article';
+SportSupporting.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: Pillar.Sport,
+	}),
+];
 
 export const LabsSupporting = () => {
 	const format = {
@@ -238,6 +283,12 @@ export const LabsSupporting = () => {
 	);
 };
 LabsSupporting.storyName = 'Labs, supporting, Article';
+LabsSupporting.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: ArticleSpecial.Labs,
+	}),
+];
 
 export const LifestyleSupporting = () => {
 	const format = {
@@ -262,6 +313,12 @@ export const LifestyleSupporting = () => {
 	);
 };
 LifestyleSupporting.storyName = 'Lifestyle, supporting, Article';
+LifestyleSupporting.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: Pillar.Lifestyle,
+	}),
+];
 
 export const CultureSupporting = () => {
 	const format = {
@@ -286,6 +343,12 @@ export const CultureSupporting = () => {
 	);
 };
 CultureSupporting.storyName = 'Culture, supporting, Article';
+CultureSupporting.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: Pillar.Culture,
+	}),
+];
 
 export const NewsSupporting = () => {
 	return (
@@ -305,6 +368,7 @@ export const NewsSupporting = () => {
 	);
 };
 NewsSupporting.storyName = 'News, supporting, Article';
+NewsSupporting.decorators = [splitTheme(defaultFormat)];
 
 export const OpinionSupporting = () => {
 	const format = {
@@ -330,6 +394,13 @@ export const OpinionSupporting = () => {
 	);
 };
 OpinionSupporting.storyName = 'Opinion, supporting, Comment';
+OpinionSupporting.decorators = [
+	splitTheme({
+		...defaultFormat,
+		design: ArticleDesign.Comment,
+		theme: Pillar.Opinion,
+	}),
+];
 
 export const SpecialReportSupporting = () => {
 	const format = {
@@ -354,6 +425,12 @@ export const SpecialReportSupporting = () => {
 	);
 };
 SpecialReportSupporting.storyName = 'SpecialReport, supporting, Article';
+SpecialReportSupporting.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: ArticleSpecial.SpecialReport,
+	}),
+];
 
 export const SpecialReportAltInline = () => {
 	const format = {
@@ -378,6 +455,12 @@ export const SpecialReportAltInline = () => {
 	);
 };
 SpecialReportAltInline.storyName = 'SpecialReportAlt, inline, Article';
+SpecialReportAltInline.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: ArticleSpecial.SpecialReportAlt,
+	}),
+];
 
 export const SpecialReportAltSupporting = () => {
 	const format = {
@@ -402,6 +485,12 @@ export const SpecialReportAltSupporting = () => {
 	);
 };
 SpecialReportAltSupporting.storyName = 'SpecialReportAlt, supporting, Article';
+SpecialReportAltSupporting.decorators = [
+	splitTheme({
+		...defaultFormat,
+		theme: ArticleSpecial.SpecialReportAlt,
+	}),
+];
 
 // PhotoEssay
 export const PhotoEssayInline = () => {
@@ -422,6 +511,7 @@ export const PhotoEssayInline = () => {
 	);
 };
 PhotoEssayInline.storyName = 'News, inline, PhotoEssay';
+PhotoEssayInline.decorators = [splitTheme(photoEssayNews)];
 
 export const PhotoEssaySupporting = () => {
 	return (
@@ -441,3 +531,4 @@ export const PhotoEssaySupporting = () => {
 	);
 };
 PhotoEssaySupporting.storyName = 'News, supporting, PhotoEssay';
+PhotoEssaySupporting.decorators = [splitTheme(photoEssayNews)];
