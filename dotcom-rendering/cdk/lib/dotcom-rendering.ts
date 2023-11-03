@@ -1,8 +1,5 @@
 import { GuAutoScalingGroup } from '@guardian/cdk/lib/constructs/autoscaling';
-import {
-	GuStack,
-	GuStringParameter,
-} from '@guardian/cdk/lib/constructs/core';
+import { GuStack, GuStringParameter } from '@guardian/cdk/lib/constructs/core';
 import {
 	GuSecurityGroup,
 	GuVpc,
@@ -19,6 +16,7 @@ import {
 	AdjustmentType,
 	CfnScalingPolicy,
 	HealthCheck,
+	StepScalingPolicy,
 } from 'aws-cdk-lib/aws-autoscaling';
 import { CfnAlarm } from 'aws-cdk-lib/aws-cloudwatch';
 import { InstanceType, Peer } from 'aws-cdk-lib/aws-ec2';
@@ -93,7 +91,10 @@ export class DotcomRendering extends GuStack {
 		 * GOTCHA: The load balancer name appends `-ELB` when the `app = "rendering"` for backwards compatibility
 		 * We removed this to avoid the `LoadBalancerName.length > 32`. This will be fixable once we migrate to ALBs.
 		 */
-		const loadBalancerName = app === 'rendering' ? `${stack}-${stage}-${app}-ELB` : `${stack}-${stage}-${app}`;
+		const loadBalancerName =
+			app === 'rendering'
+				? `${stack}-${stage}-${app}-ELB`
+				: `${stack}-${stage}-${app}`;
 		const loadBalancer = new GuClassicLoadBalancer(
 			this,
 			'InternalLoadBalancer',
@@ -274,6 +275,23 @@ export class DotcomRendering extends GuStack {
 			autoScalingGroupName: asg.autoScalingGroupName,
 			cooldown: '600',
 			scalingAdjustment: 100,
+		});
+		const minAsgSize = 27;
+		const scaleUpPolicy2 = new StepScalingPolicy(this, 'ScaleUp', {
+			autoScalingGroup: asg,
+			scalingSteps: [
+				{
+					change: minAsgSize + 3,
+					lower: 200,
+					upper: 300,
+				},
+				{
+					change: minAsgSize,
+					lower: 100,
+					upper: 200,
+				},
+			],
+			adjustmentType: AdjustmentType.EXACT_CAPACITY,
 		});
 		const scaleDownPolicy = new CfnScalingPolicy(this, 'ScaleDownPolicy', {
 			adjustmentType: AdjustmentType.CHANGE_IN_CAPACITY,
