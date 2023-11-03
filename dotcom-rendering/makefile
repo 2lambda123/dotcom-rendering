@@ -8,11 +8,11 @@ export SHELL := /usr/bin/env bash
 # messaging #########################################
 
 define log
-    @node scripts/env/log $(1)
+    @node ../scripts/log $(1)
 endef
 
 define warn
-    @node scripts/env/log $(1) warn
+    @node ../scripts/log $(1) warn
 endef
 
 # deployment #########################################
@@ -181,9 +181,9 @@ validate-build: # private
 
 check-env: # private
 	$(call log, "checking environment")
-	@node scripts/env/check-node.js
-	@node scripts/env/check-yarn.js
-	@node scripts/env/check-deps.js
+	@node ../scripts/env/check-node.js
+	@node ../scripts/env/check-yarn.js
+	@node ../scripts/env/check-deps.js
 
 clear: # private
 	@clear
