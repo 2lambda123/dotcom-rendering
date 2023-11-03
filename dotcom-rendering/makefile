@@ -136,8 +136,8 @@ lint: clean-dist install
 
 lint-project: check-env
 	$(call log, "linting project")
-	@cd .. && ./scripts/check-project-nodes
-	@cd .. && ./scripts/check-deps
+	@cd .. && ./scripts/check-project-nodes.sh
+	@cd .. && ./scripts/check-deps.sh
 
 stylelint: clean-dist install
 	$(call log, "checking for style lint errors")
@@ -182,8 +182,8 @@ validate-build: # private
 
 check-env: # private
 	$(call log, "checking environment")
-	@cd .. && ./scripts/env/check-node-version
-	@cd .. && ./scripts/env/check-yarn
+	@cd .. && ./scripts/env/check-node-version.sh
+	@cd .. && ./scripts/env/check-yarn.sh
 
 clear: # private
 	@clear
