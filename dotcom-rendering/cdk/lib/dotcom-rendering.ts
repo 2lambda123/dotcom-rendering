@@ -300,7 +300,7 @@ export class DotcomRendering extends GuStack {
 			comparisonOperator: 'GreaterThanOrEqualToThreshold',
 		};
 		new CfnAlarm(this, 'LatencyScalingAlarm', {
-			actionsEnabled: stage === 'PROD',
+			actionsEnabled: true,
 			alarmDescription: getAlarmDescription({
 				title: 'Scale up if latency',
 				...latencyScalingAlarmConfig,
