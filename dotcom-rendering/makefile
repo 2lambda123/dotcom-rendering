@@ -182,7 +182,7 @@ validate-build: # private
 
 check-env: # private
 	$(call log, "checking environment")
-	@node ../scripts/env/check-node.js
+	@cd .. && ./scripts/env/check-node-version
 	@node ../scripts/env/check-yarn.js
 
 clear: # private
