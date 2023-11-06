@@ -73,11 +73,7 @@ export const LiveBlogRenderer = ({
 		<>
 			{pinnedPost && onFirstPage && !filtered && (
 				<>
-					<Island
-						clientOnly={true}
-						defer={{ until: 'idle' }}
-						priority="feature"
-					>
+					<Island defer={{ until: 'idle' }} priority="feature">
 						<EnhancePinnedPost />
 					</Island>
 					<PinnedPost pinnedPost={pinnedPost} format={format}>
@@ -154,7 +150,6 @@ export const LiveBlogRenderer = ({
 					// but this island manipulate the DOM via portals,
 					// its actual position has no bearing on its effect
 					defer={{ until: 'idle' }}
-					clientOnly={true}
 				>
 					<LiveBlogEpic
 						sectionId={sectionId}

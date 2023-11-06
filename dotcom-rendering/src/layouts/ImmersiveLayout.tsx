@@ -645,7 +645,6 @@ export const ImmersiveLayout = (props: WebProps | AppProps) => {
 									<Island
 										priority="feature"
 										defer={{ until: 'visible' }}
-										clientOnly={true}
 									>
 										<SlotBodyEnd
 											contentType={article.contentType}
@@ -907,11 +906,7 @@ export const ImmersiveLayout = (props: WebProps | AppProps) => {
 					</Section>
 
 					<BannerWrapper>
-						<Island
-							priority="feature"
-							defer={{ until: 'idle' }}
-							clientOnly={true}
-						>
+						<Island priority="feature" defer={{ until: 'idle' }}>
 							<StickyBottomBanner
 								contentType={article.contentType}
 								contributionsServiceUrl={

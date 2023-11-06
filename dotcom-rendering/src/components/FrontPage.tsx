@@ -63,7 +63,7 @@ export const FrontPage = ({ front, NAV }: Props) => {
 			<Island priority="enhancement" defer={{ until: 'idle' }}>
 				<FocusStyles />
 			</Island>
-			<Island priority="critical" clientOnly={true}>
+			<Island priority="critical">
 				<Metrics
 					commercialMetricsEnabled={
 						!!front.config.switches.commercialMetrics
@@ -78,7 +78,7 @@ export const FrontPage = ({ front, NAV }: Props) => {
 			>
 				<ShowHideContainers />
 			</Island>
-			<Island priority="critical" clientOnly={true}>
+			<Island priority="critical">
 				<SetABTests
 					abTestSwitches={filterABTestSwitches(front.config.switches)}
 					pageIsSensitive={front.config.isSensitive}

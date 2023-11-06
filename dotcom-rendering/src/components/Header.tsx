@@ -73,11 +73,7 @@ export const Header = ({
 		</Island>
 
 		<div css={[hasPageSkin ? pageSkinContainer : center, explicitHeight]}>
-			<Island
-				priority="enhancement"
-				defer={{ until: 'hash' }}
-				clientOnly={true}
-			>
+			<Island priority="enhancement" defer={{ until: 'hash' }}>
 				<Snow />
 			</Island>
 			<Logo editionId={editionId} hasPageSkin={hasPageSkin} />
