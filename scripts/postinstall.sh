@@ -10,6 +10,6 @@ fi
 # Ensure apps-rendering dependencies are installed
 cd apps-rendering && \
 	if [ \"$CI\" = true ];
-		then yarn --frozen-lockfile ;
+		then yarn --immutable ;
 		else yarn ;
 	fi
