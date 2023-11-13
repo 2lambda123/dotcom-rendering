@@ -11,7 +11,7 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'yarn'
 
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
 
       - name: Run Jest
         run: CI=true yarn test

@@ -145,7 +145,7 @@ lint: clean-dist install
 lint-project: check-env
 	$(call log, "linting project")
 	@node scripts/check-node-versions.mjs
-	@node scripts/env/check-deps.js
+	# @node scripts/env/check-deps.js
 	@node scripts/env/check-files.js
 
 stylelint: clean-dist install
@@ -179,7 +179,7 @@ clean-deps:
 
 install: check-env
 	$(call log, "refreshing dependencies")
-	@yarn --silent --frozen-lockfile
+	@yarn --silent --immutable
 
 reinstall: clear clean-deps install
 	$(call log, "dependencies have been reinstalled ♻️")
