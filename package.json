@@ -10,9 +10,6 @@
 			"dotcom-rendering"
 		]
 	},
-	"resolutions": {
-		"prebid.js": "github:guardian/prebid.js#0b4cccd55ab4e170b36bb944e9bdd2807a9da1c5"
-	},
 	"scripts": {
 		"postinstall": "./scripts/postinstall.sh",
 		"storybook": "npm-run-all --parallel storybook:*",
