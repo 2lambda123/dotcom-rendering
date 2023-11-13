@@ -61,7 +61,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.148, @aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.166":
+"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.148":
   version: 2.0.166
   resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.166"
   checksum: 7385d48e25f199cdaac4e961ec6a95a031a60bb9a93d78ababaf3b91122593dc965fa764de6aeca2af9e12113dcbd18535aa031c67a1846e534294f2cf051558
@@ -11780,14 +11780,14 @@ __metadata:
     "@types/webpack": "npm:^5.28.0"
     "@typescript-eslint/eslint-plugin": "npm:^5.57.0"
     "@typescript-eslint/parser": "npm:^5.54.1"
-    aws-cdk: "npm:2.90.0"
-    aws-cdk-lib: "npm:2.90.0"
+    aws-cdk: "npm:2.100.0"
+    aws-cdk-lib: "npm:2.100.0"
     aws-sdk: "npm:^2.1231.0"
     babel-loader: "npm:^9.1.2"
     buffer: "npm:^6.0.3"
     clean-css: "npm:^5.3.2"
     compression: "npm:^1.7.4"
-    constructs: "npm:10.2.69"
+    constructs: "npm:10.3.0"
     core-js: "npm:^3.24.1"
     eslint: "npm:^8.35.0"
     eslint-config-prettier: "npm:^8.5.0"
@@ -12284,26 +12284,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk-lib@npm:2.90.0":
-  version: 2.90.0
-  resolution: "aws-cdk-lib@npm:2.90.0"
+"aws-cdk@npm:2.100.0":
+  version: 2.100.0
+  resolution: "aws-cdk@npm:2.100.0"
   dependencies:
-    "@aws-cdk/asset-awscli-v1": "npm:^2.2.200"
-    "@aws-cdk/asset-kubectl-v20": "npm:^2.1.2"
-    "@aws-cdk/asset-node-proxy-agent-v5": "npm:^2.0.166"
-    "@balena/dockerignore": "npm:^1.0.2"
-    case: "npm:1.6.3"
-    fs-extra: "npm:^11.1.1"
-    ignore: "npm:^5.2.4"
-    jsonschema: "npm:^1.4.1"
-    minimatch: "npm:^3.1.2"
-    punycode: "npm:^2.3.0"
-    semver: "npm:^7.5.4"
-    table: "npm:^6.8.1"
-    yaml: "npm:1.10.2"
-  peerDependencies:
-    constructs: ^10.0.0
-  checksum: 406f9e95086d4038d4d065d55386d5546bcdd6e637fa05e63e9a913604fe799e19957a6d9a883ee3a21ce2b4b539eeafc62f3f1b22a725caa723adefb587fcf1
+    fsevents: "npm:2.3.2"
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  bin:
+    cdk: bin/cdk
+  checksum: 1ecbb678b2968c038b390aac6f7b6f9cfeeabcf2c09907169fbc41fb917ecc7b51e53c97df369960f9cef123c91149857a60fc202ae0468f3d367f750247cabd
   languageName: node
   linkType: hard
 
@@ -12318,20 +12309,6 @@ __metadata:
   bin:
     cdk: bin/cdk
   checksum: 8c8970ca524bf97a1ea4d0a3d211fb2fff3b76e45d0a184992d919975de8b55de4ae692113648a42af7927cc2583c6a207f6092354227ee8f725add18ee4b7e5
-  languageName: node
-  linkType: hard
-
-"aws-cdk@npm:2.90.0":
-  version: 2.90.0
-  resolution: "aws-cdk@npm:2.90.0"
-  dependencies:
-    fsevents: "npm:2.3.2"
-  dependenciesMeta:
-    fsevents:
-      optional: true
-  bin:
-    cdk: bin/cdk
-  checksum: 4130bb6979eaad81a5a2266bc8968c12f29e53a32d65a7c7bd5ab5e65baac2ea8274154137eb16346a10bfcd36eab561cf8b55500575fa111b7eeab7eb7b43e8
   languageName: node
   linkType: hard
 
@@ -15311,6 +15288,7 @@ __metadata:
     lint-staged: "npm:13.2.1"
     npm-run-all: "npm:^4.1.5"
     prettier: "npm:3.0.3"
+    tslib: "npm:2.6.2"
   languageName: unknown
   linkType: soft
 
