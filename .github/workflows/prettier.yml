@@ -1,17 +1,19 @@
 on:
-    workflow_call:
+  workflow_call:
 
 jobs:
-    check:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v3
-              with:
-                  node-version-file: '.nvmrc'
-                  cache: 'pnpm'
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
-            - run: pnpm install --frozen-lockfile
+      - run: corepack enable
 
-            - name: Prettier check
-              run: pnpm prettier:check
+      - run: pnpm install --frozen-lockfile
+
+      - name: Prettier check
+        run: pnpm prettier:check

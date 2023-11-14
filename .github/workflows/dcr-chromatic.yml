@@ -1,48 +1,50 @@
 name: DCR Chromatic 👓
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        types: [opened, labeled, synchronize]
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, labeled, synchronize]
 
 jobs:
-    chromatic:
-        name: Chromatic
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout - On Pull Request
-              uses: actions/checkout@v4
-              if: ${{ github.event_name == 'pull_request'}}
-              with:
-                  fetch-depth: 0
-                  # By default the pull_request event will run on a ephermeral merge commit which simulates a merge between the pull request
-                  # and the target branch. This can cause issues with Chromatic https://www.chromatic.com/docs/turbosnap#github-pullrequest-triggers
-                  # Hopefully by checking out the HEAD commit of a PR instead of the merge commit we can avoid some of those issues.
-                  ref: ${{ github.event.pull_request.head.sha }}
-            - name: Checkout - On Push Event
-              uses: actions/checkout@v4
-              if: ${{ github.event_name == 'push'}}
-              with:
-                  fetch-depth: 0
+  chromatic:
+    name: Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout - On Pull Request
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'pull_request'}}
+        with:
+          fetch-depth: 0
+          # By default the pull_request event will run on a ephermeral merge commit which simulates a merge between the pull request
+          # and the target branch. This can cause issues with Chromatic https://www.chromatic.com/docs/turbosnap#github-pullrequest-triggers
+          # Hopefully by checking out the HEAD commit of a PR instead of the merge commit we can avoid some of those issues.
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Checkout - On Push Event
+        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'push'}}
+        with:
+          fetch-depth: 0
 
-            - uses: actions/setup-node@v3
-              with:
-                  node-version-file: '.nvmrc'
-                  cache: 'pnpm'
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
 
-            # Root pnpm installs all workspaces (root, dotcom)
-            - run: pnpm install --frozen-lockfile
+      - run: corepack enable
 
-            - name: Chromatic - DCR
-              uses: chromaui/action@v1
-              # Run Chromatic only if `run_chromatic` label has been applied or we're
-              # pushing to `main`.
-              if: (contains(github.event.pull_request.labels.*.name, 'run_chromatic')  ||  github.ref == 'refs/heads/main')
-              with:
-                  projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN__DOTCOM_RENDERING }}
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  autoAcceptChanges: main
-                  onlyChanged: true
-                  untraced: '**/(package*.json|pnpm-lock.yaml|pnpm-workspace.yaml|preview.js)'
-                  workingDir: dotcom-rendering
+      # Root pnpm installs all workspaces (root, dotcom)
+      - run: pnpm install --frozen-lockfile
+
+      - name: Chromatic - DCR
+        uses: chromaui/action@v1
+        # Run Chromatic only if `run_chromatic` label has been applied or we're
+        # pushing to `main`.
+        if: (contains(github.event.pull_request.labels.*.name, 'run_chromatic')  ||  github.ref == 'refs/heads/main')
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN__DOTCOM_RENDERING }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          autoAcceptChanges: main
+          onlyChanged: true
+          untraced: '**/(package*.json|pnpm-lock.yaml|pnpm-workspace.yaml|preview.js)'
+          workingDir: dotcom-rendering

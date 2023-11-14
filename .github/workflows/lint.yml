@@ -1,23 +1,24 @@
 on:
-    workflow_call:
+  workflow_call:
 
 jobs:
-    check:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v3
-              with:
-                  node-version-file: '.nvmrc'
-                  cache: 'pnpm'
-            - run: make install
-              working-directory: dotcom-rendering
-            - name: Lint Project
-              run: make lint-project
-              working-directory: dotcom-rendering
-            - name: Lint
-              run: make lint
-              working-directory: dotcom-rendering
-            - name: Stylelint
-              run: make stylelint
-              working-directory: dotcom-rendering
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - run: corepack enable
+      - run: make install
+        working-directory: dotcom-rendering
+      - name: Lint Project
+        run: make lint-project
+        working-directory: dotcom-rendering
+      - name: Lint
+        run: make lint
+        working-directory: dotcom-rendering
+      - name: Stylelint
+        run: make stylelint
+        working-directory: dotcom-rendering
