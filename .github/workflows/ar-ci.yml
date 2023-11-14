@@ -32,7 +32,7 @@ jobs:
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: pnpm --silent --immutable
+        run: pnpm install --frozen-lockfile
 
       # Execute some tasks from the `apps-rendering/package.json` file, using `pnpm`
       - name: Build and package

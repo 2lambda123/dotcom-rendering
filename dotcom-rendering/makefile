@@ -179,7 +179,7 @@ clean-deps:
 
 install: check-env
 	$(call log, "refreshing dependencies")
-	@pnpm --silent --immutable
+	@pnpm install --frozen-lockfile
 
 reinstall: clear clean-deps install
 	$(call log, "dependencies have been reinstalled ♻️")
