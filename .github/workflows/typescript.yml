@@ -1,23 +1,23 @@
 name: DCR typescript 🕵‍♀
 on:
-  push:
-    paths-ignore:
-      - 'apps-rendering/**'
-      - 'dotcom-rendering/docs/**'
+    push:
+        paths-ignore:
+            - 'apps-rendering/**'
+            - 'dotcom-rendering/docs/**'
 
 jobs:
-  typescript:
-    name: Typescript
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: .nvmrc
-          cache: 'yarn'
+    typescript:
+        name: Typescript
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version-file: .nvmrc
+                  cache: 'pnpm'
 
-      - run: yarn install --immutable
+            - run: pnpm install --frozen-lockfile
 
-      - name: Check typescript
-        run: yarn tsc
-        working-directory: dotcom-rendering
+            - name: Check typescript
+              run: pnpm tsc
+              working-directory: dotcom-rendering

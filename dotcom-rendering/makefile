@@ -18,7 +18,7 @@ endef
 # deployment #########################################
 
 cdk-synth:
-	@yarn cdk:synth
+	@pnpm cdk:synth
 
 riffraff-bundle: clean-dist build cdk-synth
 	$(call log, "creating riffraff bundle")
@@ -95,7 +95,7 @@ dev-debug: clear clean-dist install
 
 storybook-dev: clear clean-dist install
 	$(call log, "starting Storybook DEV server")
-	yarn storybook
+	pnpm storybook
 
 # tests #####################################
 
@@ -131,16 +131,16 @@ tsc: clean-dist install
 
 fix: clear clean-dist install
 	$(call log, "attempting to fix lint errors")
-	@yarn lint:fix
-	@cd .. && yarn prettier:write
+	@pnpm lint:fix
+	@cd .. && pnpm prettier:write
 
 snapshot: clear clean-dist install
 	$(call log, "taking snapshots")
-	yarn chromatic
+	pnpm chromatic
 
 lint: clean-dist install
 	$(call log, "checking for lint errors")
-	@yarn lint
+	@pnpm lint
 
 lint-project: check-env
 	$(call log, "linting project")
@@ -154,12 +154,12 @@ stylelint: clean-dist install
 
 test: clean-dist install
 	$(call log, "running tests")
-	@yarn test:ci --verbose
+	@pnpm test:ci --verbose
 	$(call log, "everything seems 👌")
 
 test-ci: clear clean-dist install
 	$(call log, "running tests")
-	@yarn test:ci --verbose --collectCoverage --coverageReporters=lcov
+	@pnpm test:ci --verbose --collectCoverage --coverageReporters=lcov
 
 validate: clean-dist install lint-project tsc lint stylelint test validate-build
 	$(call log, "everything seems 👌")
@@ -179,7 +179,7 @@ clean-deps:
 
 install: check-env
 	$(call log, "refreshing dependencies")
-	@yarn --silent --immutable
+	@pnpm --silent --immutable
 
 reinstall: clear clean-deps install
 	$(call log, "dependencies have been reinstalled ♻️")
@@ -192,7 +192,7 @@ validate-build: # private
 check-env: # private
 	$(call log, "checking environment")
 	@cd .. && scripts/env/check-node
-	@cd .. && scripts/env/check-yarn
+	@cd .. && scripts/env/check-pnpm
 
 clear: # private
 	@clear

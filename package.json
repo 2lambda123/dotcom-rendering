@@ -13,12 +13,12 @@
 	"scripts": {
 		"postinstall": "./scripts/postinstall.sh",
 		"storybook": "npm-run-all --parallel storybook:*",
-		"storybook:dcr": "yarn workspace @guardian/dotcom-rendering storybook --no-open --quiet",
-		"storybook:ar": "cd apps-rendering && yarn storybook --no-open --quiet",
+		"storybook:dcr": "pnpm --filter @guardian/dotcom-rendering storybook --no-open --quiet",
+		"storybook:ar": "cd apps-rendering && pnpm storybook --no-open --quiet",
 		"build-storybook": "npm-run-all --parallel build-storybook:*",
-		"build-storybook:ar": "cd apps-rendering && yarn build-storybook",
-		"build-storybook:dcr": "yarn workspace @guardian/dotcom-rendering build-storybook",
-		"build:dcr": "cd ./dotcom-rendering && yarn makeBuild",
+		"build-storybook:ar": "cd apps-rendering && pnpm build-storybook",
+		"build-storybook:dcr": "pnpm --filter @guardian/dotcom-rendering build-storybook",
+		"build:dcr": "cd ./dotcom-rendering && pnpm makeBuild",
 		"chromatic": "chromatic --build-script-name=build-storybook --exit-zero-on-changes",
 		"prepare": "husky install",
 		"lint-staged": "lint-staged",
@@ -37,5 +37,5 @@
 		"prettier": "3.0.3",
 		"tslib": "2.6.2"
 	},
-	"packageManager": "yarn@4.0.1"
+	"packageManager": "pnpm@8.10.4"
 }

@@ -1,17 +1,17 @@
 on:
-  workflow_call:
+    workflow_call:
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                  node-version-file: '.nvmrc'
+                  cache: 'pnpm'
 
-      - run: yarn install --immutable
+            - run: pnpm install --frozen-lockfile
 
-      - name: Prettier check
-        run: yarn prettier:check
+            - name: Prettier check
+              run: pnpm prettier:check

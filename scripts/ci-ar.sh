@@ -32,15 +32,15 @@ else
     nvm install
     nvm use
 
-    npm i -g yarn@1.x
-    yarn --silent --immutable
+	corepack enable
+    pnpm install --frozen-lockfile
 
     cd apps-rendering
-    yarn test
-    yarn build:client:prod
-    yarn build:server:prod
-    yarn copy-manifest
-    yarn copy-fonts
-	yarn synth
-    yarn upload
+    pnpm test
+    pnpm build:client:prod
+    pnpm build:server:prod
+    pnpm copy-manifest
+    pnpm copy-fonts
+	pnpm synth
+    pnpm upload
 fi

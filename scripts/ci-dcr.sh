@@ -45,8 +45,8 @@ else
     nvm install
     nvm use
 
-	npm i -g yarn@1.x
-    yarn --silent
+	corepack enable
+    pnpm install --frozen-lockfile
 
     cd dotcom-rendering
 
