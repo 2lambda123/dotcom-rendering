@@ -26,12 +26,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v2
+
       - uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-
-      - run: corepack enable
 
       # Root pnpm installs all workspaces (root, dotcom)
       - run: pnpm install --frozen-lockfile

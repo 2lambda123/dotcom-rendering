@@ -23,13 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v2
+
       # Get the desired version of Node installed
       - uses: actions/setup-node@v3
         with:
           cache: 'pnpm'
           node-version-file: .nvmrc
-
-      - run: corepack enable
 
       - name: Install dependencies
         run: pnpm --silent --immutable

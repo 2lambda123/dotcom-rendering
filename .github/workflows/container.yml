@@ -22,13 +22,13 @@ jobs:
       - name: Inject slug/short variables
         uses: rlespinasse/github-slug-action@v4
 
+      - uses: pnpm/action-setup@v2
+
       - name: Install Node
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-
-      - run: corepack enable
 
       - name: Generate production bundle
         run: make riffraff-bundle
