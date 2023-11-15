@@ -1,3 +1,7 @@
+# This is needed for webpack to find @kossnocorp/desvg/react.
+# It uses it's own module resolution (not node's) and cannot find where pnpm has
+# put the package. Webpack is wrong here, not pnpm.
+
 diff --git a/react.js b/react.js
 index a69ba005d65bb16dd7d30bfd365e983c3f7871a5..e215ccd4bfbde057208c9782cb1619fd080823cd 100644
 --- a/react.js
