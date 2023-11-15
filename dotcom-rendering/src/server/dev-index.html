@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 	<head>
 		<link
@@ -57,6 +57,12 @@
 				<a
 					href="/AMPInteractive/https://www.theguardian.com/world/2021/mar/24/how-a-container-ship-blocked-the-suez-canal-visual-guide"
 					>⚡️Interactive</a
+				>
+			</li>
+			<li>
+				<a
+					href="/AppsInteractive/https://www.theguardian.com/global-development/ng-interactive/2022/jun/09/the-black-sea-blockade-mapping-the-impact-of-war-in-ukraine-on-the-worlds-food-supply-interactive"
+					>Apps Interactive</a
 				>
 			</li>
 			<li>
@@ -145,6 +151,7 @@
 		</ul>
 
 		<script>
+			// @ts-check
 			var testContentTypes = [
 				{
 					name: 'Live Blog',
@@ -347,7 +354,7 @@
 				{
 					name: 'Q&A Atom',
 					article:
-						'/world/2020/jul/16/a-single-use-face-mask-or-one-like-amber-heards-how-i-learnt-to-choose-wisely',
+						'/film/2023/jul/30/disaster-movies-films-climate-crisis-documentaries',
 				},
 				{
 					name: 'Quiz Atom',
@@ -420,7 +427,7 @@
 
 						document
 							.querySelector('#default-endpoints')
-							.appendChild(fragment);
+							?.appendChild(fragment);
 					}
 				});
 			};
@@ -440,19 +447,33 @@
 			         `;
 
 			testContentTypes.forEach((a) => {
-				document.getElementById('test-articles-by-content').innerHTML +=
-					makeTestArticle(a);
+				const testArticles = document.getElementById(
+					'test-articles-by-content',
+				);
+
+				if (testArticles !== null) {
+					testArticles.innerHTML += makeTestArticle(a);
+				}
 			});
 
 			testArticles.forEach((a) => {
-				document.getElementById('test-articles-by-element').innerHTML +=
-					makeTestArticle(a);
+				const testArticles = document.getElementById(
+					'test-articles-by-element',
+				);
+
+				if (testArticles !== null) {
+					testArticles.innerHTML += makeTestArticle(a);
+				}
 			});
 
 			testContentAtomTypes.forEach((a) => {
-				document.getElementById(
+				const testArticles = document.getElementById(
 					'test-articles-by-atom-type',
-				).innerHTML += makeTestArticle(a);
+				);
+
+				if (testArticles !== null) {
+					testArticles.innerHTML += makeTestArticle(a);
+				}
 			});
 		</script>
 	</body>

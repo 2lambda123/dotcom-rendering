@@ -45,29 +45,18 @@ export const AllEditorialNewslettersPage = ({
 			/>
 			<SkipTo id="maincontent" label="Skip to main content" />
 			<SkipTo id="navigation" label="Skip to navigation" />
-			<Island
-				priority="feature"
-				clientOnly={true}
-				defer={{ until: 'idle' }}
-			>
+			<Island priority="feature" defer={{ until: 'idle' }}>
 				<AlreadyVisited />
 			</Island>
-			<Island
-				priority="feature"
-				clientOnly={true}
-				defer={{ until: 'idle' }}
-			>
+			<Island priority="feature" defer={{ until: 'idle' }}>
 				<FocusStyles />
 			</Island>
-			<Island
-				priority="feature"
-				clientOnly={true}
-				defer={{ until: 'idle' }}
-			>
+			<Island priority="critical" clientOnly={true}>
 				<Metrics
 					commercialMetricsEnabled={
 						!!newslettersPage.config.switches.commercialMetrics
 					}
+					tests={newslettersPage.config.abTests}
 				/>
 			</Island>
 			<AllEditorialNewslettersPageLayout

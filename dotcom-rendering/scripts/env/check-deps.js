@@ -1,7 +1,7 @@
 const fs = require('node:fs');
 const lockfile = require('@yarnpkg/lockfile');
+const { warn, log } = require('../../../scripts/log');
 const pkg = require('../../package.json');
-const { warn, log } = require('./log');
 
 if (pkg.devDependencies) {
 	warn('Don’t use devDependencies');
@@ -22,7 +22,8 @@ const mismatches = Object.entries(pkg.dependencies)
 		const pinned = json[name + '@' + version]?.version;
 		return version !== pinned;
 	})
-	.filter(([, version]) => !knownNonSemver.includes(version));
+	.filter(([, version]) => !knownNonSemver.includes(version))
+	.filter(([, version]) => !version.startsWith('file:.yalc'));
 
 if (mismatches.length) warn('All dependencies should be pinned');
 for (const [name, version] of mismatches) {

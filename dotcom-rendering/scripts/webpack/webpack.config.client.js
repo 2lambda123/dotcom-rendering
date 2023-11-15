@@ -5,6 +5,7 @@ const { getBrowserTargets } = require('./browser-targets');
 
 const DEV = process.env.NODE_ENV === 'development';
 
+/** @param {Record<string, string> | string[]} targets */
 const swcLoader = (targets) => [
 	{
 		loader: 'swc-loader',
@@ -36,15 +37,15 @@ const generateName = (build) => {
 const getEntryIndex = (build) => {
 	switch (build) {
 		case 'apps':
-			return './src/client/index.apps.ts';
+			return './src/client/main.apps.ts';
 		default:
-			return './src/client/index.ts';
+			return './src/client/main.web.ts';
 	}
 };
 
 /**
  * @param {Build} build
- * @returns {string}
+ * @returns {{ loader: string, options: Record<string, unknown>}}
  */
 const getLoaders = (build) => {
 	switch (build) {
@@ -91,7 +92,7 @@ const getLoaders = (build) => {
 module.exports = ({ build, sessionId }) => ({
 	entry: {
 		index: getEntryIndex(build),
-		debug: './src/client/debug/index.ts',
+		debug: './src/client/debug/debug.ts',
 	},
 	optimization:
 		// We don't need chunk optimization for apps as we use the 'LimitChunkCountPlugin' to produce just 1 chunk
@@ -147,6 +148,7 @@ module.exports = ({ build, sessionId }) => ({
 			  ]
 			: []),
 	],
+	externals: getExternalModules(build),
 	module: {
 		rules: [
 			{
@@ -177,3 +179,13 @@ module.exports.babelExclude = {
 };
 
 module.exports.getLoaders = getLoaders;
+
+/**
+ * We are making "ophan-tracker-js" external to the apps bundle
+ * because we never expect to use it in apps pages.
+ *
+ * Tracking is done natively.
+ *
+ * @param {Build} build */
+const getExternalModules = (build) =>
+	build === 'apps' ? { 'ophan-tracker-js': 'ophan-tracker-js' } : {};

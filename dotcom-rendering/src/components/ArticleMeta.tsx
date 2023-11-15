@@ -335,11 +335,7 @@ export const ArticleMeta = ({
 			<div css={meta(format)}>
 				{branding && (
 					<Island priority="feature" defer={{ until: 'visible' }}>
-						<Branding
-							branding={branding}
-							palette={palette}
-							format={format}
-						/>
+						<Branding branding={branding} format={format} />
 					</Island>
 				)}
 				{format.theme === ArticleSpecial.Labs ? (
@@ -362,11 +358,7 @@ export const ArticleMeta = ({
 					<>
 						{!!avatarUrl && (
 							<MetaAvatarContainer>
-								<Avatar
-									src={avatarUrl}
-									alt={authorName}
-									format={format}
-								/>
+								<Avatar src={avatarUrl} alt={authorName} />
 							</MetaAvatarContainer>
 						)}
 

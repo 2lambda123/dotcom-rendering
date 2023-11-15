@@ -1,16 +1,14 @@
 import { css } from '@emotion/react';
 import { isString, isUndefined, log } from '@guardian/libs';
-import { lifestyle, space, textSans } from '@guardian/source-foundations';
+import { palette, space, textSans } from '@guardian/source-foundations';
 import { Button, SvgMinus, SvgPlus } from '@guardian/source-react-components';
 import type { ChangeEventHandler } from 'react';
 import { useEffect, useState } from 'react';
-import { isServer } from '../lib/isServer';
-import { useOnce } from '../lib/useOnce';
 
 const colours = `
 gu-recipe {
-	color: ${lifestyle[100]};
-	background-color: ${lifestyle[800]};
+	color: ${palette.lifestyle[100]};
+	background-color: ${palette.lifestyle[800]};
 	font-weight: bold;
 }
 `;
@@ -22,8 +20,8 @@ const styles = css`
 	display: grid;
 	grid-template-columns: 6fr repeat(3, 1fr);
 	top: 0;
-	color: ${lifestyle[100]};
-	background-color: ${lifestyle[800]};
+	color: ${palette.lifestyle[100]};
+	background-color: ${palette.lifestyle[800]};
 	padding: ${space[2]}px;
 `;
 
@@ -97,13 +95,6 @@ const RECIPE_ELEMENTS = new RegExp(
 	'i',
 );
 
-const serves = isServer
-	? 1
-	: parseFloat(
-			document.querySelector<HTMLElement>('gu-recipe[serves]')?.dataset
-				.value ?? '1',
-	  );
-
 const transform = ({
 	value,
 	separator,
@@ -129,18 +120,30 @@ const transform = ({
 };
 
 export const RecipeMultiplier = () => {
+	const [servesElement, setServesElement] = useState<HTMLElement>();
+	const [serves, setServes] = useState<number>(1);
 	const [servings, setServings] = useState<number>(serves);
 	const [multiplier, setMultiplier] = useState(1);
 
-	useOnce(() => {
+	useEffect(() => {
+		if (!servesElement) return;
+
+		const rawServes = parseFloat(servesElement.dataset.value ?? '1');
+
+		if (Number.isNaN(rawServes)) return;
+
+		setServes(rawServes);
+		setServings(rawServes);
+	}, [servesElement]);
+
+	useEffect(() => {
 		log('dotcom', 'Injecting multiplier');
 		const style = document.createElement('style');
 		style.innerHTML = colours;
 		document.body.appendChild(style);
 
-		const root = document.querySelector(
-			'gu-island[name=RecipeMultiplier]',
-		)?.nextSibling;
+		const root = document.querySelector('gu-island[name=RecipeMultiplier]')
+			?.nextSibling;
 
 		if (root instanceof HTMLElement) {
 			const walker = document.createTreeWalker(
@@ -174,6 +177,8 @@ export const RecipeMultiplier = () => {
 						const recipeElement =
 							document.createElement('gu-recipe');
 						recipeElement.textContent = node.textContent;
+
+						setServesElement(recipeElement);
 
 						if (isConstant(groups?.unit)) continue;
 
@@ -221,11 +226,9 @@ export const RecipeMultiplier = () => {
 	}, []);
 
 	useEffect(() => {
-		const element =
-			document.querySelector<HTMLElement>('gu-recipe[serves]');
-		if (element) element.innerText = servings.toString();
+		if (servesElement) servesElement.innerText = servings.toString();
 		setMultiplier(servings / serves);
-	}, [servings]);
+	}, [servesElement, serves, servings]);
 
 	useEffect(() => {
 		for (const element of document.querySelectorAll<HTMLElement>(
@@ -266,7 +269,7 @@ export const RecipeMultiplier = () => {
 					size="xsmall"
 					disabled={servings - 1 < min}
 					cssOverrides={css`
-						background-color: ${lifestyle[300]};
+						background-color: ${palette.lifestyle[300]};
 					`}
 					onClick={() => setServings(servings - 1)}
 				>
@@ -288,14 +291,19 @@ export const RecipeMultiplier = () => {
 					size="xsmall"
 					disabled={servings + 1 > max}
 					cssOverrides={css`
-						background-color: ${lifestyle[300]};
+						background-color: ${palette.lifestyle[300]};
 					`}
 					onClick={() => setServings(servings + 1)}
 				>
 					add 1 serving
 				</Button>
 			</li>
-			<li css={{ gridColumn: '1 / -1', accentColor: lifestyle[300] }}>
+			<li
+				css={{
+					gridColumn: '1 / -1',
+					accentColor: palette.lifestyle[300],
+				}}
+			>
 				<input
 					css={{ width: '100%', margin: 0 }}
 					type="range"

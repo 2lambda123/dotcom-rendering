@@ -1,18 +1,18 @@
 import { css } from '@emotion/react';
-import { ArticleDesign } from '@guardian/libs';
 import type { ArticleFormat } from '@guardian/libs';
+import { ArticleDesign } from '@guardian/libs';
 import {
-	brandAltBackground,
 	brandBackground,
 	brandBorder,
 	brandLine,
 	from,
-	neutral,
+	palette as sourcePalette,
 	space,
 	until,
 } from '@guardian/source-foundations';
 import { Hide } from '@guardian/source-react-components';
 import { StraightLines } from '@guardian/source-react-components-development-kitchen';
+import { palette as darkModePalette } from '../../src/palette';
 import { Accordion } from '../components/Accordion';
 import { RightAdsPlaceholder } from '../components/AdPlaceholder.apps';
 import { AdPortals } from '../components/AdPortals.importable';
@@ -61,6 +61,7 @@ import { decidePalette } from '../lib/decidePalette';
 import { decideTrail } from '../lib/decideTrail';
 import { getZIndex } from '../lib/getZIndex';
 import type { NavType } from '../model/extract-nav';
+import { palette as themePalette } from '../palette';
 import type { DCRArticle } from '../types/frontend';
 import type { RenderingTarget } from '../types/renderingTarget';
 import { BannerWrapper, SendToBack, Stuck } from './lib/stickiness';
@@ -219,7 +220,8 @@ const bodyWrapper = css`
 const starWrapper = css`
 	margin-bottom: 18px;
 	margin-top: 6px;
-	background-color: ${brandAltBackground.primary};
+	background-color: ${themePalette('--star-rating-background')};
+	color: ${themePalette('--star-rating-fill')};
 	display: inline-block;
 	${until.phablet} {
 		padding-left: 20px;
@@ -423,7 +425,7 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 			<main data-layout="LiveLayout">
 				{isApps && (
 					<Island priority="critical" clientOnly={true}>
-						<AdPortals />
+						<AdPortals rightAlignFrom="wide" />
 					</Island>
 				)}
 				{footballMatchUrl ? (
@@ -595,9 +597,9 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 					<Section
 						fullWidth={true}
 						showTopBorder={false}
-						backgroundColour={
-							palette.background.keyEventFromDesktop
-						}
+						backgroundColour={darkModePalette(
+							'--key-event-background-desktop',
+						)}
 						borderColour={palette.border.article}
 					>
 						<Hide until={'desktop'}>
@@ -608,7 +610,6 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 								<KeyEventsCarousel
 									keyEvents={article.keyEvents}
 									filterKeyEvents={article.filterKeyEvents}
-									format={format}
 									id={'key-events-carousel-desktop'}
 								/>
 							</Island>
@@ -1135,7 +1136,7 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 										}
 									`}
 								>
-									<RightColumn>
+									<RightColumn showFrom="wide">
 										{renderAds && (
 											<AdSlot
 												position="right"
@@ -1144,9 +1145,7 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 											/>
 										)}
 
-										{isApps && isInLiveblogAdSlotTest && (
-											<RightAdsPlaceholder />
-										)}
+										{isApps && <RightAdsPlaceholder />}
 									</RightColumn>
 								</div>
 							</GridItem>
@@ -1160,7 +1159,7 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 							padSides={false}
 							showTopBorder={false}
 							showSideBorders={false}
-							backgroundColour={neutral[93]}
+							backgroundColour={sourcePalette.neutral[93]}
 							element="aside"
 						>
 							<AdSlot
@@ -1279,7 +1278,7 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 							padSides={false}
 							showTopBorder={false}
 							showSideBorders={false}
-							backgroundColour={neutral[93]}
+							backgroundColour={sourcePalette.neutral[93]}
 							element="aside"
 						>
 							<AdSlot
