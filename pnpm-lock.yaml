@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   desvg-loader@0.1.0:
-    hash: 4z7mb3vve3tfbulfj7e5dvvrdy
+    hash: 4hf5noin4qq7i4mtlxnkgbbpge
     path: patches/desvg-loader@0.1.0.patch
 
 importers:
@@ -678,7 +678,7 @@ importers:
         version: 2.0.1
       desvg-loader:
         specifier: 0.1.0
-        version: 0.1.0(patch_hash=4z7mb3vve3tfbulfj7e5dvvrdy)
+        version: 0.1.0(patch_hash=4hf5noin4qq7i4mtlxnkgbbpge)
       doctoc:
         specifier: 2.2.1
         version: 2.2.1
@@ -11688,7 +11688,7 @@ packages:
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
     dev: false
 
-  /desvg-loader@0.1.0(patch_hash=4z7mb3vve3tfbulfj7e5dvvrdy):
+  /desvg-loader@0.1.0(patch_hash=4hf5noin4qq7i4mtlxnkgbbpge):
     resolution: {integrity: sha512-xVVTqckiQ6BbG/vgaxPkjV9+SV3FUJ+kDv5hE3gny5UPbHXbhmS6O0Mt9kU56QgiSttliyevQk/E6QGlihXGnA==}
     dependencies:
       '@kossnocorp/desvg': 0.1.2
