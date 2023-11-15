@@ -119,7 +119,7 @@ lint: clean-dist install
 lint-project: check-env
 	$(call log, "linting project")
 	@node scripts/check-node-versions.mjs
-	# @node scripts/env/check-deps.js
+	@node scripts/env/check-deps.js
 	@node scripts/env/check-files.js
 
 stylelint: clean-dist install
