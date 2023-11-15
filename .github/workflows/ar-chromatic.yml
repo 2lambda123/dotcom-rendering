@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
-    types: [opened, labeled, synchronize]
+    types: [opened, labeled, synchronize, ready_for_review]
 
 jobs:
   chromatic:
@@ -39,6 +39,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Chromatic - Apps Rendering
+        env:
+          NODE_OPTIONS: '--max_old_space_size=4096'
         uses: chromaui/action@v1
 
         with:

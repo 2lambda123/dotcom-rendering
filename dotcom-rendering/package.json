@@ -26,7 +26,7 @@
 		"cypress:run:e2e": "cypress run --spec 'cypress/e2e/**/*'",
 		"unused-exports": "pnpm ts-unused-exports ./tsconfig.json --ignoreFiles='(/(fixtures|__mocks__)/|.+\\.(stories|mocks))' --exitWithCount",
 		"storybook": "storybook dev -p 4002",
-		"build-storybook": "node --max-old-space-size=4096 pnpm exec storybook build",
+		"build-storybook": "storybook build",
 		"makeBuild": "NODE_ENV=production CI_ENV=github webpack --config ./scripts/webpack/webpack.config.js",
 		"cdk:build": "tsc -p ./tsconfig.cdk.json",
 		"cdk:synth": "cdk synth --path-metadata false --version-reporting false",
@@ -208,7 +208,6 @@
 		"npm-run-all": "4.1.5",
 		"ophan-tracker-js": "2.0.2",
 		"parse5": "7.1.2",
-		"pm2": "5.3.0",
 		"preact": "10.15.1",
 		"preact-render-to-string": "6.0.2",
 		"pretty-bytes": "6.1.0",
@@ -270,8 +269,5 @@
 		"webpack-node-externals": "3.0.0",
 		"webpack-sources": "3.2.3",
 		"zod": "3.22.3"
-	},
-	"resolutions": {
-		"**/crypto-js": "4.2.0"
 	}
 }
