@@ -6,7 +6,7 @@ This repository contains the rendering logic for articles on theguardian.com. It
 
 Install [Node.js](https://nodejs.org).
 
-We recommend using [fnm](https://github.com/Schniz/fnm). It is great at managing multiple versions of Node.js on one machine.
+> We recommend using [fnm](https://github.com/Schniz/fnm). It is great at managing multiple versions of Node.js on one machine.
 
 Run `corepack enable`.
 
