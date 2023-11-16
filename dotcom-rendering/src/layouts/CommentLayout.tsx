@@ -404,7 +404,7 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 											props.NAV.currentNavLink
 										}
 										linkHoverColour={palette(
-											'--article-link-hover',
+											'--article-link-text-hover',
 										)}
 										borderColour={palette(
 											'--sub-nav-border',
@@ -857,7 +857,9 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 						<SubNav
 							subNavSections={props.NAV.subNavSections}
 							currentNavLink={props.NAV.currentNavLink}
-							linkHoverColour={palette('--article-link-hover')}
+							linkHoverColour={palette(
+								'--article-link-text-hover',
+							)}
 							borderColour={palette('--sub-nav-border')}
 						/>
 					</Island>
