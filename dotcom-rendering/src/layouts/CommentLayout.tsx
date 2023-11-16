@@ -44,10 +44,10 @@ import { SubNav } from '../components/SubNav.importable';
 import { getSoleContributor } from '../lib/byline';
 import { canRenderAds } from '../lib/canRenderAds';
 import { getContributionsServiceUrl } from '../lib/contributions';
-import { decidePalette } from '../lib/decidePalette';
 import { decideTrail } from '../lib/decideTrail';
 import { parse } from '../lib/slot-machine-flags';
 import type { NavType } from '../model/extract-nav';
+import { palette } from '../palette';
 import type { DCRArticle } from '../types/frontend';
 import type { RenderingTarget } from '../types/renderingTarget';
 import { BannerWrapper, SendToBack, Stuck } from './lib/stickiness';
@@ -297,8 +297,6 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 
 	const { branding } = article.commercialProperties[article.editionId];
 
-	const palette = decidePalette(format);
-
 	const contributionsServiceUrl = getContributionsServiceUrl(article);
 
 	const renderAds = renderingTarget === 'Web' && canRenderAds(article);
@@ -388,7 +386,9 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 						{props.NAV.subNavSections && (
 							<Section
 								fullWidth={true}
-								backgroundColour={palette.background.article}
+								backgroundColour={palette(
+									'--article-background',
+								)}
 								padSides={false}
 								element="aside"
 							>
@@ -403,10 +403,12 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 										currentNavLink={
 											props.NAV.currentNavLink
 										}
-										linkHoverColour={
-											palette.text.articleLinkHover
-										}
-										borderColour={palette.border.subNav}
+										linkHoverColour={palette(
+											'--article-link-hover',
+										)}
+										borderColour={palette(
+											'--sub-nav-border',
+										)}
 									/>
 								</Island>
 							</Section>
@@ -414,7 +416,7 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 
 						<Section
 							fullWidth={true}
-							backgroundColour={palette.background.article}
+							backgroundColour={palette('--article-background')}
 							padSides={false}
 							showTopBorder={false}
 						>
@@ -423,7 +425,7 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 								cssOverrides={css`
 									display: block;
 								`}
-								color={palette.border.secondary}
+								color={palette('--article-border-secondary')}
 							/>
 						</Section>
 					</SendToBack>
@@ -439,7 +441,7 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 				<Section
 					fullWidth={true}
 					showTopBorder={false}
-					backgroundColour={palette.background.article}
+					backgroundColour={palette('--article-background')}
 					element="article"
 				>
 					<StandardGrid display={format.display}>
@@ -527,7 +529,9 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 											cssOverrides={css`
 												display: block;
 											`}
-											color={palette.border.secondary}
+											color={palette(
+												'--article-border-secondary',
+											)}
 										/>
 									</div>
 								</div>
@@ -541,7 +545,9 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 										cssOverrides={css`
 											display: block;
 										`}
-										color={palette.border.secondary}
+										color={palette(
+											'--article-border-secondary',
+										)}
 									/>
 								</Hide>
 							</div>
@@ -663,7 +669,9 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 										cssOverrides={css`
 											display: block;
 										`}
-										color={palette.border.secondary}
+										color={palette(
+											'--article-border-secondary',
+										)}
 									/>
 									<SubMeta
 										format={format}
@@ -849,8 +857,8 @@ export const CommentLayout = (props: WebProps | AppsProps) => {
 						<SubNav
 							subNavSections={props.NAV.subNavSections}
 							currentNavLink={props.NAV.currentNavLink}
-							linkHoverColour={palette.text.articleLinkHover}
-							borderColour={palette.border.subNav}
+							linkHoverColour={palette('--article-link-hover')}
+							borderColour={palette('--sub-nav-border')}
 						/>
 					</Island>
 				</Section>
