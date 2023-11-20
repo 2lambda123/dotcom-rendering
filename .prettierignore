@@ -1,6 +1,7 @@
 dist
 deno
 .nvmrc
+pnpm-lock.yaml
 
 # generated files
 dotcom-rendering/src/model/*-schema.json
