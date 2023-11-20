@@ -11,7 +11,10 @@ import {
 } from '@guardian/source-foundations';
 import type { StoryObj } from '@storybook/react';
 import { splitTheme } from '../../.storybook/decorators/splitThemeDecorator';
-import { lightDecorator } from '../../.storybook/decorators/themeDecorator';
+import {
+	browserThemeDecorator,
+	lightDecorator,
+} from '../../.storybook/decorators/themeDecorator';
 import { getAllThemes, getThemeNameAsString } from '../lib/format';
 import type { Branding as BrandingType } from '../types/branding';
 import { ArticleMeta } from './ArticleMeta';
@@ -123,9 +126,9 @@ export const ArticleAppsStory: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 /** @see /dotcom-rendering/docs/development/storybook.md */
-ArticleAppsStory.parameters = { config: { renderingTarget: 'Apps' } };
 ArticleAppsStory.args = { format: defaultFormat };
-ArticleAppsStory.decorators = [lightDecorator(defaultFormat)];
+ArticleAppsStory.parameters = { config: { renderingTarget: 'Apps' } };
+ArticleAppsStory.decorators = [lightDecorator([defaultFormat])];
 
 const branding: BrandingType = {
 	brandingType: { name: 'sponsored' },
@@ -174,22 +177,19 @@ export const BrandingStory: StoryObj = ({ format }: StoryArgs) => {
 };
 BrandingStory.storyName = 'Branding';
 BrandingStory.args = { format: defaultFormat };
-BrandingStory.decorators = [
-	splitTheme([
-		defaultFormat,
-		{
-			...defaultFormat,
-			theme: Pillar.Culture,
-			design: ArticleDesign.Gallery,
-		},
-	]),
-];
+BrandingStory.parameters = { config: { darkModeAvailable: true } };
+BrandingStory.decorators = [browserThemeDecorator(defaultFormat)];
 
 export const BrandingLiveBlog: StoryObj = ({ format }: StoryArgs) => {
 	return (
 		<div
+			// Demonstrates niche requirement of liveblog article meta
+			// on screens below desktop size
 			css={css`
 				background-color: ${sourcePalette.sport[100]};
+				@media (min-width: ${breakpoints.desktop}px) {
+					background-color: inherit;
+				}
 			`}
 		>
 			<Wrapper>
@@ -218,6 +218,7 @@ BrandingLiveBlog.parameters = {
 		defaultViewport: 'tablet',
 	},
 	chromatic: { viewports: [breakpoints.tablet] },
+	config: { darkModeAvailable: true },
 };
 BrandingLiveBlog.decorators = [
 	splitTheme([
@@ -254,7 +255,7 @@ export const FeatureStory: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 FeatureStory.storyName = 'Feature';
-FeatureStory.decorators = [lightDecorator(featureFormat)];
+FeatureStory.decorators = [lightDecorator([featureFormat])];
 FeatureStory.args = { format: featureFormat };
 
 export const FeatureWithMismatchedContributor: StoryObj = ({
@@ -280,7 +281,7 @@ export const FeatureWithMismatchedContributor: StoryObj = ({
 };
 FeatureWithMismatchedContributor.storyName =
 	'Feature with a byline mismatching the contributor tag';
-FeatureWithMismatchedContributor.decorators = [lightDecorator(featureFormat)];
+FeatureWithMismatchedContributor.decorators = [lightDecorator([featureFormat])];
 FeatureWithMismatchedContributor.args = { format: featureFormat };
 
 export const FeatureStoryWithSmallBylineImage: StoryObj = ({
@@ -305,7 +306,7 @@ export const FeatureStoryWithSmallBylineImage: StoryObj = ({
 	);
 };
 FeatureStoryWithSmallBylineImage.storyName = 'Feature with Small Byline Image';
-FeatureStoryWithSmallBylineImage.decorators = [lightDecorator(featureFormat)];
+FeatureStoryWithSmallBylineImage.decorators = [lightDecorator([featureFormat])];
 FeatureStoryWithSmallBylineImage.args = { format: featureFormat };
 
 const specialReportFormat = {
@@ -333,7 +334,7 @@ export const SpecialReportStory: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 SpecialReportStory.storyName = 'SpecialReport';
-SpecialReportStory.decorators = [lightDecorator(specialReportFormat)];
+SpecialReportStory.decorators = [lightDecorator([specialReportFormat])];
 SpecialReportStory.args = { format: specialReportFormat };
 
 const specialReportAltFormat = {
@@ -361,7 +362,7 @@ export const SpecialReportAlt: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 SpecialReportAlt.storyName = 'SpecialReportAlt';
-SpecialReportAlt.decorators = [lightDecorator(specialReportAltFormat)];
+SpecialReportAlt.decorators = [lightDecorator([specialReportAltFormat])];
 SpecialReportAlt.args = { format: specialReportAltFormat };
 
 const commentFormat = {
@@ -389,7 +390,7 @@ export const CommentStory: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 CommentStory.storyName = 'Comment';
-CommentStory.decorators = [lightDecorator(commentFormat)];
+CommentStory.decorators = [lightDecorator([commentFormat])];
 CommentStory.args = { format: commentFormat };
 
 const interviewFormat = {
@@ -417,7 +418,7 @@ export const InterviewStory: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 InterviewStory.storyName = 'Interview';
-InterviewStory.decorators = [lightDecorator(interviewFormat)];
+InterviewStory.decorators = [lightDecorator([interviewFormat])];
 InterviewStory.args = { format: interviewFormat };
 
 const immersiveFormat = {
@@ -445,7 +446,7 @@ export const ImmersiveStory: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 ImmersiveStory.storyName = 'Immersive';
-ImmersiveStory.decorators = [lightDecorator(immersiveFormat)];
+ImmersiveStory.decorators = [lightDecorator([immersiveFormat])];
 ImmersiveStory.args = { format: immersiveFormat };
 
 const sportFeatureFormat = {
@@ -473,7 +474,7 @@ export const TwoContributorsStory: StoryObj = ({ format }: StoryArgs) => {
 	);
 };
 TwoContributorsStory.storyName = 'Feature, with two contributors';
-TwoContributorsStory.decorators = [lightDecorator(sportFeatureFormat)];
+TwoContributorsStory.decorators = [lightDecorator([sportFeatureFormat])];
 TwoContributorsStory.args = { format: sportFeatureFormat };
 
 export const DeadBlogStory: StoryObj = () => {

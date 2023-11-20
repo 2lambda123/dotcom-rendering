@@ -133,11 +133,11 @@ const generateLayoutStory = (displayName, designName, theme, config) => {
 			config,
 		)} };
 		${storyVariableName + 'Light'}.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.${displayName},
 					design: ArticleDesign.${designName},
 					theme: {...ArticleSpecial, ...Pillar}.${theme.replace('Pillar', '')},
-				}
+				}]
 			),
 		];
 
@@ -160,16 +160,16 @@ const generateLayoutStory = (displayName, designName, theme, config) => {
 			config,
 		)} };
 		${storyVariableName + `Dark`}.decorators = [darkDecorator(
-				{
+				[{
 					display:  ArticleDisplay.${displayName},
 					design: ArticleDesign.${designName},
 					theme: {...ArticleSpecial, ...Pillar}.${theme.replace('Pillar', '')},
-				}
+				}]
 			),
 		];`
 				: ''
 		}
-	`;
+`;
 };
 
 /**
@@ -245,6 +245,30 @@ const testLayoutFormats =
 			design: 'Standard',
 			theme: 'NewsPillar',
 			config: { renderingTarget: 'Apps', darkModeAvailable: false },
+		},
+		{
+			display: 'Immersive',
+			design: 'PhotoEssay',
+			theme: 'Labs',
+			config: { renderingTarget: 'Web', darkModeAvailable: false },
+		},
+		{
+			display: 'Standard',
+			design: 'Standard',
+			theme: 'Labs',
+			config: { renderingTarget: 'Web', darkModeAvailable: false },
+		},
+		{
+			display: 'Standard',
+			design: 'Feature',
+			theme: 'Labs',
+			config: { renderingTarget: 'Web', darkModeAvailable: false },
+		},
+		{
+			display: 'Standard',
+			design: 'Recipe',
+			theme: 'Labs',
+			config: { renderingTarget: 'Web', darkModeAvailable: false },
 		},
 	]);
 

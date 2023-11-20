@@ -33,16 +33,16 @@ export default {
 		WebStandardStandardNewsPillarLight.storyName = 'Web: Display: Standard, Design: Standard, Theme: NewsPillar, Mode: Light';
 		WebStandardStandardNewsPillarLight.parameters = { config: {"renderingTarget":"Web","darkModeAvailable":false} };
 		WebStandardStandardNewsPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Standard,
 					design: ArticleDesign.Standard,
 					theme: {...ArticleSpecial, ...Pillar}.News,
-				}
+				}]
 			),
 		];
 
 		
-	
+
 		export const AppsStandardStandardNewsPillarLight = () => {
 			return (
 				<HydratedLayoutWrapper
@@ -56,11 +56,11 @@ export default {
 		AppsStandardStandardNewsPillarLight.storyName = 'Apps: Display: Standard, Design: Standard, Theme: NewsPillar, Mode: Light';
 		AppsStandardStandardNewsPillarLight.parameters = { config: {"renderingTarget":"Apps","darkModeAvailable":true} };
 		AppsStandardStandardNewsPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Standard,
 					design: ArticleDesign.Standard,
 					theme: {...ArticleSpecial, ...Pillar}.News,
-				}
+				}]
 			),
 		];
 
@@ -77,14 +77,14 @@ export default {
 		AppsStandardStandardNewsPillarDark.storyName = 'Apps: Display: Standard, Design: Standard, Theme: NewsPillar, Mode: Dark';
 		AppsStandardStandardNewsPillarDark.parameters = { config: {"renderingTarget":"Apps","darkModeAvailable":true} };
 		AppsStandardStandardNewsPillarDark.decorators = [darkDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Standard,
 					design: ArticleDesign.Standard,
 					theme: {...ArticleSpecial, ...Pillar}.News,
-				}
+				}]
 			),
 		];
-	
+
 		export const AppsShowcaseStandardNewsPillarLight = () => {
 			return (
 				<HydratedLayoutWrapper
@@ -98,16 +98,16 @@ export default {
 		AppsShowcaseStandardNewsPillarLight.storyName = 'Apps: Display: Showcase, Design: Standard, Theme: NewsPillar, Mode: Light';
 		AppsShowcaseStandardNewsPillarLight.parameters = { config: {"renderingTarget":"Apps","darkModeAvailable":false} };
 		AppsShowcaseStandardNewsPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Showcase,
 					design: ArticleDesign.Standard,
 					theme: {...ArticleSpecial, ...Pillar}.News,
-				}
+				}]
 			),
 		];
 
 		
-	
+
 		export const WebShowcasePictureOpinionPillarLight = () => {
 			return (
 				<HydratedLayoutWrapper
@@ -121,16 +121,16 @@ export default {
 		WebShowcasePictureOpinionPillarLight.storyName = 'Web: Display: Showcase, Design: Picture, Theme: OpinionPillar, Mode: Light';
 		WebShowcasePictureOpinionPillarLight.parameters = { config: {"renderingTarget":"Web","darkModeAvailable":false} };
 		WebShowcasePictureOpinionPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Showcase,
 					design: ArticleDesign.Picture,
 					theme: {...ArticleSpecial, ...Pillar}.Opinion,
-				}
+				}]
 			),
 		];
 
 		
-	
+
 		export const AppsShowcasePictureOpinionPillarLight = () => {
 			return (
 				<HydratedLayoutWrapper
@@ -144,16 +144,16 @@ export default {
 		AppsShowcasePictureOpinionPillarLight.storyName = 'Apps: Display: Showcase, Design: Picture, Theme: OpinionPillar, Mode: Light';
 		AppsShowcasePictureOpinionPillarLight.parameters = { config: {"renderingTarget":"Apps","darkModeAvailable":false} };
 		AppsShowcasePictureOpinionPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Showcase,
 					design: ArticleDesign.Picture,
 					theme: {...ArticleSpecial, ...Pillar}.Opinion,
-				}
+				}]
 			),
 		];
 
 		
-	
+
 		export const AppsStandardCommentNewsPillarLight = () => {
 			return (
 				<HydratedLayoutWrapper
@@ -167,16 +167,16 @@ export default {
 		AppsStandardCommentNewsPillarLight.storyName = 'Apps: Display: Standard, Design: Comment, Theme: NewsPillar, Mode: Light';
 		AppsStandardCommentNewsPillarLight.parameters = { config: {"renderingTarget":"Apps","darkModeAvailable":false} };
 		AppsStandardCommentNewsPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Standard,
 					design: ArticleDesign.Comment,
 					theme: {...ArticleSpecial, ...Pillar}.News,
-				}
+				}]
 			),
 		];
 
 		
-	
+
 		export const AppsStandardInteractiveNewsPillarLight = () => {
 			return (
 				<HydratedLayoutWrapper
@@ -190,16 +190,16 @@ export default {
 		AppsStandardInteractiveNewsPillarLight.storyName = 'Apps: Display: Standard, Design: Interactive, Theme: NewsPillar, Mode: Light';
 		AppsStandardInteractiveNewsPillarLight.parameters = { config: {"renderingTarget":"Apps","darkModeAvailable":false} };
 		AppsStandardInteractiveNewsPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Standard,
 					design: ArticleDesign.Interactive,
 					theme: {...ArticleSpecial, ...Pillar}.News,
-				}
+				}]
 			),
 		];
 
 		
-	
+
 		export const AppsImmersiveStandardNewsPillarLight = () => {
 			return (
 				<HydratedLayoutWrapper
@@ -213,13 +213,104 @@ export default {
 		AppsImmersiveStandardNewsPillarLight.storyName = 'Apps: Display: Immersive, Design: Standard, Theme: NewsPillar, Mode: Light';
 		AppsImmersiveStandardNewsPillarLight.parameters = { config: {"renderingTarget":"Apps","darkModeAvailable":false} };
 		AppsImmersiveStandardNewsPillarLight.decorators = [lightDecorator(
-				{
+				[{
 					display:  ArticleDisplay.Immersive,
 					design: ArticleDesign.Standard,
 					theme: {...ArticleSpecial, ...Pillar}.News,
-				}
+				}]
 			),
 		];
 
 		
-	
+
+		export const WebImmersivePhotoEssayLabsLight = () => {
+			return (
+				<HydratedLayoutWrapper
+					displayName="Immersive"
+					designName="PhotoEssay"
+					theme="Labs"
+					renderingTarget="Web"
+				/>
+			);
+		};
+		WebImmersivePhotoEssayLabsLight.storyName = 'Web: Display: Immersive, Design: PhotoEssay, Theme: Labs, Mode: Light';
+		WebImmersivePhotoEssayLabsLight.parameters = { config: {"renderingTarget":"Web","darkModeAvailable":false} };
+		WebImmersivePhotoEssayLabsLight.decorators = [lightDecorator(
+				[{
+					display:  ArticleDisplay.Immersive,
+					design: ArticleDesign.PhotoEssay,
+					theme: {...ArticleSpecial, ...Pillar}.Labs,
+				}]
+			),
+		];
+
+		
+
+		export const WebStandardStandardLabsLight = () => {
+			return (
+				<HydratedLayoutWrapper
+					displayName="Standard"
+					designName="Standard"
+					theme="Labs"
+					renderingTarget="Web"
+				/>
+			);
+		};
+		WebStandardStandardLabsLight.storyName = 'Web: Display: Standard, Design: Standard, Theme: Labs, Mode: Light';
+		WebStandardStandardLabsLight.parameters = { config: {"renderingTarget":"Web","darkModeAvailable":false} };
+		WebStandardStandardLabsLight.decorators = [lightDecorator(
+				[{
+					display:  ArticleDisplay.Standard,
+					design: ArticleDesign.Standard,
+					theme: {...ArticleSpecial, ...Pillar}.Labs,
+				}]
+			),
+		];
+
+		
+
+		export const WebStandardFeatureLabsLight = () => {
+			return (
+				<HydratedLayoutWrapper
+					displayName="Standard"
+					designName="Feature"
+					theme="Labs"
+					renderingTarget="Web"
+				/>
+			);
+		};
+		WebStandardFeatureLabsLight.storyName = 'Web: Display: Standard, Design: Feature, Theme: Labs, Mode: Light';
+		WebStandardFeatureLabsLight.parameters = { config: {"renderingTarget":"Web","darkModeAvailable":false} };
+		WebStandardFeatureLabsLight.decorators = [lightDecorator(
+				[{
+					display:  ArticleDisplay.Standard,
+					design: ArticleDesign.Feature,
+					theme: {...ArticleSpecial, ...Pillar}.Labs,
+				}]
+			),
+		];
+
+		
+
+		export const WebStandardRecipeLabsLight = () => {
+			return (
+				<HydratedLayoutWrapper
+					displayName="Standard"
+					designName="Recipe"
+					theme="Labs"
+					renderingTarget="Web"
+				/>
+			);
+		};
+		WebStandardRecipeLabsLight.storyName = 'Web: Display: Standard, Design: Recipe, Theme: Labs, Mode: Light';
+		WebStandardRecipeLabsLight.parameters = { config: {"renderingTarget":"Web","darkModeAvailable":false} };
+		WebStandardRecipeLabsLight.decorators = [lightDecorator(
+				[{
+					display:  ArticleDisplay.Standard,
+					design: ArticleDesign.Recipe,
+					theme: {...ArticleSpecial, ...Pillar}.Labs,
+				}]
+			),
+		];
+
+		
