@@ -28,14 +28,14 @@ riffraff-bundle: clean-dist build cdk-synth
 
 build: clean-dist install
 	$(call log, "building production bundles")
-	@NODE_ENV=production webpack --config ./webpack/webpack.config.js --progress
+	@NODE_ENV=production pnpm webpack --config ./webpack/webpack.config.js --progress
 	$(call log, "generating Islands report card")
 	@node ./scripts/islands/island-descriptions.mjs
 
 prod:
 	@echo 'starting PROD server...'
 	@echo '' # just a spacer
-	NODE_ENV=production node dist/server.js
+	@NODE_ENV=production node dist/server.js
 
 ci: export DISABLE_LOGGING_AND_METRICS = true
 ci: prod
@@ -44,44 +44,44 @@ ci: prod
 
 dev: clear clean-dist install
 	$(call log, "starting DEV server")
-	@NODE_ENV=development webpack serve --config ./webpack/webpack.config.js
+	@NODE_ENV=development pnpm webpack serve --config ./webpack/webpack.config.js
 
 dev-variant: clear clean-dist install
 	$(call log, "starting DEV server")
-	@NODE_ENV=development BUILD_VARIANT=true webpack serve --config ./webpack/webpack.config.js
+	@NODE_ENV=development BUILD_VARIANT=true pnpm webpack serve --config ./webpack/webpack.config.js
 
 dev-legacy: clear clean-dist install
 	$(call log, "starting DEV server")
-	@NODE_ENV=development BUILD_LEGACY=true webpack serve --config ./webpack/webpack.config.js
+	@NODE_ENV=development BUILD_LEGACY=true pnpm webpack serve --config ./webpack/webpack.config.js
 
 dev-debug: clear clean-dist install
 	$(call log, "starting DEV server and debugger")
 	$(call log, "Open chrome://inspect in Chrome to attach to the debugger")
-	@NODE_ENV=development NODE_OPTIONS="--inspect" webpack serve --config ./webpack/webpack.config.js
+	@NODE_ENV=development NODE_OPTIONS="--inspect" pnpm webpack serve --config ./webpack/webpack.config.js
 
 # storybook #########################################
 
 storybook-dev: clear clean-dist install
 	$(call log, "starting Storybook DEV server")
-	pnpm storybook
+	@pnpm storybook
 
 # tests #####################################
 
 cypress: clear clean-dist install build
 	$(call log, "starting PROD server for Cypress")
-	@NODE_ENV=production NODE_OPTIONS="--max-old-space-size=8192" DISABLE_LOGGING_AND_METRICS=true start-server-and-test 'node dist/server.js' 9000 'cypress run --spec "cypress/e2e/**/*"'
+	@NODE_ENV=production NODE_OPTIONS="--max-old-space-size=8192" DISABLE_LOGGING_AND_METRICS=true pnpm start-server-and-test 'node dist/server.js' 9000 'cypress run --spec "cypress/e2e/**/*"'
 
 cypress-open: clear clean-dist install build
 	$(call log, "starting PROD server and opening Cypress")
-	@NODE_ENV=production DISABLE_LOGGING_AND_METRICS=true start-server-and-test 'node dist/server.js' 9000 'cypress open --e2e --browser electron'
+	@NODE_ENV=production DISABLE_LOGGING_AND_METRICS=true pnpm start-server-and-test 'node dist/server.js' 9000 'cypress open --e2e --browser electron'
 
 playwright: clear clean-dist install build
 	$(call log, "starting PROD server for Playwright")
-	@NODE_ENV=production DISABLE_LOGGING_AND_METRICS=true start-server-and-test 'node dist/server.js' 9000 'playwright test'
+	@NODE_ENV=production DISABLE_LOGGING_AND_METRICS=true pnpm start-server-and-test 'node dist/server.js' 9000 'playwright test'
 
 playwright-open: clear clean-dist install build
 	$(call log, "starting PROD server and opening Playwright")
-	@NODE_ENV=production DISABLE_LOGGING_AND_METRICS=true start-server-and-test 'node dist/server.js' 9000 'playwright test --ui'
+	@NODE_ENV=production DISABLE_LOGGING_AND_METRICS=true pnpm start-server-and-test 'node dist/server.js' 9000 'playwright test --ui'
 
 ampValidation: clean-dist install
 	$(call log, "starting AMP Validation test")
@@ -95,7 +95,7 @@ buildCheck:
 
 tsc: clean-dist install
 	$(call log, "checking for type errors")
-	@tsc
+	@pnpm tsc
 
 lint-fix:
 	$(call log, "attempting to fix lint errors")
@@ -110,7 +110,7 @@ fix: clear clean-dist install lint-fix prettier
 
 snapshot: clear clean-dist install
 	$(call log, "taking snapshots")
-	pnpm chromatic
+	@pnpm chromatic
 
 lint: clean-dist install
 	$(call log, "checking for lint errors")
@@ -119,12 +119,12 @@ lint: clean-dist install
 lint-project: check-env
 	$(call log, "linting project")
 	@node scripts/check-node-versions.mjs
-	# @node scripts/env/check-deps.js
+	@node scripts/env/check-deps.js
 	@node scripts/env/check-files.js
 
 stylelint: clean-dist install
 	$(call log, "checking for style lint errors")
-	@stylelint "src/**/*.ts{,x}"
+	@pnpm stylelint "src/**/*.ts{,x}"
 
 test: clean-dist install
 	$(call log, "running tests")
@@ -161,7 +161,7 @@ reinstall: clear clean-deps install
 validate-build: # private
 	$(call log, "checking bundling")
 	@rm -rf dist
-	@NODE_ENV=production webpack --config ./webpack/webpack.config.js
+	@NODE_ENV=production pnpm webpack --config ./webpack/webpack.config.js
 
 check-env: # private
 	$(call log, "checking environment")

@@ -58,6 +58,7 @@ jobs:
             --allow-read \
             --allow-net \
             --allow-env=HOME,GITHUB_TOKEN \
+            --allow-run=yarn,npm \
             scripts/deno/peer-dependencies.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
