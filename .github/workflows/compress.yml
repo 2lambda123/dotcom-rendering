@@ -18,22 +18,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node environment
-        uses: ./.github/actions/setup-node-env
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
 
-      # - uses: preactjs/compressed-size-action@v2
-      #   with:
-      #     repo-token: '${{ secrets.GITHUB_TOKEN }}'
-      #     build-script: build:dcr
+      - uses: preactjs/compressed-size-action@v2
+        with:
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
+          build-script: build:dcr
 
-      #     # https://github.com/preactjs/compressed-size-action#increasing-the-required-threshold
-      #     minimum-change-threshold: 100
+          # https://github.com/preactjs/compressed-size-action#increasing-the-required-threshold
+          minimum-change-threshold: 100
 
-      #     # https://github.com/preactjs/compressed-size-action#dealing-with-hashed-filenames
-      #     # The default hash digest is set to 20 chars in Webpack
-      #     strip-hash: "\\.(\\w{20})\\.js$"
+          # https://github.com/preactjs/compressed-size-action#dealing-with-hashed-filenames
+          # The default hash digest is set to 20 chars in Webpack
+          strip-hash: "\\.(\\w{20})\\.js$"
 
-      #     # report exclusively on the “web” bundle – no “apps”, “variant” or other
-      #     # https://github.com/preactjs/compressed-size-action#customizing-the-list-of-files
-      #     # The default hash digest is set to 20 chars in Webpack
-      #     pattern: 'dotcom-rendering/dist/*.web.????????????????????.js'
+          # report exclusively on the “web” bundle – no “apps”, “variant” or other
+          # https://github.com/preactjs/compressed-size-action#customizing-the-list-of-files
+          # The default hash digest is set to 20 chars in Webpack
+          pattern: 'dotcom-rendering/dist/*.web.????????????????????.js'
