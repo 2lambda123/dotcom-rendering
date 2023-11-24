@@ -4,11 +4,15 @@
 
 import { ArticleDesign, ArticleDisplay, Pillar } from '@guardian/libs';
 import { renderToString } from 'react-dom/server';
+import { AdPortals } from './AdPortals.importable';
 import { AlreadyVisited } from './AlreadyVisited.importable';
+import { AppEmailSignUp } from './AppEmailSignUp.importable';
+import { AppsEpic } from './AppsEpic.importable';
 import { BrazeMessaging } from './BrazeMessaging.importable';
 import { CardCommentCount } from './CardCommentCount.importable';
 import { CommentCount } from './CommentCount.importable';
 import { ConfigProvider } from './ConfigContext';
+import { DiscussionMeta } from './DiscussionMeta.importable';
 import { EnhancePinnedPost } from './EnhancePinnedPost.importable';
 import { FocusStyles } from './FocusStyles.importable';
 import { InteractiveSupportButton } from './InteractiveSupportButton.importable';
@@ -18,16 +22,20 @@ import { LightboxJavascript } from './LightboxJavascript.importable';
 import { LiveBlogEpic } from './LiveBlogEpic.importable';
 import { Liveness } from './Liveness.importable';
 import { Metrics } from './Metrics.importable';
+import { MostViewedFooterData } from './MostViewedFooterData.importable';
+import { MostViewedRightWrapper } from './MostViewedRightWrapper.importable';
 import { OnwardsUpper } from './OnwardsUpper.importable';
 import { ReaderRevenueDev } from './ReaderRevenueDev.importable';
+import { ReaderRevenueLinks } from './ReaderRevenueLinks.importable';
 import { RecipeMultiplier } from './RecipeMultiplier.importable';
 import { SendTargetingParams } from './SendTargetingParams.importable';
 import { SetABTests } from './SetABTests.importable';
 import { SetAdTargeting } from './SetAdTargeting.importable';
+import { ShowHideContainers } from './ShowHideContainers.importable';
 import { SignInGateSelector } from './SignInGateSelector.importable';
 import { SlotBodyEnd } from './SlotBodyEnd.importable';
-import { Snow } from './Snow.importable';
 import { StickyBottomBanner } from './StickyBottomBanner.importable';
+import { SupportTheG } from './SupportTheG.importable';
 
 // Type tests
 // Test that impossible prop combinations are caught by TypeScript.
@@ -91,8 +99,32 @@ const Mock = () => <>🏝️</>;
 // Jest tests
 
 describe('Island: server-side rendering', () => {
+	test('AdPortals', () => {
+		expect(() => renderToString(<AdPortals />)).not.toThrow();
+	});
+
 	test('AlreadyVisited', () => {
 		expect(() => renderToString(<AlreadyVisited />)).not.toThrow();
+	});
+
+	test('AppEmailSignup', () => {
+		expect(() =>
+			renderToString(
+				<AppEmailSignUp
+					skipToIndex={0}
+					identityName={''}
+					successDescription={''}
+					name={''}
+					description={''}
+					frequency={''}
+					theme={''}
+				/>,
+			),
+		).not.toThrow();
+	});
+
+	test('AppsEpic', () => {
+		expect(() => renderToString(<AppsEpic />)).not.toThrow();
 	});
 
 	test('BrazeMessaging', () => {
@@ -139,6 +171,23 @@ describe('Island: server-side rendering', () => {
 		).not.toThrow();
 	});
 
+	test('DiscussionMeta', () => {
+		expect(() =>
+			renderToString(
+				<DiscussionMeta
+					format={{
+						theme: Pillar.News,
+						design: ArticleDesign.Standard,
+						display: ArticleDisplay.Standard,
+					}}
+					discussionApiUrl={''}
+					shortUrlId={''}
+					enableDiscussionSwitch={false}
+				/>,
+			),
+		);
+	});
+
 	test('EnhancePinnedPost', () => {
 		expect(() =>
 			renderToString(
@@ -161,10 +210,6 @@ describe('Island: server-side rendering', () => {
 				<InteractiveSupportButton editionId="UK" subscribeUrl="" />,
 			),
 		).not.toThrow();
-	});
-
-	test('Snow', () => {
-		expect(() => renderToString(<Snow />)).not.toThrow();
 	});
 
 	test('OnwardsUpper', () => {
@@ -264,10 +309,61 @@ describe('Island: server-side rendering', () => {
 		).not.toThrow();
 	});
 
+	test('MostViewedFooterData', () => {
+		expect(() =>
+			renderToString(
+				<MostViewedFooterData
+					ajaxUrl={''}
+					edition={'UK'}
+					format={{
+						theme: Pillar.News,
+						design: ArticleDesign.Standard,
+						display: ArticleDisplay.Standard,
+					}}
+				/>,
+			),
+		).not.toThrow();
+	});
+
+	test('MostViewedRightWrapper', () => {
+		expect(() =>
+			renderToString(
+				<MostViewedRightWrapper
+					componentDataAttribute={''}
+					maxHeightPx={0}
+					renderAds={false}
+				/>,
+			),
+		).not.toThrow();
+	});
+
 	test('ReaderRevenueDev', () => {
 		expect(() =>
 			renderToString(
 				<ReaderRevenueDev shouldHideReaderRevenue={false} />,
+			),
+		).not.toThrow();
+	});
+
+	test('ReaderRevenueLinks', () => {
+		expect(() =>
+			renderToString(
+				<ConfigProvider
+					value={{ renderingTarget: 'Web', darkModeAvailable: false }}
+				>
+					<ReaderRevenueLinks
+						editionId={'UK'}
+						dataLinkNamePrefix={''}
+						inHeader={false}
+						remoteHeader={false}
+						contributionsServiceUrl={''}
+						urls={{
+							subscribe: '',
+							support: '',
+							contribute: '',
+						}}
+					/>
+				</ConfigProvider>,
 			),
 		).not.toThrow();
 	});
@@ -308,6 +404,10 @@ describe('Island: server-side rendering', () => {
 				/>,
 			),
 		).not.toThrow();
+	});
+
+	test('ShowHideContainers', () => {
+		expect(() => renderToString(<ShowHideContainers />)).not.toThrow();
 	});
 
 	test('SignInGateSelector', () => {
@@ -376,6 +476,29 @@ describe('Island: server-side rendering', () => {
 						remoteBannerSwitch={true}
 						puzzleBannerSwitch={false}
 						isSensitive={false}
+					/>
+				</ConfigProvider>,
+			),
+		).not.toThrow();
+	});
+
+	test('SupportTheG', () => {
+		expect(() =>
+			renderToString(
+				<ConfigProvider
+					value={{ renderingTarget: 'Web', darkModeAvailable: false }}
+				>
+					<SupportTheG
+						editionId={'UK'}
+						dataLinkNamePrefix={''}
+						inHeader={false}
+						remoteHeader={false}
+						contributionsServiceUrl={''}
+						urls={{
+							subscribe: '',
+							support: '',
+							contribute: '',
+						}}
 					/>
 				</ConfigProvider>,
 			),

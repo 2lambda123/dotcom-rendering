@@ -4,27 +4,26 @@ Frontend rendering framework for theguardian.com. It uses [React](https://reactj
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<!-- Automatically created with yarn run createtoc and on push hook -->
+<!-- Automatically created by running `pnpm createtoc` in a pre-commit hook -->
 
--   [Dotcom Rendering](#dotcom-rendering)
-    -   [Quick start](#quick-start)
-        -   [Install Node.js](#install-nodejs)
-        -   [Running instructions](#running-instructions)
-        -   [Environment Variables](#environment-variables)
-        -   [Detailed Setup](#detailed-setup)
-        -   [Technologies](#technologies)
-        -   [UI Design System](#ui-design-system)
-        -   [Concepts](#concepts)
-        -   [Visual Debugging](#visual-debugging)
-        -   [Feedback](#feedback)
-    -   [Dotcom Rendering now renders most articles and fronts in Production](#dotcom-rendering-now-renders-most-articles-and-fronts-in-production)
-    -   [Code Quality](#code-quality)
-        -   [Snyk Code Scanning](#snyk-code-scanning)
-    -   [IDE setup](#ide-setup)
-        -   [Extensions](#extensions)
-        -   [Commit hooks](#commit-hooks)
-        -   [Auto fix on save](#auto-fix-on-save)
-    -   [Thanks](#thanks)
+-   [Quick start](#quick-start)
+    -   [Install Node.js](#install-nodejs)
+    -   [Running instructions](#running-instructions)
+    -   [Environment Variables](#environment-variables)
+    -   [Detailed Setup](#detailed-setup)
+    -   [Technologies](#technologies)
+    -   [UI Design System](#ui-design-system)
+    -   [Concepts](#concepts)
+    -   [Visual Debugging](#visual-debugging)
+    -   [Feedback](#feedback)
+-   [Dotcom Rendering now renders most articles and fronts in Production](#dotcom-rendering-now-renders-most-articles-and-fronts-in-production)
+-   [Code Quality](#code-quality)
+    -   [Snyk Code Scanning](#snyk-code-scanning)
+-   [IDE setup](#ide-setup)
+    -   [Extensions](#extensions)
+    -   [Commit hooks](#commit-hooks)
+    -   [Auto fix on save](#auto-fix-on-save)
+-   [Thanks](#thanks)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -39,9 +38,16 @@ The only thing you need to make sure you have installed before you get going is 
 We recommend using a tool to help manage multiple versions of Node.js on on machine.
 [fnm](https://github.com/Schniz/fnm) is popular in the department at the moment, although
 [nvm](https://github.com/creationix/nvm) and [asdf](https://github.com/asdf-vm/asdf) are
-sometimes used instead.
-If you use nvm, you might find
-[this gist](https://gist.github.com/sndrs/5940e9e8a3f506b287233ed65365befb) helpful.
+also used.
+
+> If you use nvm, you might find
+> [this gist](https://gist.github.com/sndrs/5940e9e8a3f506b287233ed65365befb) helpful.
+
+Once Node is installed, make sure you're using the correct package manager by [enabling corepack](https://github.com/nodejs/corepack?tab=readme-ov-file#utility-commands):
+
+```sh
+corepack enable
+```
 
 ### Running instructions
 
@@ -191,7 +197,13 @@ We recommend you update your workspace settings to automatically fix formatting 
     >Preferences: Open Settings (JSON)
     ```
 
-2. Add the key value `"tslint.autoFixOnSave": true,`
+2. Add the following:
+
+    ```
+    "editor.codeActionsOnSave": {
+    	"source.fixAll.eslint": true
+    }
+    ```
 
 If you prefer not to use an editor like VSCode then you can use the following commands to manage formatting and (try to fix) linting errors:
 

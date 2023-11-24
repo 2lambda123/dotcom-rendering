@@ -28,7 +28,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2
+      - run: corepack enable
 
       - uses: actions/setup-node@v3
         with:
@@ -50,3 +50,4 @@ jobs:
           exitOnceUploaded: true
           onlyChanged: '!(main)' # only turbosnap on non-main branches
           workingDir: apps-rendering
+          buildScriptName: 'build-storybook'

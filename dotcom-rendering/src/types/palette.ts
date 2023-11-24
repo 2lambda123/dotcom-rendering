@@ -7,17 +7,9 @@ export type Palette = {
 		seriesTitle: Colour;
 		sectionTitle: Colour;
 		seriesTitleWhenMatch: Colour;
-		byline: Colour;
-		twitterHandle: Colour;
-		twitterHandleBelowDesktop: Colour;
-		subMeta: Colour;
-		subMetaLabel: Colour;
-		subMetaLink: Colour;
-		syndicationButton: Colour;
 		articleLink: Colour;
 		articleLinkHover: Colour;
 		cardHeadline: Colour;
-		cardByline: Colour;
 		cardKicker: Colour;
 		dynamoHeadline: Colour;
 		dynamoKicker: Colour;
@@ -25,7 +17,6 @@ export type Palette = {
 		linkKicker: Colour;
 		cardStandfirst: Colour;
 		cardFooter: Colour;
-		headlineByline: Colour;
 		standfirst: Colour;
 		standfirstLink: Colour;
 		lastUpdated: Colour;
@@ -64,10 +55,8 @@ export type Palette = {
 		sectionTitle: Colour;
 		card: Colour;
 		headline: Colour;
-		headlineByline: Colour;
 		bullet: Colour;
 		bulletStandfirst: Colour;
-		header: Colour;
 		standfirst: Colour;
 		richLink: Colour;
 		imageTitle: Colour;
@@ -88,7 +77,6 @@ export type Palette = {
 		lightboxDivider: Colour;
 		messageForm: Colour;
 		discussionPillarButton: Colour;
-		subMeta: Colour;
 		dynamoSublink: Colour;
 	};
 	fill: {
@@ -97,12 +85,9 @@ export type Palette = {
 		richLink: Colour;
 		quoteIcon: Colour;
 		blockquoteIcon: Colour;
-		twitterHandleBelowDesktop: Colour;
-		twitterHandle: Colour;
 		guardianLogo: Colour;
 	};
 	border: {
-		syndicationButton: Colour;
 		subNav: Colour;
 		articleLink: Colour;
 		articleLinkHover: Colour;
@@ -128,7 +113,6 @@ export type Palette = {
 		card: Colour;
 	};
 	hover: {
-		headlineByline: Colour;
 		standfirstLink: Colour;
 		pagination: Colour;
 	};

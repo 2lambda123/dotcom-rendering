@@ -1,9 +1,9 @@
 import { octokit } from './github.ts';
 
 const peers = async (cwd: string) => {
-	const process = new Deno.Command('yarn', {
+	const process = new Deno.Command('pnpm', {
 		cwd,
-		args: ['--force'],
+		args: ['install'],
 		stdout: 'null',
 		stderr: 'piped',
 	});

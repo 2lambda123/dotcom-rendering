@@ -2,9 +2,6 @@ import { css } from '@emotion/react';
 import type { ArticleFormat } from '@guardian/libs';
 import { ArticleDesign } from '@guardian/libs';
 import {
-	brandBackground,
-	brandBorder,
-	brandLine,
 	from,
 	palette as sourcePalette,
 	space,
@@ -12,11 +9,11 @@ import {
 } from '@guardian/source-foundations';
 import { Hide } from '@guardian/source-react-components';
 import { StraightLines } from '@guardian/source-react-components-development-kitchen';
-import { palette as darkModePalette } from '../../src/palette';
 import { Accordion } from '../components/Accordion';
 import { RightAdsPlaceholder } from '../components/AdPlaceholder.apps';
 import { AdPortals } from '../components/AdPortals.importable';
 import { AdSlot, MobileStickyContainer } from '../components/AdSlot.web';
+import { AppsFooter } from '../components/AppsFooter.importable';
 import { ArticleBody } from '../components/ArticleBody';
 import { ArticleContainer } from '../components/ArticleContainer';
 import { ArticleHeadline } from '../components/ArticleHeadline';
@@ -57,7 +54,6 @@ import {
 } from '../components/TopicFilterBank';
 import { canRenderAds } from '../lib/canRenderAds';
 import { getContributionsServiceUrl } from '../lib/contributions';
-import { decidePalette } from '../lib/decidePalette';
 import { decideTrail } from '../lib/decideTrail';
 import { getZIndex } from '../lib/getZIndex';
 import type { NavType } from '../model/extract-nav';
@@ -280,8 +276,6 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 
 	const { branding } = article.commercialProperties[article.editionId];
 
-	const palette = decidePalette(format);
-
 	const footballMatchUrl =
 		article.matchType === 'FootballMatchType'
 			? article.matchUrl
@@ -330,7 +324,7 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 							showTopBorder={false}
 							showSideBorders={false}
 							padSides={false}
-							backgroundColour={brandBackground.primary}
+							backgroundColour={sourcePalette.brand[400]}
 							element="header"
 						>
 							<Header
@@ -357,10 +351,10 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 
 						<Section
 							fullWidth={true}
-							borderColour={brandLine.primary}
+							borderColour={sourcePalette.brand[600]}
 							showTopBorder={false}
 							padSides={false}
-							backgroundColour={brandBackground.primary}
+							backgroundColour={sourcePalette.brand[400]}
 							element="nav"
 						>
 							<Nav
@@ -380,9 +374,11 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 						{props.NAV.subNavSections && (
 							<Section
 								fullWidth={true}
-								backgroundColour={palette.background.article}
+								backgroundColour={themePalette(
+									'--article-background',
+								)}
 								padSides={false}
-								borderColour={palette.border.article}
+								borderColour={themePalette('--article-border')}
 								element="aside"
 							>
 								<Island
@@ -396,10 +392,12 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 										currentNavLink={
 											props.NAV.currentNavLink
 										}
-										linkHoverColour={
-											palette.text.articleLinkHover
-										}
-										borderColour={palette.border.subNav}
+										linkHoverColour={themePalette(
+											'--article-link-text-hover',
+										)}
+										borderColour={themePalette(
+											'--sub-nav-border',
+										)}
 									/>
 								</Island>
 							</Section>
@@ -407,10 +405,12 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 
 						<Section
 							fullWidth={true}
-							backgroundColour={palette.background.article}
+							backgroundColour={themePalette(
+								'--article-background',
+							)}
 							padSides={false}
 							showTopBorder={false}
-							borderColour={palette.border.article}
+							borderColour={themePalette('--article-border')}
 						>
 							<StraightLines
 								count={4}
@@ -424,15 +424,17 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 			)}
 			<main data-layout="LiveLayout">
 				{isApps && (
-					<Island priority="critical" clientOnly={true}>
+					<Island priority="critical">
 						<AdPortals rightAlignFrom="wide" />
 					</Island>
 				)}
 				{footballMatchUrl ? (
 					<Section
 						showTopBorder={false}
-						backgroundColour={palette.background.matchNav}
-						borderColour={palette.border.headline}
+						backgroundColour={themePalette(
+							'--match-nav-background',
+						)}
+						borderColour={themePalette('--headline-border')}
 						leftContent={
 							<ArticleTitle
 								format={format}
@@ -476,8 +478,10 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 					<Section
 						fullWidth={true}
 						showTopBorder={false}
-						backgroundColour={palette.background.header}
-						borderColour={palette.border.headline}
+						backgroundColour={themePalette(
+							'--headline-blog-background',
+						)}
+						borderColour={themePalette('--headline-border')}
 					>
 						<HeadlineGrid>
 							<GridItem area="title">
@@ -526,8 +530,8 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 				<Section
 					fullWidth={true}
 					showTopBorder={false}
-					backgroundColour={palette.background.standfirst}
-					borderColour={palette.border.standfirst}
+					backgroundColour={themePalette('--standfirst-background')}
+					borderColour={themePalette('--standfirst-border')}
 				>
 					<StandFirstGrid>
 						<GridItem area="standfirst">
@@ -597,10 +601,10 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 					<Section
 						fullWidth={true}
 						showTopBorder={false}
-						backgroundColour={darkModePalette(
+						backgroundColour={themePalette(
 							'--key-event-background-desktop',
 						)}
-						borderColour={palette.border.article}
+						borderColour={themePalette('--article-border')}
 					>
 						<Hide until={'desktop'}>
 							<Island
@@ -619,8 +623,8 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 				<Section
 					fullWidth={true}
 					showTopBorder={false}
-					borderColour={palette.border.article}
-					backgroundColour={palette.background.article}
+					borderColour={themePalette('--article-border')}
+					backgroundColour={themePalette('--article-background')}
 				>
 					<Hide until="desktop">
 						<div
@@ -647,7 +651,6 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 								`}
 							/>
 							<Island
-								clientOnly={true}
 								priority="feature"
 								defer={{ until: 'idle' }}
 							>
@@ -677,8 +680,8 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 					<Section
 						fullWidth={true}
 						showTopBorder={false}
-						backgroundColour={palette.background.article}
-						borderColour={palette.border.article}
+						backgroundColour={themePalette('--article-background')}
+						borderColour={themePalette('--article-border')}
 						padSides={false}
 					>
 						<LiveGrid>
@@ -1257,7 +1260,6 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 							<MostViewedFooterLayout renderAds={renderAds}>
 								<Island
 									priority="feature"
-									clientOnly={true}
 									defer={{ until: 'visible' }}
 								>
 									<MostViewedFooterData
@@ -1306,10 +1308,12 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 								<SubNav
 									subNavSections={props.NAV.subNavSections}
 									currentNavLink={props.NAV.currentNavLink}
-									linkHoverColour={
-										palette.text.articleLinkHover
-									}
-									borderColour={palette.border.subNav}
+									linkHoverColour={themePalette(
+										'--article-link-text-hover',
+									)}
+									borderColour={themePalette(
+										'--sub-nav-border',
+									)}
 								/>
 							</Island>
 						</Section>
@@ -1319,8 +1323,8 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 						fullWidth={true}
 						data-print-layout="hide"
 						padSides={false}
-						backgroundColour={brandBackground.primary}
-						borderColour={brandBorder.primary}
+						backgroundColour={sourcePalette.brand[400]}
+						borderColour={sourcePalette.brand[600]}
 						showSideBorders={false}
 						element="footer"
 					>
@@ -1372,6 +1376,22 @@ export const LiveLayout = (props: WebProps | AppsProps) => {
 					</BannerWrapper>
 					<MobileStickyContainer data-print-layout="hide" />
 				</>
+			)}
+
+			{isApps && (
+				<Section
+					fullWidth={true}
+					data-print-layout="hide"
+					backgroundColour={themePalette('--apps-footer-background')}
+					borderColour={themePalette('--article-border')}
+					padSides={false}
+					showSideBorders={false}
+					element="footer"
+				>
+					<Island priority="critical">
+						<AppsFooter />
+					</Island>
+				</Section>
 			)}
 		</>
 	);
