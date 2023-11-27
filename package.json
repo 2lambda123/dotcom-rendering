@@ -11,6 +11,7 @@
 		]
 	},
 	"scripts": {
+		"preinstall": "./scripts/env/check-package-manager",
 		"postinstall": "./scripts/postinstall.sh",
 		"storybook": "npm-run-all --parallel storybook:*",
 		"storybook:dcr": "yarn workspace @guardian/dotcom-rendering storybook --no-open --quiet",
