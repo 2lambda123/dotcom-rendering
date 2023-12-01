@@ -18,6 +18,7 @@ import { ArticleTitle } from '../components/ArticleTitle';
 import { Border } from '../components/Border';
 import { Carousel } from '../components/Carousel.importable';
 import { DecideLines } from '../components/DecideLines';
+import { Disclaimer } from '../components/Disclaimer';
 import { DiscussionLayout } from '../components/DiscussionLayout';
 import { Footer } from '../components/Footer';
 import { GridItem } from '../components/GridItem';
@@ -88,6 +89,7 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 						'lines  border  media       media'
 						'meta   border  media       media'
 						'meta   border  standfirst  right-column'
+						'meta   border  disclaimer  right-column'
 						'.      border  body        right-column'
 						'.      border  .           right-column';
 				}
@@ -99,6 +101,7 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 						'lines  border  media       media'
 						'meta   border  media       media'
 						'meta   border  standfirst  right-column'
+						'meta   border  disclaimer  right-column'
 						'.      border  body        right-column'
 						'.      border  .           right-column';
 				}
@@ -115,6 +118,7 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 						'title      right-column'
 						'headline   right-column'
 						'standfirst right-column'
+						'disclaimer right-column'
 						'media      right-column'
 						'lines      right-column'
 						'meta       right-column'
@@ -129,6 +133,7 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 						'title'
 						'headline'
 						'standfirst'
+						'disclaimer'
 						'media'
 						'lines'
 						'meta'
@@ -143,6 +148,7 @@ const ShowcaseGrid = ({ children }: { children: React.ReactNode }) => (
 						'title'
 						'headline'
 						'standfirst'
+						'disclaimer'
 						'lines'
 						'meta'
 						'body';
@@ -241,6 +247,8 @@ export const ShowcaseLayout = (props: WebProps | AppsProps) => {
 	const renderAds = isWeb && canRenderAds(article);
 
 	const isLabs = format.theme === ArticleSpecial.Labs;
+
+	const hasAffiliateLinksDisclaimer = !!article.affiliateLinksDisclaimer;
 
 	return (
 		<>
@@ -545,6 +553,15 @@ export const ShowcaseLayout = (props: WebProps | AppsProps) => {
 								format={format}
 								standfirst={article.standfirst}
 							/>
+						</GridItem>
+						<GridItem area="disclaimer">
+							{hasAffiliateLinksDisclaimer && (
+								<Disclaimer
+									html={
+										article.affiliateLinksDisclaimer ?? ''
+									}
+								></Disclaimer>
+							)}
 						</GridItem>
 						<GridItem area="lines">
 							<div css={maxWidth}>
