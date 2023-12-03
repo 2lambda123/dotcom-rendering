@@ -15686,10 +15686,10 @@ postcss@^8.3.11, postcss@^8.4.19, postcss@^8.4.21:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-preact-render-to-string@6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-6.0.2.tgz#79fa4840757cd91ab9e8a119429609552e2057f9"
-  integrity sha512-/dls6xmcFc8PvnCVke5Hu5ll70pZZu+jZuvw3i/ya2CNu6B0ev9F937+oFyzdlNKVp68III89oYMbE6dcmuyRA==
+preact-render-to-string@6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/preact-render-to-string/-/preact-render-to-string-6.3.1.tgz#2479ebca8e6721cacfcecaa79bd861005a3d9b8f"
+  integrity sha512-NQ28WrjLtWY6lKDlTxnFpKHZdpjfF+oE6V4tZ0rTrunHrtZp6Dm0oFrcJalt/5PNeqJz4j1DuZDS0Y6rCBoqDA==
   dependencies:
     pretty-format "^3.8.0"
 
@@ -15777,16 +15777,7 @@ pretty-format@^27.0.0, pretty-format@^27.0.2, pretty-format@^27.5.1:
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
 
-pretty-format@^29.0.0, pretty-format@^29.5.0:
-  version "29.5.0"
-  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-29.5.0.tgz#283134e74f70e2e3e7229336de0e4fce94ccde5a"
-  integrity sha512-V2mGkI31qdttvTFX7Mt4efOqHXqJWMu4/r66Xh3Z3BwZaPfPJgp6/gbwoujRpPUtfEF6AUUWx3Jim3GCw5g/Qw==
-  dependencies:
-    "@jest/schemas" "^29.4.3"
-    ansi-styles "^5.0.0"
-    react-is "^18.0.0"
-
-pretty-format@^29.6.0:
+pretty-format@^29.0.0, pretty-format@^29.5.0, pretty-format@^29.6.0:
   version "29.6.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-29.6.0.tgz#c90c8f145187fe73240662527a513599c16f3b97"
   integrity sha512-XH+D4n7Ey0iSR6PdAnBs99cWMZdGsdKrR33iUHQNr79w1szKTCIZDVdXuccAsHVwDBp0XeWPfNEoaxP9EZgRmQ==

@@ -209,7 +209,7 @@
 		"ophan-tracker-js": "2.0.2",
 		"parse5": "7.1.2",
 		"preact": "10.15.1",
-		"preact-render-to-string": "6.0.2",
+		"preact-render-to-string": "6.3.1",
 		"pretty-bytes": "6.1.0",
 		"prop-types": "15.8.1",
 		"react": "18.2.0",
