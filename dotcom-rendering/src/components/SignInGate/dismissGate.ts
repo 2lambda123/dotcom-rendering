@@ -1,5 +1,5 @@
 // TODO: Add temporary `localStorage` implementation from `dotcom-rendering/src/utils/localStorage.ts` when it is merged
-const localStorageKey = `gu.prefs.sign-in-gate`;
+const signInGateLocalStorageKey = `gu.prefs.sign-in-gate`;
 
 // We use this key for storing the date the gate was dismissed against
 const localStorageDismissedDateKey = (
@@ -51,7 +51,7 @@ const setSigninGatePrefs = (prefs: any) => {
 export const setUserDismissedGate = (variant: string, name: string): void => {
 	try {
 		const prefs = getSigninGatePrefsSafely();
-		prefs[localStorageItemsItemsItemsDismissedDateKey(variant, name)] =
+		prefs[`${signInGateDismissedDateKey(variant, name)}`] =
 			new Date().toISOString();
 		setSigninGatePrefs(prefs);
 	} catch (error) {
@@ -62,7 +62,7 @@ export const setUserDismissedGate = (variant: string, name: string): void => {
 export const unsetUserDismissedGate = (variant: string, name: string): void => {
 	try {
 		const prefs = getSigninGatePrefsSafely();
-		delete prefs[localStorageItemsItemsItemsDismissedDateKey(variant, name)];
+		delete prefs[`${signInGateDismissedDateKey(variant, name)}`];
 		setSigninGatePrefs(prefs);
 	} catch (error) {
 		// Alas, sometimes localstorage isn't available
@@ -89,7 +89,7 @@ export const hasUserDismissedGate = (
 		// checks if a dismissal occurred within a given window timeframe in hours
 		if (window !== undefined) {
 			// checks if prefs is empty, ie. the user has not dismissed gate before.
-			if (!prefs[localStorageItemsItemsItemsDismissedDateKey(variant, name)]) {
+			if (!prefs[`${signInGateDismissedDateKey(variant, name)}`]) {
 				return false;
 			}
 
@@ -105,7 +105,7 @@ export const hasUserDismissedGate = (
 			return true;
 		}
 
-		return !!prefs[localStorageItemsItemsItemsDismissedDateKey(variant, name)];
+		return !!prefs[`${signInGateDismissedDateKey(variant, name)}`];
 	} catch (error) {
 		// Alas, sometimes localstorage isn't available. Please have a sign in gate as an apology
 		return false;
