@@ -1,4 +1,4 @@
-// TODO: Add localstorage lib from https://github.com/guardian/libs/pull/1 when it is merged
+
 const localStorageKey = `gu.prefs.sign-in-gate`;
 
 // We use this key for storing the date the gate was dismissed against
