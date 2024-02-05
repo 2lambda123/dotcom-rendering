@@ -6533,10 +6533,10 @@
   resolved "https://registry.yarnpkg.com/@types/find-cache-dir/-/find-cache-dir-3.2.1.tgz#7b959a4b9643a1e6a1a5fe49032693cc36773501"
   integrity sha512-frsJrz2t/CeGifcu/6uRo4b+SzAwT4NYCVPu1GN8IB9XTzrpPkGuV0tmh9mN+/L0PklAlsC3u5Fxt0ju00LXIw==
 
-"@types/gapi.analytics@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@types/gapi.analytics/-/gapi.analytics-0.0.4.tgz#416e89df10fbef502f5172ef9fc07ff2540e10a2"
-  integrity sha512-unH6f/p/loY8Toi/hLmZ42VNu5xIweWcRt3Ho/n7FhRf6lQMTgF8GEIMTEbDupPXlIUK0bC1kLSNJpJNsvM/mw==
+"@types/gapi.analytics@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@types/gapi.analytics/-/gapi.analytics-0.0.8.tgz#658f4f0431ec847fbce6d7f84fd487430dd5f245"
+  integrity sha512-lpNV/Y41R63DnOwyMEDMocf5qUv2O6VuBdMr/cQSUQpBRYcDcxDtAU2IZswzAvSHDT4hs4QcuIx44qQ9FBlg4A==
   dependencies:
     "@types/gapi" "*"
 
