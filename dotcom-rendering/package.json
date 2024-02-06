@@ -197,7 +197,7 @@
 		"jest": "29.5.0",
 		"jest-environment-jsdom": "29.5.0",
 		"jsdom": "22.1.0",
-		"load-json-file": "6.2.0",
+		"load-json-file": "7.0.1",
 		"lodash.debounce": "4.0.8",
 		"lodash.get": "4.4.2",
 		"log4js": "6.9.1",
