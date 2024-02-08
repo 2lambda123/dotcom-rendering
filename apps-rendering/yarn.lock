@@ -3630,10 +3630,10 @@
     "@typescript-eslint/eslint-plugin" "6.14.0"
     "@typescript-eslint/parser" "6.14.0"
 
-"@guardian/libs@^15.4.0":
-  version "15.4.0"
-  resolved "https://registry.yarnpkg.com/@guardian/libs/-/libs-15.4.0.tgz#725191fab57a036f7180f7e3a127214d0c20736c"
-  integrity sha512-UnLLRnVNHhuBE8uRSx3b0rjpjovFK7lSbnfCZ5jZqabEutkZimkNdW4DX95y3QWDHJT/faHo3kV7heiXKbiO3g==
+"@guardian/libs@^15.9.1":
+  version "15.9.1"
+  resolved "https://registry.yarnpkg.com/@guardian/libs/-/libs-15.9.1.tgz#6846c9f0debb19d650f1775b21314a99ea80248d"
+  integrity sha512-Mns6Gc3MQacVxQ44Ei5HaVak3y9HYQF5kZ4lZGnacJfRdWAfW9K5K5rphf7mSgqkygOGoTs5TMQ3gO37MP8hbw==
 
 "@guardian/node-riffraff-artifact@^0.3.2":
   version "0.3.2"
