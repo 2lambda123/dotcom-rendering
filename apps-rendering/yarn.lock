@@ -6032,10 +6032,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/clean-css@*", "@types/clean-css@^4.2.5":
-  version "4.2.5"
-  resolved "https://registry.yarnpkg.com/@types/clean-css/-/clean-css-4.2.5.tgz#69ce62cc13557c90ca40460133f672dc52ceaf89"
-  integrity sha512-NEzjkGGpbs9S9fgC4abuBvTpVwE3i+Acu9BBod3PUyjDVZcNsGx61b8r2PphR61QGPnn0JHVs5ey6/I4eTrkxw==
+"@types/clean-css@*", "@types/clean-css@^4.2.11":
+  version "4.2.11"
+  resolved "https://registry.yarnpkg.com/@types/clean-css/-/clean-css-4.2.11.tgz#3f170dedd8d096fe7e7bd1c8dda0c8314217cbe6"
+  integrity sha512-Y8n81lQVTAfP2TOdtJJEsCoYl1AnOkqDqMvXb9/7pfgZZ7r8YrEyurrAvAoAjHOGXKRybay+5CsExqIH6liccw==
   dependencies:
     "@types/node" "*"
     source-map "^0.6.0"
@@ -6293,12 +6293,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*":
-  version "18.11.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
-  integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
-
-"@types/node@18.17.0":
+"@types/node@*", "@types/node@18.17.0":
   version "18.17.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.17.0.tgz#35d44267a33dd46b49ee0f73d31b05fd7407e290"
   integrity sha512-GXZxEtOxYGFchyUzxvKI14iff9KZ2DI+A6a37o6EQevtg6uO9t+aUZKcaC1Te5Ng1OnLM7K9NVVj+FbecD9cJg==
