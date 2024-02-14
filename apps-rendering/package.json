@@ -34,7 +34,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@aws-sdk/credential-providers": "3.507.0",
-		"@aws-sdk/client-ssm": "3.441.0",
+		"@aws-sdk/client-ssm": "3.513.0",
 		"@babel/core": "7.23.2",
 		"@babel/preset-env": "^7.20.2",
 		"@creditkarma/thrift-server-core": "^1.0.4",
