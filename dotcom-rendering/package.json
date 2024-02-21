@@ -255,7 +255,7 @@
 		"unified": "11.0.4",
 		"uuid": "9.0.1",
 		"web-vitals": "3.1.1",
-		"webpack": "5.76.1",
+		"webpack": "5.90.3",
 		"webpack-assets-manifest": "5.1.0",
 		"webpack-bundle-analyzer": "4.10.1",
 		"webpack-cli": "5.0.1",
