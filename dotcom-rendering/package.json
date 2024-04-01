@@ -259,7 +259,7 @@
 		"webpack-assets-manifest": "5.1.0",
 		"webpack-bundle-analyzer": "4.10.1",
 		"webpack-cli": "5.0.1",
-		"webpack-dev-middleware": "5.3.3",
+		"webpack-dev-middleware": "7.2.0",
 		"webpack-dev-server": "4.15.0",
 		"webpack-filter-warnings-plugin": "1.2.1",
 		"webpack-hot-middleware": "2.26.1",
