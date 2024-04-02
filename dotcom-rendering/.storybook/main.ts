@@ -1,8 +1,8 @@
-import path from 'node:path';
+import path from 'path';
 import webpack from 'webpack';
 import { babelExclude, getLoaders } from '../webpack/webpack.config.client';
 import { saveStories } from '../scripts/gen-stories/get-stories.mjs';
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react/webpack5';
 import { svgr } from '../webpack/svg.cjs';
 
 // Generate dynamic Card and Layout stories
@@ -43,6 +43,20 @@ const config: StorybookConfig = {
 		},
 	],
 	webpackFinal: async (config) => {
+	config = webpackConfig(config);
+
+	config.resolve?.extensions?.push('.ts', '.tsx');
+
+	config.plugins?.push(
+		// @ts-expect-error -- we’ve got plugin mismatch
+		new webpack.DefinePlugin({
+			process: '{}',
+		}),
+		// We rely on Buffer for our bridget thrift client
+		new webpack.ProvidePlugin({
+			Buffer: ['buffer', 'Buffer'],
+		}),
+	);
 		// Get project specific webpack options
 		config = webpackConfig(config);
 
@@ -64,6 +78,7 @@ const config: StorybookConfig = {
 		return config;
 	},
 	env: (config) => ({
+	CI: 'true',
 		...config,
 		// Github sets a CI env var for all actions but this isn't being picked up by Storybook
 		// See: https://storybook.js.org/docs/react/configure/environment-variables
@@ -104,6 +119,10 @@ const webpackConfig = (config: Configuration) => {
 		path.resolve(__dirname, '../src/components/SecureSignup.tsx')
 	] = path.resolve(__dirname, '../__mocks__/SecureSignupMock.tsx');
 	const webpackLoaders = getLoaders('web');
+
+	if (webpackLoaders[0].loader.startsWith('swc')) {
+		webpackLoaders[0].options.parseMap = true;
+	}
 	// https://swc.rs/docs/usage/swc-loader#with-babel-loader
 	if (webpackLoaders[0].loader.startsWith('swc')) {
 		webpackLoaders[0].options.parseMap = true;
@@ -126,6 +145,11 @@ const webpackConfig = (config: Configuration) => {
 		(fileLoaderRule.exclude = /\.svg$/);
 
 	rules.push(svgr);
+
+	const fileLoaderRule = rules.find((rule) => rule.test.test('.svg'));
+	fileLoaderRule &&
+		typeof fileLoaderRule !== 'string' &&
+		(fileLoaderRule.exclude = /\.svg$/);
 	config.resolve.modules = [
 		...((config && config.resolve && config.resolve.modules) || []),
 	];
