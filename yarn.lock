@@ -3660,10 +3660,10 @@
   resolved "https://registry.yarnpkg.com/@guardian/ab-core/-/ab-core-5.0.0.tgz#cce32ff4cdfb6b24c013723bf352dcd61135d34d"
   integrity sha512-Td5gtK2sARl+fXj1Qe6RuFqf/zxuZjW1q2Jck09zXPIfMgU+sJoTi549zbNeC1cldCBhPWy/qPQ0r+8klfF7jg==
 
-"@guardian/braze-components@15.0.1":
-  version "15.0.1"
-  resolved "https://registry.yarnpkg.com/@guardian/braze-components/-/braze-components-15.0.1.tgz#2c936c43e654f5ae28db254329eae1b4b5861641"
-  integrity sha512-XNqYE9X/4aM5vZqiZInedvEZ9niPfdqwL7SjzNF0wnVbR+YObOC6QC68M521gTPcyca6r190qtnayv4GNO0peg==
+"@guardian/braze-components@18.1.1":
+  version "18.1.1"
+  resolved "https://registry.yarnpkg.com/@guardian/braze-components/-/braze-components-18.1.1.tgz#c01084d696220a8cf78e9fde818c9609965320b2"
+  integrity sha512-2AzivdvENoxtExAPceUXICMeyVlYF5V1HJ4QyzfDTxbNBG6v1EK1ZXEN2AXEyM7jzpn6oBjlrV7J3usv3mPOiA==
 
 "@guardian/bridget@2.5.0":
   version "2.5.0"
