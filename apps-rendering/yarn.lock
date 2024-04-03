@@ -5522,7 +5522,7 @@
     fs-extra "^11.1.0"
     read-pkg-up "^7.0.1"
 
-"@storybook/theming@7.6.17", "@storybook/theming@^7.2.0":
+"@storybook/theming@7.6.17":
   version "7.6.17"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-7.6.17.tgz#8170e3e72b921380c51a3970890d4cb479a65c2f"
   integrity sha512-ZbaBt3KAbmBtfjNqgMY7wPMBshhSJlhodyMNQypv+95xLD/R+Az6aBYbpVAOygLaUQaQk4ar7H/Ww6lFIoiFbA==
@@ -5532,7 +5532,7 @@
     "@storybook/global" "^5.0.0"
     memoizerific "^1.11.3"
 
-"@storybook/theming@8.0.5":
+"@storybook/theming@8.0.5", "@storybook/theming@^8.0.5":
   version "8.0.5"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.0.5.tgz#e98aa8b761b93c2cff21213770a1bafb971f2c07"
   integrity sha512-Hy4hJaKg6UUyivkUM77nCHccv4/lO++ZG9F88qBFVPdBlCwMHHnUrR7Hgje5cCVAy0jK6LyYlD3cWO6nS9OR8w==
