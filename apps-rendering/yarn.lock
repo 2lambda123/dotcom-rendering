@@ -13563,10 +13563,10 @@ thrift@^0.15.0:
     q "^1.5.0"
     ws "^5.2.2"
 
-thrift@^0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/thrift/-/thrift-0.16.0.tgz#6497711610aa32d2f94fc2546f88ee4ff6e4106c"
-  integrity sha512-W8DpGyTPlIaK3f+e1XOCLxefaUWXtrOXAaVIDbfYhmVyriYeAKgsBVFNJUV1F9SQ2SPt2sG44AZQxSGwGj/3VA==
+thrift@^0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/thrift/-/thrift-0.20.0.tgz#b2dbeaaf7c2385aed2eba59d442c87f033fa8e5e"
+  integrity sha512-oSmJTaoIAGolpupVHFfsWcmdEKX81fcDI6ty0hhezzdgZvp0XyXgMe9+1YusI8Ahy0HK4n8jlNrkPjOPeHZjdQ==
   dependencies:
     browser-or-node "^1.2.1"
     isomorphic-ws "^4.0.1"
