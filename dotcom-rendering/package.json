@@ -60,7 +60,7 @@
 		"@guardian/braze-components": "18.1.1",
 		"@guardian/bridget": "2.5.0",
 		"@guardian/browserslist-config": "5.0.0",
-		"@guardian/cdk": "50.10.6",
+		"@guardian/cdk": "56.0.2",
 		"@guardian/commercial": "11.20.0",
 		"@guardian/consent-management-platform": "13.7.1",
 		"@guardian/core-web-vitals": "5.1.0",
