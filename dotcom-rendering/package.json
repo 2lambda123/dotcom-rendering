@@ -249,7 +249,7 @@
 		"ts-loader": "9.4.3",
 		"ts-unused-exports": "8.0.5",
 		"tslib": "2.6.2",
-		"type-fest": "4.6.0",
+		"type-fest": "4.15.0",
 		"typescript": "5.1.6",
 		"typescript-json-schema": "0.58.1",
 		"unified": "11.0.4",
