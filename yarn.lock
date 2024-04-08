@@ -3259,10 +3259,10 @@
   resolved "https://registry.yarnpkg.com/@guardian/bridget/-/bridget-2.5.0.tgz#1a5b1adeea08398b678f38e15cb8c598a5e73b19"
   integrity sha512-H60m0zTPGgwJJm4SG/a7XO6Cxmn2PPJQhGULjueX+z5ZkEfhc78dsc6a578GZbJWFSTw10clgnXM7ruXON2vUw==
 
-"@guardian/browserslist-config@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@guardian/browserslist-config/-/browserslist-config-5.0.0.tgz#734603a4553670abb69ff290e9ff20ef61b17218"
-  integrity sha512-NrmQflwQKWYSNHUXsq9uroPIp+d5+mzZrDUy8MEFdNDqVjy8WPfbhANhQtFWGGjRifL0Z7yrfG/cYyBxbKFY3w==
+"@guardian/browserslist-config@6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@guardian/browserslist-config/-/browserslist-config-6.1.0.tgz#2c9345d4411aa6e11779d8da5411a4dc500bd91a"
+  integrity sha512-qM0QxAv6E5IHXny5Okli6AZXEio0mpXzzEzz38qrb4IwO91R6eWVKyihdj0qW2k7TVxMFVOSfNmBZ1H5EiJhgw==
 
 "@guardian/cdk@56.0.2":
   version "56.0.2"
