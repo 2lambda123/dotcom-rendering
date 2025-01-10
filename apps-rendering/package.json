@@ -86,7 +86,7 @@
 		"constructs": "10.2.69",
 		"core-js": "^3.35.1",
 		"eslint": "^8.56.0",
-		"eslint-plugin-jsx-a11y": "^6.7.1",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"eslint-plugin-react": "^7.33.2",
 		"express": "^4.19.2",
 		"fetch-mock": "9.11.0",
