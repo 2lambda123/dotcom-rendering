@@ -115,7 +115,7 @@
 		"@types/lodash.debounce": "4.0.7",
 		"@types/lodash.get": "4.4.7",
 		"@types/node": "18.17.0",
-		"@types/node-fetch": "2.6.2",
+		"@types/node-fetch": "2.6.12",
 		"@types/parse5": "7.0.0",
 		"@types/prop-types": "15.7.5",
 		"@types/qs": "6.9.7",
