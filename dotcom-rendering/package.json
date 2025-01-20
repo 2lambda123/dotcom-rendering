@@ -118,7 +118,7 @@
 		"@types/node-fetch": "2.6.12",
 		"@types/parse5": "7.0.0",
 		"@types/prop-types": "15.7.5",
-		"@types/qs": "6.9.7",
+		"@types/qs": "6.9.18",
 		"@types/react": "18.2.0",
 		"@types/react-dom": "18.2.0",
 		"@types/react-google-recaptcha": "2.1.5",
