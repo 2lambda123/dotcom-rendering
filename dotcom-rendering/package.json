@@ -52,7 +52,7 @@
 		"@creditkarma/thrift-server-core": "1.0.4",
 		"@cypress/skip-test": "2.6.1",
 		"@cypress/webpack-preprocessor": "5.17.1",
-		"@emotion/babel-plugin": "11.11.0",
+		"@emotion/babel-plugin": "11.13.5",
 		"@emotion/cache": "11.11.0",
 		"@emotion/react": "11.11.1",
 		"@emotion/server": "11.11.0",
