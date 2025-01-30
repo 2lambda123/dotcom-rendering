@@ -107,7 +107,7 @@
 		"@types/express-serve-static-core": "4.17.43",
 		"@types/gapi.analytics": "0.0.8",
 		"@types/google.analytics": "0.0.42",
-		"@types/he": "1.2.0",
+		"@types/he": "1.2.3",
 		"@types/html-minifier-terser": "7.0.0",
 		"@types/jest": "27.5.2",
 		"@types/jsdom": "21.1.6",
