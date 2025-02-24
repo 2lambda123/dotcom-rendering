@@ -163,7 +163,7 @@
 		"curlyquotes": "1.5.5",
 		"cypress": "13.6.4",
 		"cypress-plugin-tab": "1.0.5",
-		"cypress-real-events": "1.11.0",
+		"cypress-real-events": "1.14.0",
 		"cypress-wait-until": "3.0.2",
 		"doctoc": "2.2.1",
 		"dompurify": "3.0.3",
