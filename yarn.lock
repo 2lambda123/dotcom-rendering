@@ -2850,10 +2850,10 @@
   resolved "https://registry.yarnpkg.com/@guardian/source-react-components-development-kitchen/-/source-react-components-development-kitchen-21.0.0.tgz#8f428c9506289fd8e26dd6381f9f82158547f8f4"
   integrity sha512-rhh9wv9PsNqkOJGWWc7iqoGvhvPPYaKDA3TF6xIpV6KVQAuESIkBmL7NrbEyBO2btStJ6UMTtGd0kpCZPrRr5Q==
 
-"@guardian/source-react-components@16.0.1":
-  version "16.0.1"
-  resolved "https://registry.yarnpkg.com/@guardian/source-react-components/-/source-react-components-16.0.1.tgz#24d4c4081e6a293a101b3217b598fccf151b04bd"
-  integrity sha512-M/zrs+G5NqykicECNf803B9815tVkPfazwmYsGfrDdKGptBmLhcofGlpC/MGdKiJ9lTlOQBieUyZ2y6i2mBJyQ==
+"@guardian/source-react-components@25.0.0":
+  version "25.0.0"
+  resolved "https://registry.yarnpkg.com/@guardian/source-react-components/-/source-react-components-25.0.0.tgz#c4c8ac53b92a7ed4ebde6823c8f7d80151f8375a"
+  integrity sha512-9llnT6DUiLmdhklciMO75SBC9DbBqLw+jBWxhu60J+uAyw7B2WqG9Bmk8wPBCSrRe4hNvsosJyVMI+KiRb48Bw==
 
 "@guardian/support-dotcom-components@1.0.8":
   version "1.0.8"
