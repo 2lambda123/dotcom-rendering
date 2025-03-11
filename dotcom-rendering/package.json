@@ -184,7 +184,7 @@
 		"eslint-plugin-unicorn": "50.0.1",
 		"eslint-stats": "1.0.1",
 		"execa": "5.1.1",
-		"express": "4.19.2",
+		"express": "4.21.2",
 		"express-serve-static-core": "0.1.1",
 		"fetch-mock": "9.11.0",
 		"find": "0.3.0",
