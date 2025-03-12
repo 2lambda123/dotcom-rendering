@@ -166,7 +166,7 @@
 		"cypress-real-events": "1.14.0",
 		"cypress-wait-until": "3.0.2",
 		"doctoc": "2.2.1",
-		"dompurify": "3.0.3",
+		"dompurify": "3.2.4",
 		"dynamic-import-polyfill": "0.1.1",
 		"eslint": "8.44.0",
 		"eslint-config-airbnb-base": "15.0.0",
