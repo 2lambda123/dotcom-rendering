@@ -250,7 +250,7 @@
 		"ts-unused-exports": "11.0.1",
 		"tslib": "2.6.2",
 		"type-fest": "4.15.0",
-		"typescript": "5.1.6",
+		"typescript": "5.8.2",
 		"typescript-json-schema": "0.65.1",
 		"unified": "11.0.4",
 		"uuid": "9.0.1",
