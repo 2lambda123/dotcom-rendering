@@ -144,7 +144,7 @@
 		"ajv-formats": "2.1.1",
 		"amphtml-validator": "1.0.38",
 		"aws-cdk": "2.87.0",
-		"aws-cdk-lib": "2.177.0",
+		"aws-cdk-lib": "2.184.0",
 		"babel-loader": "8.3.0",
 		"babel-plugin-polyfill-corejs3": "0.11.1",
 		"babel-plugin-px-to-rem": "https://github.com/guardian/babel-plugin-px-to-rem#v0.1.0",
